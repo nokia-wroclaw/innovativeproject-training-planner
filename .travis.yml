@@ -1,17 +1,16 @@
 language: node_js
 node_js:
-  - stable
+- stable
 cache:
   directories:
-    - node_modules
+  - node_modules
 deploy:
   provider: heroku
   api_key:
-    secure: nIS/66UDP2d3c5kIJEXpTQUryEQ7kSbV9+9FzyNtd4+S8v5KfqUmbi97oR4bynp+/HQnCTW7Vd/sLRc22gVkiXdgtIf9LzGNVLRS1HJdKjwDCMH4bvidhL2QSfCbYKvwT+tFxTCyvMlmCiQsr1AnjFTougOQtf3LcdhfI6lfgX0NirqJVVv93Be70OpH6Updc1FtlQAKEJ9481qW2HzcQX7603WXQpcrhyqKqYDMtLHJc/fObmBdKpbvZBJfkAHJ6McinXSFD+9TzRaYq2rrhJFryKhwCUBadnJx7kdE+0pKG+79UmbLhXs4fDYHooY6OYd3nqj6Up1Sf8JZtXiXezvCsQwEdLuCRHsbNrAGnltYLvdMlaNg8YhMJzgLvH3Bu++/Xys1XpKSMRx7fy55ABRQzTufuOPt1EZWFBlyWlB36Gy8py+ThbJplSqncxLBdRL4oKXBrKi35fRSnSVu/flbeb0g/PVUgV0A/jybJqFYl+hcTXTzsuUUbPvn2hfuRYXQaw9eqgvbB4Y54Oh+quw95IGtiUP8QxmbdUFRAnqZKPhiLu3dKc505bFujyJWAqkD2mMJvzpRf2WM+eljrjtU/FH4jcbHMTDFrSecphr6smkOf2FE9xYvk5U14uvYDKuyvkGCa9cWQRSngSorowyKw8/j0ssU4YLJhWE8k68=
+    secure: agyxTYhK2hTikNAusrDZ1pBZ5BIL+HUm+r6XyaEO3RQptSJArj88WquAvopTo1dQ8fpW4uJBs+Q2L6B8vuwRdFqSlg8mUFxShEfM8R4kbPmxt7HyEC1fjRZSxQblVKkvGWG6XX1Rr3kLaDF78nd6pAqFIb/NNkjcK7++LTeVja+B49AiRrd+GYJX4iu+cBqzHP7/E1XKvmOUAbnfzBTldqxxic5GFYeAZAj/6MAqdby6rqhjfppRpk7jIQnzTO3nIdBlHLjV+pq3V4OSOQ1w7j2szXx7jHbyyCsa880axLM2cKaHzLVh5Bg0T/vQE18L9u/97zHeWGCR1nunpT3MoR80pikVnDog2jYzjVPFD+3edZ4qE/I+42fMhUv/mFu9WA1MBXVoBqDRYujmhsA3pBi0/KQm3GIzNUBR1sD9iTJBai0C/B1qreFLBauW7eZ16mFmzsR2kx14kJJEzPQpnRnZtS8iz+4dyttvgyLitEWz3l4LAaoDIVoPGzIABpcbOVjxMOqu9P/LIZZh6FMwV7fQ+FKKRzNKEmAeFdaH1wE0qKJ++skS6cYPBevP/MmHa6FyCUdMNYLgeT6s1gmN1C4WhwPNTlRlFp10fpHIoFdJONkt5WUAuaPKJKO1Zvzok/3sYy7eZh3KU4cfkMXOz125nkKSgbfFk/spYlLCteE=
   app: mitrainingplaner
   on:
-    repo: MiTrainingPlaner/TestTraining
-    branches:
-      - komorek-env-init
+    repo: nokia-wroclaw/innovativeproject-training-planner
+    branch: travis-test
 script:
-  - echo "skipping tests "
+- echo "skipping tests "
