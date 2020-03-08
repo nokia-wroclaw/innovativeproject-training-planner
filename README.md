@@ -1,4 +1,4 @@
 # innovativeproject-training-planner
-https://mitrainingplaner.herokuapp.com/user
+https://mitrainingplaner.herokuapp.com/user 
 
 ***
