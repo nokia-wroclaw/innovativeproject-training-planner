@@ -10,8 +10,8 @@ deploy:
     secure: nIS/66UDP2d3c5kIJEXpTQUryEQ7kSbV9+9FzyNtd4+S8v5KfqUmbi97oR4bynp+/HQnCTW7Vd/sLRc22gVkiXdgtIf9LzGNVLRS1HJdKjwDCMH4bvidhL2QSfCbYKvwT+tFxTCyvMlmCiQsr1AnjFTougOQtf3LcdhfI6lfgX0NirqJVVv93Be70OpH6Updc1FtlQAKEJ9481qW2HzcQX7603WXQpcrhyqKqYDMtLHJc/fObmBdKpbvZBJfkAHJ6McinXSFD+9TzRaYq2rrhJFryKhwCUBadnJx7kdE+0pKG+79UmbLhXs4fDYHooY6OYd3nqj6Up1Sf8JZtXiXezvCsQwEdLuCRHsbNrAGnltYLvdMlaNg8YhMJzgLvH3Bu++/Xys1XpKSMRx7fy55ABRQzTufuOPt1EZWFBlyWlB36Gy8py+ThbJplSqncxLBdRL4oKXBrKi35fRSnSVu/flbeb0g/PVUgV0A/jybJqFYl+hcTXTzsuUUbPvn2hfuRYXQaw9eqgvbB4Y54Oh+quw95IGtiUP8QxmbdUFRAnqZKPhiLu3dKc505bFujyJWAqkD2mMJvzpRf2WM+eljrjtU/FH4jcbHMTDFrSecphr6smkOf2FE9xYvk5U14uvYDKuyvkGCa9cWQRSngSorowyKw8/j0ssU4YLJhWE8k68=
   app: mitrainingplaner
   on:
-    repo: MiTrainingPlaner/TestTraining
+    repo: nokia-wroclaw/innovativeproject-training-planner
     branches:
-      - komorek-env-init
+      - travis-test
 script:
   - echo "skipping tests "
