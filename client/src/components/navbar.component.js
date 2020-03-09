@@ -1,20 +1,27 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { Menu } from "antd";
 
 export default class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark bg-dark navbar-expand-lg">
-        <Link to="/" className="navbar-brand">TrainingPlanner</Link>
-        <div className="collpase navbar-collapse">
-        <ul className="navbar-nav mr-auto">
-          <li className="navbar-item">
-          <Link to="/user" className="nav-link">Create User</Link>
-          </li>
-        </ul>
-        </div>
-      </nav>
-    );
+      <Menu
+        theme="dark"
+        mode="horizontal"
+        defaultSelectedKeys={['2']}
+        style={{ lineHeight: '64px', padding: '0 50px', marginBottom: '50px' }}
+      >
+        <Menu.Item key="1">
+          <Link to="/"> Dashboard </Link>
+        </Menu.Item>
+        <Menu.Item key="2">
+          <Link to="/useres"> Create User </Link>
+        </Menu.Item>
+        <Menu.Item key="3">
+          <Link to="/inviteTemplate"> Create Template </Link>
+        </Menu.Item>
+      </Menu>
+    )
   }
 }
