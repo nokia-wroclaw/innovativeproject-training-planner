@@ -2,11 +2,9 @@ import React, { useState } from "react";
 import { Form, Input, InputNumber, Button, DatePicker } from "antd";
 import axios from "axios";
 
-// const port = process.env.PORT || 3001;
-
 const layout = {
   labelCol: { span: 8 },
-  wrapperCol: { span: 16 }
+  wrapperCol: { span: 10 }
 };
 
 export default function CreateInviteTemplate() {
