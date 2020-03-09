@@ -1,5 +1,5 @@
 const router = require("express").Router();
-let Template = require("../models/inviteTemplate.model");
+let InviteTemplate = require("../models/inviteTemplate.model");
 
 router.route("/").get((req, res) => {
   Template.find()
@@ -18,7 +18,7 @@ router.route("/save").post((req, res) => {
   const mustKnow = req.body.mustKnow;
   const materials = req.body.materials;
 
-  const newTemplate = new inviteTemplate({
+  const newTemplate = new InviteTemplate({
     date,
     duration,
     instructor,

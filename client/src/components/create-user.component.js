@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
-import axios from 'axios';
+import React, { Component } from "react";
+import axios from "axios";
 
-const port = process.env.PORT || 3001;
+// const port = process.env.PORT || 3001;
 
 export default class CreateUser extends Component {
   constructor(props) {
@@ -11,14 +11,14 @@ export default class CreateUser extends Component {
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      username: ''
-    }
+      username: ""
+    };
   }
 
   onChangeUsername(e) {
     this.setState({
       username: e.target.value
-    })
+    });
   }
 
   onSubmit(e) {
@@ -26,16 +26,15 @@ export default class CreateUser extends Component {
 
     const user = {
       username: this.state.username
-    }
+    };
 
     console.log(user);
 
-    axios.post('/users/add', user)
-      .then(res => console.log(res.data));
+    axios.post("/users/add", user).then(res => console.log(res.data));
 
     this.setState({
-      username: ''
-    })
+      username: ""
+    });
   }
 
   render() {
@@ -43,20 +42,25 @@ export default class CreateUser extends Component {
       <div>
         <h3>Create New User</h3>
         <form onSubmit={this.onSubmit}>
-          <div className="form-group"> 
+          <div className="form-group">
             <label>Username: </label>
-            <input  type="text"
-                required
-                className="form-control"
-                value={this.state.username}
-                onChange={this.onChangeUsername}
-                />
+            <input
+              type="text"
+              required
+              className="form-control"
+              value={this.state.username}
+              onChange={this.onChangeUsername}
+            />
           </div>
           <div className="form-group">
-            <input type="submit" value="Create User" className="btn btn-primary" />
+            <input
+              type="submit"
+              value="Create User"
+              className="btn btn-primary"
+            />
           </div>
         </form>
       </div>
-    )
+    );
   }
 }
