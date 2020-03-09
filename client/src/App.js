@@ -1,9 +1,9 @@
 import React from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
-import Navbar from "./components/navbar.component";
-import CreateUser from "./components/create-user.component";
-import CreateInviteTemplate from "./components/createInviteTemplate.component";
+import Navbar from "./components/layout/navbar.component";
+import CreateUser from "./components/user/createUser.component";
+import CreateInviteTemplate from "./components/template/createInviteTemplate.component";
 
 function App() {
   return (
