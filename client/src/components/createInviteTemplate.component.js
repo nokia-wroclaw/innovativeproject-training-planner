@@ -1,47 +1,56 @@
 import React, { useState } from "react";
-import {
-  Form,
-  Input,
-  InputNumber,
-  Button,
-  TimePicker,
-  DatePicker,
-  message
-} from "antd";
+import { Form, Input, InputNumber, Button, DatePicker } from "antd";
+import axios from "axios";
+
+// const port = process.env.PORT || 3001;
 
 const layout = {
   labelCol: { span: 8 },
   wrapperCol: { span: 16 }
 };
 
-const validateMessages = {
-  required: "This field is required!",
-  types: {
-    number: "Not a validate number!"
-  },
-  number: {
-    range: "Must be between ${min} and ${max}"
-  }
-};
-
 export default function CreateInviteTemplate() {
-  const [date, setDate] = useState(Date.now());
+  let [date, setDate] = useState(null);
   const [duration, setDuration] = useState(2);
-  const [instructor, setInstructor] = useState(null);
-  const [title, setTitle] = useState(null);
-  const [agneda, setAgenda] = useState(null);
-  const [description, setDesciption] = useState(null);
-  const [willLearn, setWillLearn] = useState(null);
-  const [mustKnow, setMustKnow] = useState(null);
-  const [materials, setMaterials] = useState(null);
+  const [instructor, setInstructor] = useState("");
+  const [title, setTitle] = useState("");
+  const [agenda, setAgenda] = useState("");
+  const [description, setDescription] = useState("");
+  const [willLearn, setWillLearn] = useState("");
+  const [mustKnow, setMustKnow] = useState("");
+  const [materials, setMaterials] = useState("");
 
-  // for now copied from:
-  // https://ant.design/components/form/
-  // will create custom form ASAP
+  function onSubmit(event) {
+    // event.preventDefault();
+    date = date.toJSON();
+    const template = {
+      date,
+      duration,
+      instructor,
+      title,
+      agenda,
+      description,
+      willLearn,
+      mustKnow,
+      materials
+    };
+
+    console.log(template);
+
+    axios
+      .post("/inviteTemplate/save", template)
+      .then(res => console.log(res.data));
+  }
+
   return (
-    <Form {...layout} name="nest-messages" validateMessages={validateMessages}>
+    <Form {...layout} onFinish={onSubmit} name="nest-messages">
       <Form.Item name={["date"]} label="Date" rules={[{ required: true }]}>
-        <DatePicker /> <TimePicker format="HH:mm" />
+        <DatePicker
+          showTime
+          format="YYYY-MM-DD HH:mm"
+          value={date}
+          onChange={setDate}
+        />
       </Form.Item>
 
       <Form.Item
@@ -49,7 +58,7 @@ export default function CreateInviteTemplate() {
         label="Duration:"
         rules={[{ type: "number", min: 1, max: 24, required: true }]}
       >
-        <InputNumber /> hours
+        <InputNumber value={duration} onChange={setDuration} />
       </Form.Item>
 
       <Form.Item
@@ -57,15 +66,21 @@ export default function CreateInviteTemplate() {
         label="Instructor"
         rules={[{ required: true }]}
       >
-        <Input />
+        <Input
+          value={instructor}
+          onChange={event => setInstructor(event.target.value)}
+        />
       </Form.Item>
 
       <Form.Item name={["title"]} label="Title:" rules={[{ required: true }]}>
-        <Input />
+        <Input value={title} onChange={event => setTitle(event.target.value)} />
       </Form.Item>
 
       <Form.Item name={["agenda"]} label="Agenda:" rules={[{ required: true }]}>
-        <Input.TextArea />
+        <Input.TextArea
+          value={agenda}
+          onChange={event => setAgenda(event.target.value)}
+        />
       </Form.Item>
 
       <Form.Item
@@ -73,7 +88,10 @@ export default function CreateInviteTemplate() {
         label="Description:"
         rules={[{ required: true }]}
       >
-        <Input.TextArea />
+        <Input.TextArea
+          value={description}
+          onChange={event => setDescription(event.target.value)}
+        />
       </Form.Item>
 
       <Form.Item
@@ -81,15 +99,24 @@ export default function CreateInviteTemplate() {
         label="What you will learn:"
         rules={[{ required: true }]}
       >
-        <Input.TextArea />
+        <Input.TextArea
+          value={willLearn}
+          onChange={event => setWillLearn(event.target.value)}
+        />
       </Form.Item>
 
       <Form.Item name={["mustKnow"]} label="What you must already know:">
-        <Input.TextArea />
+        <Input.TextArea
+          value={mustKnow}
+          onChange={event => setMustKnow(event.target.value)}
+        />
       </Form.Item>
 
       <Form.Item name={["materials"]} label="Materials:">
-        <Input.TextArea />
+        <Input.TextArea
+          value={materials}
+          onChange={event => setMaterials(event.target.value)}
+        />
       </Form.Item>
 
       <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
