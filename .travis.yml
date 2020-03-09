@@ -12,7 +12,7 @@ deploy:
     master: mittrainingplanner-master
     travis-test: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
-    branch: mittrainingplanner-mkomorek project-structure-update
+    project-structure-update: mittrainingplanner-mkomorek
     invite-template: mittrainingplanner-jaolejnik
     branch: mittrainingplanner-cvaniak
 script:
