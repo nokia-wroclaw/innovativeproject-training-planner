@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Form, Input, InputNumber, Button } from "antd";
 import DefaultEmailPattern from "./defaultMailPattern.component";
-import Demo from "../template/test";
+import Demo from "./valueTextarea.component.js";
 import InviteStyle from "../../css/inviteTest.module.css";
 
 export default function Invitation() {
@@ -30,24 +30,15 @@ export default function Invitation() {
       >
         <Form.Item
           name={["user", "email"]}
-          label="To"
+          label="Recipents"
           rules={[{ type: "email" }, { required: true }]}
         >
           <Input />
         </Form.Item>
-        {/* 
-        <Form.Item
-          name={["eemailcontent"]}
-          defaultValue={"pies"}
-          label="E-mail"
-          valuePropName="pies"
-        >
-          <Input.TextArea rows={4} valuePropName="pies" />
-        </Form.Item> */}
 
         <Form.Item label={"Mail"}>
           <div>
-            <Demo> </Demo>
+            <Demo />
           </div>
         </Form.Item>
 

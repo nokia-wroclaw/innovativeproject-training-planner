@@ -1,6 +1,4 @@
 .sendButton {
-  /* align-items: right;
-  margin-right: auto; */
   margin-left: 40px;
   margin-right: 0;
 }
@@ -16,14 +14,8 @@
 .mainForm {
   width: 60%;
   display: block;
-
   margin-left: 150px;
   margin-right: auto;
-}
-
-.inviteInpField {
-  margin-top: 15px;
-  margin-bottom: 15px;
 }
 
 .demo {
