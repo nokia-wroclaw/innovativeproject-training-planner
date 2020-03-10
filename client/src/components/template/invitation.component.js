@@ -36,14 +36,18 @@ export default function Invitation() {
           <Input />
         </Form.Item>
 
+        <Form.Item
+          name={["subject"]}
+          label="Subject"
+          rules={[{ type: "text" }, { required: true }]}
+        >
+          <Input />
+        </Form.Item>
+
         <Form.Item label={"Mail"}>
           <div>
             <Demo />
           </div>
-        </Form.Item>
-
-        <Form.Item name={["addInfo"]} label="Additional information">
-          <Input />
         </Form.Item>
 
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
