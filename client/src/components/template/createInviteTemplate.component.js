@@ -11,7 +11,7 @@ export default function CreateInviteTemplate() {
   let [date, setDate] = useState(null);
   const [duration, setDuration] = useState(2);
   const [instructor, setInstructor] = useState("");
-  const [title, setTitle] = useState("");
+  const [title, setTitle] = useState("pies");
   const [agenda, setAgenda] = useState("");
   const [description, setDescription] = useState("");
   const [willLearn, setWillLearn] = useState("");

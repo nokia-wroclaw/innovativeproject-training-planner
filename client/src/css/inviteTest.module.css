@@ -1,0 +1,33 @@
+.sendButton {
+  /* align-items: right;
+  margin-right: auto; */
+  margin-left: 40px;
+  margin-right: 0;
+}
+
+.textar {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+.buttons {
+  margin-left: 336px;
+}
+
+.mainForm {
+  width: 60%;
+  display: block;
+
+  margin-left: 150px;
+  margin-right: auto;
+}
+
+.inviteInpField {
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.demo {
+  margin-right: auto;
+  margin-left: 200px;
+  width: 70%;
+}
