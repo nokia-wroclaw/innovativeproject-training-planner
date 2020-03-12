@@ -1,9 +1,7 @@
 language: node_js
 node_js:
 - stable
-cache:
-  directories:
-  - node_modules
+install: skip
 deploy:
   provider: heroku
   api_key:
@@ -16,4 +14,4 @@ deploy:
     invite-template: mittrainingplanner-jaolejnik
     branch: mittrainingplanner-cvaniak
 script:
-- echo "skipping tests "
+  - echo "skipping tests"

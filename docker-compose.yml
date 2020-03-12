@@ -1,20 +1,8 @@
-version: '3'
+version: '3.7'
 services: 
-    server:
-        build: ./server
+    planner:
+        build: .
+        image: planner:latest
         ports:
             - '3001:3001'
-        volumes: 
-            - ./server:/app
-        container_name: server
-        command: npm run dev
-    client:
-        build: ./client
-        ports:
-            - '3000:3000'
-        volumes: 
-            - ./client:/app
-        links: 
-            - server
-        container_name: client
-        command: npm start
+        container_name: planner
