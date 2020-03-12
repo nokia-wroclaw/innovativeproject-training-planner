@@ -2,7 +2,7 @@ const router = require("express").Router();
 let InviteTemplate = require("../models/inviteTemplate.model");
 
 router.route("/").get((req, res) => {
-  Template.find()
+  InviteTemplate.find()
     .then(templates => res.json(templates))
     .catch(err => res.status(400).json("Error: " + err));
 });
