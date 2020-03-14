@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, Redirect } from "react";
 import { Form, Input, InputNumber, Button, DatePicker } from "antd";
 import axios from "axios";
 
@@ -7,20 +7,20 @@ const layout = {
   wrapperCol: { span: 10 }
 };
 
-export default function CreateInviteTemplate() {
-  let [date, setDate] = useState(null);
+const CreateInviteTemplate = props => {
+  const [dateObj, setDate] = useState(null);
   const [duration, setDuration] = useState(2);
   const [instructor, setInstructor] = useState("");
-  const [title, setTitle] = useState("pies");
+  const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
   const [description, setDescription] = useState("");
   const [willLearn, setWillLearn] = useState("");
   const [mustKnow, setMustKnow] = useState("");
   const [materials, setMaterials] = useState("");
 
-  function onSubmit(event) {
-    // event.preventDefault();
-    date = date.toJSON();
+  function onSubmit(e) {
+    // e.preventDefault();
+    const date = dateObj.toJSON();
     const template = {
       date,
       duration,
@@ -38,6 +38,8 @@ export default function CreateInviteTemplate() {
     axios
       .post("/inviteTemplate/save", template)
       .then(res => console.log(res.data));
+
+    props.history.push("/invitation");
   }
 
   return (
@@ -46,7 +48,7 @@ export default function CreateInviteTemplate() {
         <DatePicker
           showTime
           format="YYYY-MM-DD HH:mm"
-          value={date}
+          value={dateObj}
           onChange={setDate}
         />
       </Form.Item>
@@ -66,18 +68,18 @@ export default function CreateInviteTemplate() {
       >
         <Input
           value={instructor}
-          onChange={event => setInstructor(event.target.value)}
+          onChange={e => setInstructor(e.target.value)}
         />
       </Form.Item>
 
       <Form.Item name={["title"]} label="Title:" rules={[{ required: true }]}>
-        <Input value={title} onChange={event => setTitle(event.target.value)} />
+        <Input value={title} onChange={e => setTitle(e.target.value)} />
       </Form.Item>
 
       <Form.Item name={["agenda"]} label="Agenda:" rules={[{ required: true }]}>
         <Input.TextArea
           value={agenda}
-          onChange={event => setAgenda(event.target.value)}
+          onChange={e => setAgenda(e.target.value)}
         />
       </Form.Item>
 
@@ -88,7 +90,7 @@ export default function CreateInviteTemplate() {
       >
         <Input.TextArea
           value={description}
-          onChange={event => setDescription(event.target.value)}
+          onChange={e => setDescription(e.target.value)}
         />
       </Form.Item>
 
@@ -99,21 +101,21 @@ export default function CreateInviteTemplate() {
       >
         <Input.TextArea
           value={willLearn}
-          onChange={event => setWillLearn(event.target.value)}
+          onChange={e => setWillLearn(e.target.value)}
         />
       </Form.Item>
 
       <Form.Item name={["mustKnow"]} label="What you must already know:">
         <Input.TextArea
           value={mustKnow}
-          onChange={event => setMustKnow(event.target.value)}
+          onChange={e => setMustKnow(e.target.value)}
         />
       </Form.Item>
 
       <Form.Item name={["materials"]} label="Materials:">
         <Input.TextArea
           value={materials}
-          onChange={event => setMaterials(event.target.value)}
+          onChange={e => setMaterials(e.target.value)}
         />
       </Form.Item>
 
@@ -124,4 +126,6 @@ export default function CreateInviteTemplate() {
       </Form.Item>
     </Form>
   );
-}
+};
+
+export default CreateInviteTemplate;
