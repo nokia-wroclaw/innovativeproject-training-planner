@@ -2,11 +2,6 @@ import React, { useState, Redirect } from "react";
 import { Form, Input, InputNumber, Button, DatePicker } from "antd";
 import axios from "axios";
 
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 10 }
-};
-
 const CreateInviteTemplate = props => {
   const [dateObj, setDate] = useState(null);
   const [duration, setDuration] = useState(2);
@@ -35,12 +30,16 @@ const CreateInviteTemplate = props => {
 
     console.log(template);
 
-    axios
-      .post("/inviteTemplate/save", template)
-      .then(res => console.log(res.data));
-
-    props.history.push("/invitation");
+    axios.post("/inviteTemplate/save", template).then(res => {
+      console.log(res.data.message);
+      props.history.push("/invitation/" + res.data._id);
+    });
   }
+
+  const layout = {
+    labelCol: { span: 8 },
+    wrapperCol: { span: 10 }
+  };
 
   return (
     <Form {...layout} onFinish={onSubmit} name="nest-messages">

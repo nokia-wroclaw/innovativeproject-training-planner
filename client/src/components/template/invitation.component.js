@@ -1,10 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Form, Input, InputNumber, Button } from "antd";
-import DefaultEmailPattern from "./defaultMailPattern.component";
-import Demo from "./valueTextarea.component.js";
 import InviteStyle from "../../css/inviteTest.module.css";
+import axios from "axios";
 
-export default function Invitation() {
+const Invitation = props => {
   const layout = {
     labelCol: { span: 8 },
     wrapperCol: { span: 16 }
@@ -21,6 +20,28 @@ export default function Invitation() {
     }
   };
 
+  const [mail, setMail] = useState("Testing! Attetntion please!\n HELLO?!");
+
+  useEffect(() => {
+    axios
+      .get(`${props.location.pathname}`)
+      .then(res => {
+        setMail(`Dear employee,\nWe would like to invite you to partake in our trainig
+
+            Title: ${res.data[0].title}
+            Instructor: ${res.data[0].instructor}
+            Date: ${res.data[0].date}
+            Duration: ${res.data[0].duration} hours
+            Agenda: ${res.data[0].agenda}
+            Description: ${res.data[0].description}
+            What you will learn: ${res.data[0].willLearn}
+            What you must already know: ${res.data[0].mustKnow}
+            Materials: ${res.data[0].materials}\n\nYour Employer XYZ`);
+      })
+      .catch(err => {
+        console.log(err);
+      });
+  });
   return (
     <div className={InviteStyle.mainForm}>
       <Form
@@ -45,9 +66,7 @@ export default function Invitation() {
         </Form.Item>
 
         <Form.Item label={"Mail"}>
-          <div>
-            <Demo />
-          </div>
+          <Input.TextArea autoSize="true" value={mail} />
         </Form.Item>
 
         <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
@@ -68,4 +87,6 @@ export default function Invitation() {
       </Form>
     </div>
   );
-}
+};
+
+export default Invitation;

@@ -20,10 +20,6 @@ export default class Navbar extends Component {
         <Menu.Item key="3">
           <Link to="/inviteTemplate"> Create Template </Link>
         </Menu.Item>
-        <Menu.Item key="4">
-          <Link to="/invitation"> Invitation </Link>
-          {/* <Link to="/invitationtest"> Invitation </Link> */}
-        </Menu.Item>
       </Menu>
     );
   }

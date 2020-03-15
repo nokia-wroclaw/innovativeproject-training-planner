@@ -1,24 +1,18 @@
 const router = require("express").Router();
 let InviteTemplate = require("../models/inviteTemplate.model");
 
-router.route("/").get((req, res) => {
-  Template.find()
-    .then(templates => res.json(templates))
-    .catch(err => res.status(400).json("Error: " + err));
-});
+function initTemplate(reqBody) {
+  const date = Date.parse(reqBody.date);
+  const duration = Number(reqBody.duration);
+  const instructor = reqBody.instructor;
+  const title = reqBody.title;
+  const agenda = reqBody.agenda;
+  const description = reqBody.description;
+  const willLearn = reqBody.willLearn;
+  const mustKnow = reqBody.mustKnow;
+  const materials = reqBody.materials;
 
-router.route("/save").post((req, res) => {
-  const date = Date.parse(req.body.date);
-  const duration = Number(req.body.duration);
-  const instructor = req.body.instructor;
-  const title = req.body.title;
-  const agenda = req.body.agenda;
-  const description = req.body.description;
-  const willLearn = req.body.willLearn;
-  const mustKnow = req.body.mustKnow;
-  const materials = req.body.materials;
-
-  const newTemplate = new InviteTemplate({
+  return new InviteTemplate({
     date,
     duration,
     instructor,
@@ -29,10 +23,21 @@ router.route("/save").post((req, res) => {
     mustKnow,
     materials
   });
+}
 
+router.route("/").get((req, res) => {
+  InviteTemplate.find()
+    .then(templates => res.json(templates))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+router.route("/save").post((req, res) => {
+  const newTemplate = initTemplate(req.body);
   newTemplate
     .save()
-    .then(() => res.json("Invite template saved!"))
+    .then(() =>
+      res.json({ message: "Invite template saved!", _id: newTemplate._id })
+    )
     .catch(err => res.status(400).json("Error: " + err));
 });
 
