@@ -1,42 +1,31 @@
 import React, { useState } from "react";
-import { Form, Input, Button} from "antd";
 import axios from "axios";
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 10 }
-};
 
 export default function CreateUser() {
   const [username, setUsername] = useState("");
 
   function onSubmit(event) {
-    //event.preventDefault();
+    event.preventDefault();
     const user = {username};
     axios
       .post("/users/add", user)
       .then(res => console.log(res.data));
-      setUsername("");
+    
+    setUsername("");
   }
 
   return (
-    <Form {...layout} onFinish={onSubmit}>
-      <Form.Item
-        name={["username"]}
-        label="Username"
-        rules={[{ required: true }]}
-      >
-        <Input
-          value={username}
-          onChange={event => setUsername(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <div className="container">
+      <form className="white" onSubmit={onSubmit}>
+          <h5 className="grey-text text-darken-3"> Create User</h5>
+          <div className="input-field">
+              <label htmlFor="username">Username</label>
+              <input type="text" id="username" required onChange={event => setUsername(event.target.value)}/>
+          </div>
+          <div className="input-field">
+              <button className="btn pink lighten-1 z-depth-0">Create</button>
+          </div>
+      </form>
+    </div>
   );
 }

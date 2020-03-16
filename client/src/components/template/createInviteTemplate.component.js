@@ -1,15 +1,11 @@
-import React, { useState } from "react";
-import { Form, Input, InputNumber, Button, DatePicker } from "antd";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 10 }
-};
+import M from 'materialize-css';
 
 export default function CreateInviteTemplate() {
   let [date, setDate] = useState(null);
-  const [duration, setDuration] = useState(2);
+  const [startTime, setStartTime] = useState(null);
+  const [endTime, setEndTime] = useState(null)
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -17,13 +13,19 @@ export default function CreateInviteTemplate() {
   const [willLearn, setWillLearn] = useState("");
   const [mustKnow, setMustKnow] = useState("");
   const [materials, setMaterials] = useState("");
+  
+  useEffect(() => {
+      M.AutoInit();
+  }, [])
 
   function onSubmit(event) {
-    // event.preventDefault();
+    event.preventDefault();
+
     date = date.toJSON();
     const template = {
       date,
-      duration,
+      startTime,
+      endTime,
       instructor,
       title,
       agenda,
@@ -41,87 +43,106 @@ export default function CreateInviteTemplate() {
   }
 
   return (
-    <Form {...layout} onFinish={onSubmit} name="nest-messages">
-      <Form.Item name={["date"]} label="Date" rules={[{ required: true }]}>
-        <DatePicker
-          showTime
-          format="YYYY-MM-DD HH:mm"
-          value={date}
-          onChange={setDate}
-        />
-      </Form.Item>
-
-      <Form.Item
-        name={["duration"]}
-        label="Duration:"
-        rules={[{ type: "number", min: 1, max: 24, required: true }]}
-      >
-        <InputNumber value={duration} onChange={setDuration} />
-      </Form.Item>
-
-      <Form.Item
-        name={["instructor"]}
-        label="Instructor"
-        rules={[{ required: true }]}
-      >
-        <Input
-          value={instructor}
-          onChange={event => setInstructor(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item name={["title"]} label="Title:" rules={[{ required: true }]}>
-        <Input value={title} onChange={event => setTitle(event.target.value)} />
-      </Form.Item>
-
-      <Form.Item name={["agenda"]} label="Agenda:" rules={[{ required: true }]}>
-        <Input.TextArea
-          value={agenda}
-          onChange={event => setAgenda(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item
-        name={["description"]}
-        label="Description:"
-        rules={[{ required: true }]}
-      >
-        <Input.TextArea
-          value={description}
-          onChange={event => setDescription(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item
-        name={["willLearn"]}
-        label="What you will learn:"
-        rules={[{ required: true }]}
-      >
-        <Input.TextArea
-          value={willLearn}
-          onChange={event => setWillLearn(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item name={["mustKnow"]} label="What you must already know:">
-        <Input.TextArea
-          value={mustKnow}
-          onChange={event => setMustKnow(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item name={["materials"]} label="Materials:">
-        <Input.TextArea
-          value={materials}
-          onChange={event => setMaterials(event.target.value)}
-        />
-      </Form.Item>
-
-      <Form.Item wrapperCol={{ ...layout.wrapperCol, offset: 8 }}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+    <div className="container">
+      <form className="white col s12" onSubmit={onSubmit}>
+        <h5 className="grey-text text-darken-3"> Crete Template </h5>
+        <div className="input-field">
+              <label htmlFor="date">Date</label>
+              <input 
+                type="text" 
+                id="date" 
+                className="datepicker" 
+                required 
+                onChange={event => setDate(event.target.value)}
+              />
+        </div>
+        <div className="row">
+          <div className="input-field col s6">
+              <label htmlFor="startTime">Start time</label>
+              <input 
+                type="text" 
+                id="startTime" 
+                className="timepicker" 
+                required 
+                onChange={event => setStartTime(event.target.value)}
+              />
+          </div>
+          <div className="input-field col s6">
+              <label htmlFor="endTime">End time</label>
+              <input 
+                type="text" 
+                id="endTime" 
+                className="timepicker" 
+                required
+                onChange={event => setEndTime(event.target.value)}
+              />
+          </div>
+        </div>
+        <div className="input-field">
+            <label htmlFor="instructor">Instructor</label>
+            <input 
+              type="text" 
+              id="instructor"  
+              required 
+              onChange={event => setInstructor(event.target.value)}
+            />
+        </div>
+        <div className="input-field">
+            <label htmlFor="title">Title</label>
+            <input 
+              type="text" 
+              id="title"  
+              required 
+              onChange={event => setTitle(event.target.value)}
+            />
+        </div>
+        <div className="input-field">
+          <label htmlFor="agenda">Agneda</label>
+          <textarea 
+            id="agenda" 
+            className="materialize-textarea"
+            onChange={event => setAgenda(event.target.value)}
+            required
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="description">Description</label>
+          <textarea 
+            id="description" 
+            className="materialize-textarea"
+            onChange={event => setDescription(event.target.value)}
+            required
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="willLearn">What you will learn</label>
+          <textarea 
+            id="willLearn" 
+            className="materialize-textarea"
+            onChange={event => setWillLearn(event.target.value)}
+            required
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="mustKnow">What you must already know</label>
+          <textarea 
+            id="mustKnow" 
+            className="materialize-textarea"
+            onChange={event => setMustKnow(event.target.value)}
+          />
+        </div>
+        <div className="input-field">
+          <label htmlFor="materials">Additional materials</label>
+          <textarea 
+            id="materials" 
+            className="materialize-textarea"
+            onChange={event => setMaterials(event.target.value)}
+          />
+        </div>
+        <div className="input-field">
+            <button className="btn pink lighten-1 z-depth-0">Submit</button>
+        </div>
+      </form>
+    </div>
   );
 }

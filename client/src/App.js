@@ -8,11 +8,14 @@ import CreateInviteTemplate from "./components/template/createInviteTemplate.com
 function App() {
   return (
     <BrowserRouter>
+      <div className="App">
         <Navbar />
         <Switch>
+          <Route exact path='/' />
           <Route path="/useres" component={CreateUser} />
           <Route path="/inviteTemplate" component={CreateInviteTemplate} />
         </Switch>
+      </div>
     </BrowserRouter>
   );
 }
