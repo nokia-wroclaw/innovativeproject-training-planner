@@ -1,27 +1,18 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
-import { Menu } from "antd";
 
-export default class Navbar extends Component {
+export default function Navbar() {
 
-  render() {
-    return (
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px', padding: '0 50px', marginBottom: '50px' }}
-      >
-        <Menu.Item key="1">
-          <Link to="/"> Dashboard </Link>
-        </Menu.Item>
-        <Menu.Item key="2">
-          <Link to="/useres"> Create User </Link>
-        </Menu.Item>
-        <Menu.Item key="3">
-          <Link to="/inviteTemplate"> Create Template </Link>
-        </Menu.Item>
-      </Menu>
-    )
-  }
+  return (
+    <nav className="nav-wrapper blue darken-3">
+      <div className="container">
+        <Link to='/' className="brand-logo"> Trainning Planner</Link>
+        <ul className="right">
+            <li><Link to ='/useres'>Create User</Link></li>
+            <li><Link to ='/inviteTemplate'>Create Template</Link></li>
+            <li><Link to ='/' className='btn btn-floating pink lighten-1'>MK</Link></li>
+        </ul>
+      </div>
+    </nav>
+  )
 }
