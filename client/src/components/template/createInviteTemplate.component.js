@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import M from 'materialize-css';
 
-const CreateInviteTemplate = () => {
-  let [date, setDate] = useState(null);
-  let [startTime, setStartTime] = useState(null);
-  let [endTime, setEndTime] = useState(null)
+const CreateInviteTemplate = props => {
+  const [date, setDate] = useState("null");
+  const [startTime, setStartTime] = useState("");
+  const [endTime, setEndTime] = useState("")
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -15,21 +15,19 @@ const CreateInviteTemplate = () => {
   const [materials, setMaterials] = useState("");
   
   useEffect(() => {
-    var elems = document.querySelectorAll('.datepicker');
+    var elems = document.querySelectorAll('.timepicker');
+    M.Timepicker.init(elems, {});
+
+    elems = document.querySelectorAll('.datepicker');
     M.Datepicker.init(elems, {
       format: "dd mmm yyyy",
-      setDefaultDate: true
+      
     });
-    elems = document.querySelectorAll('.timepicker');
-    M.Timepicker.init(elems, {});
   }, [])
 
   function onSubmit(event) {
     event.preventDefault();
 
-    // date = date.toString();
-    // startTime = startTime.toString();
-    // endTime = endTime.toString();
     const template = {
       date,
       startTime,
@@ -47,7 +45,10 @@ const CreateInviteTemplate = () => {
 
     // axios
     //   .post("/inviteTemplate/save", template)
-    //   .then(res => console.log(res.data));
+    //   .then(res => {
+    //     console.log(res.data.message);
+    //     props.history.push("/templateDashboard");
+    //   });
   }
 
   return (
@@ -59,8 +60,7 @@ const CreateInviteTemplate = () => {
               <input 
                 type="text" 
                 id="date" 
-                className="datepicker" 
-                
+                className="datepicker"
                 onSelect={event => setDate(event.target.value)}
               />
         </div>
@@ -148,7 +148,9 @@ const CreateInviteTemplate = () => {
           />
         </div>
         <div className="input-field">
-            <button className="btn pink lighten-1 z-depth-0">Submit</button>
+            <button className="btn pink lighten-1 z-depth-0">
+              Submit
+            </button>
         </div>
       </form>
     </div>

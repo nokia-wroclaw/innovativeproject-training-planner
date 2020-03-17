@@ -10,11 +10,11 @@ const UserDropDownMenu = () => {
       }, [])
 
     return(
-        <a class='dropdown-trigger btn btn-floating pink lighten-1' href='#' data-target='dropdown1'> MK
-            <ul id='dropdown1' class='dropdown-content'>
-                <li><Link to ="/profile"><i class="material-icons">account_circle</i>Profile</Link></li>
-                <li class="divider" tabindex="-1"></li>
-                <li><a href="#!"><i class="material-icons">settings_power</i>Logout</a></li>
+        <a className='dropdown-trigger btn btn-floating pink lighten-1' href='#!' data-target='dropdown1'> MK
+            <ul id='dropdown1' className='dropdown-content'>
+                <li><Link to ="/profile"><i className="material-icons">account_circle</i>Profile</Link></li>
+                <li className="divider" tabIndex="-1"></li>
+                <li><Link to="#!"><i className="material-icons">settings_power</i>Logout</Link></li>
             </ul>
         </a>
     )
