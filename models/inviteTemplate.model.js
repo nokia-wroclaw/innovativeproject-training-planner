@@ -12,7 +12,7 @@ const inviteTemplateSchema = new Schema(
       type: String,
       required: true
     },
-    stopTime: {
+    endTime: {
       type: String,
       required: true
     },

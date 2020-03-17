@@ -6,7 +6,7 @@ const Navbar = () => {
 
   return (
     <nav className="nav-wrapper blue darken-3" style={{padding: "0 50px"}}>
-        <Link to='/' className="brand-logo center">Trainning Planner<i class="material-icons right">watch</i></Link>
+        <Link to='/' className="brand-logo center">Trainning Planner<i className="material-icons right">watch</i></Link>
         <ul className="left">
             <li><Link to ='/templateDashboard'>Templates</Link></li>
         </ul>
