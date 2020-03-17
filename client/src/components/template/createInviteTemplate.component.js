@@ -2,10 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import M from 'materialize-css';
 
-export default function CreateInviteTemplate() {
+const CreateInviteTemplate = () => {
   let [date, setDate] = useState(null);
-  const [startTime, setStartTime] = useState(null);
-  const [endTime, setEndTime] = useState(null)
+  let [startTime, setStartTime] = useState(null);
+  let [endTime, setEndTime] = useState(null)
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -15,13 +15,21 @@ export default function CreateInviteTemplate() {
   const [materials, setMaterials] = useState("");
   
   useEffect(() => {
-      M.AutoInit();
+    var elems = document.querySelectorAll('.datepicker');
+    M.Datepicker.init(elems, {
+      format: "dd mmm yyyy",
+      setDefaultDate: true
+    });
+    elems = document.querySelectorAll('.timepicker');
+    M.Timepicker.init(elems, {});
   }, [])
 
   function onSubmit(event) {
     event.preventDefault();
 
-    date = date.toJSON();
+    // date = date.toString();
+    // startTime = startTime.toString();
+    // endTime = endTime.toString();
     const template = {
       date,
       startTime,
@@ -37,9 +45,9 @@ export default function CreateInviteTemplate() {
 
     console.log(template);
 
-    axios
-      .post("/inviteTemplate/save", template)
-      .then(res => console.log(res.data));
+    // axios
+    //   .post("/inviteTemplate/save", template)
+    //   .then(res => console.log(res.data));
   }
 
   return (
@@ -52,8 +60,8 @@ export default function CreateInviteTemplate() {
                 type="text" 
                 id="date" 
                 className="datepicker" 
-                required 
-                onChange={event => setDate(event.target.value)}
+                
+                onSelect={event => setDate(event.target.value)}
               />
         </div>
         <div className="row">
@@ -63,8 +71,8 @@ export default function CreateInviteTemplate() {
                 type="text" 
                 id="startTime" 
                 className="timepicker" 
-                required 
-                onChange={event => setStartTime(event.target.value)}
+                 
+                onSelect={event => setStartTime(event.target.value)}
               />
           </div>
           <div className="input-field col s6">
@@ -73,8 +81,8 @@ export default function CreateInviteTemplate() {
                 type="text" 
                 id="endTime" 
                 className="timepicker" 
-                required
-                onChange={event => setEndTime(event.target.value)}
+                
+                onSelect={event => setEndTime(event.target.value)}
               />
           </div>
         </div>
@@ -83,7 +91,7 @@ export default function CreateInviteTemplate() {
             <input 
               type="text" 
               id="instructor"  
-              required 
+               
               onChange={event => setInstructor(event.target.value)}
             />
         </div>
@@ -92,7 +100,7 @@ export default function CreateInviteTemplate() {
             <input 
               type="text" 
               id="title"  
-              required 
+               
               onChange={event => setTitle(event.target.value)}
             />
         </div>
@@ -102,7 +110,7 @@ export default function CreateInviteTemplate() {
             id="agenda" 
             className="materialize-textarea"
             onChange={event => setAgenda(event.target.value)}
-            required
+            
           />
         </div>
         <div className="input-field">
@@ -111,7 +119,7 @@ export default function CreateInviteTemplate() {
             id="description" 
             className="materialize-textarea"
             onChange={event => setDescription(event.target.value)}
-            required
+            
           />
         </div>
         <div className="input-field">
@@ -120,7 +128,7 @@ export default function CreateInviteTemplate() {
             id="willLearn" 
             className="materialize-textarea"
             onChange={event => setWillLearn(event.target.value)}
-            required
+            
           />
         </div>
         <div className="input-field">
@@ -146,3 +154,5 @@ export default function CreateInviteTemplate() {
     </div>
   );
 }
+
+export default CreateInviteTemplate;

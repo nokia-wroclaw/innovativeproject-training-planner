@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-export default function CreateUser() {
+const CreateUser = () => {
   const [username, setUsername] = useState("");
 
   function onSubmit(event) {
@@ -29,3 +29,5 @@ export default function CreateUser() {
     </div>
   );
 }
+
+export default CreateUser;

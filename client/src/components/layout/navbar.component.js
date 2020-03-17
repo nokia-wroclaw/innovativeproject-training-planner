@@ -1,18 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import UserDropDownMenu from "../user/userDropDownMenu.component"
 
-export default function Navbar() {
+const Navbar = () => {
 
   return (
-    <nav className="nav-wrapper blue darken-3">
-      <div className="container">
-        <Link to='/' className="brand-logo"> Trainning Planner</Link>
-        <ul className="right">
-            <li><Link to ='/useres'>Create User</Link></li>
-            <li><Link to ='/inviteTemplate'>Create Template</Link></li>
-            <li><Link to ='/' className='btn btn-floating pink lighten-1'>MK</Link></li>
+    <nav className="nav-wrapper blue darken-3" style={{padding: "0 50px"}}>
+        <Link to='/' className="brand-logo center">Trainning Planner<i class="material-icons right">watch</i></Link>
+        <ul className="left">
+            <li><Link to ='/templateDashboard'>Templates</Link></li>
         </ul>
-      </div>
+        <ul className="right">
+            <li> <UserDropDownMenu/> </li>
+        </ul>
     </nav>
   )
 }
+
+export default Navbar;

@@ -8,8 +8,9 @@ router.route("/").get((req, res) => {
 });
 
 router.route("/save").post((req, res) => {
-  const date = Date.parse(req.body.date);
-  const duration = Number(req.body.duration);
+  const date = req.body.date;
+  const startTime = req.body.startTime;
+  const endTime = req.body.endTime;
   const instructor = req.body.instructor;
   const title = req.body.title;
   const agenda = req.body.agenda;
@@ -20,7 +21,8 @@ router.route("/save").post((req, res) => {
 
   const newTemplate = new InviteTemplate({
     date,
-    duration,
+    startTime,
+    endTime,
     instructor,
     title,
     agenda,

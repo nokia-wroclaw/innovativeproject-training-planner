@@ -11,7 +11,7 @@ const port = process.env.PORT || 3001;
 app.use(cors());
 app.use(express.json());
 
-const uri = process.env.PROD_MONGODB || "mongodb://localhost/test";
+const uri = "mongodb+srv://komorek:komorek@cluster0-lp7jq.gcp.mongodb.net/test?retryWrites=true&w=majority" // process.env.PROD_MONGODB || "mongodb://localhost/test";
 mongoose.connect(uri, { useNewUrlParser: true, useCreateIndex: true });
 
 const connection = mongoose.connection;
