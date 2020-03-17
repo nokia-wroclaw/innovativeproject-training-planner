@@ -5,11 +5,15 @@ const Schema = mongoose.Schema;
 const inviteTemplateSchema = new Schema(
   {
     date: {
-      type: Date,
+      type: String,
       required: true
     },
-    duration: {
-      type: Number,
+    startTime: {
+      type: String,
+      required: true
+    },
+    stopTime: {
+      type: String,
       required: true
     },
     instructor: {
