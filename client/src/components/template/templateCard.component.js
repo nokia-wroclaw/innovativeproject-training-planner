@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TemplateCard = () => {
 
@@ -16,7 +17,7 @@ const TemplateCard = () => {
               <p>Training instructor. Date and time when start.</p>
             </div>
             <div className="card-action">
-              <a href="#!">Send invite</a>
+              <Link to="/sendInvite">Send invite</Link>
             </div>
           </div>
         </div>
