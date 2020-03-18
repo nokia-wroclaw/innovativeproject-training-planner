@@ -43,12 +43,12 @@ const CreateInviteTemplate = props => {
 
     console.log(template);
 
-    // axios
-    //   .post("/inviteTemplate/save", template)
-    //   .then(res => {
-    //     console.log(res.data.message);
-    //     props.history.push("/templateDashboard");
-    //   });
+    axios
+      .post("/inviteTemplate/save", template)
+      .then(res => {
+        console.log(res.data.message);
+        props.history.push("/templateDashboard");
+      });
   }
 
   return (
@@ -61,6 +61,7 @@ const CreateInviteTemplate = props => {
                 type="text" 
                 id="date" 
                 className="datepicker"
+                required
                 onSelect={event => setDate(event.target.value)}
               />
         </div>
@@ -71,7 +72,7 @@ const CreateInviteTemplate = props => {
                 type="text" 
                 id="startTime" 
                 className="timepicker" 
-                 
+                required
                 onSelect={event => setStartTime(event.target.value)}
               />
           </div>
@@ -81,7 +82,7 @@ const CreateInviteTemplate = props => {
                 type="text" 
                 id="endTime" 
                 className="timepicker" 
-                
+                required
                 onSelect={event => setEndTime(event.target.value)}
               />
           </div>
@@ -91,7 +92,7 @@ const CreateInviteTemplate = props => {
             <input 
               type="text" 
               id="instructor"  
-               
+              required
               onChange={event => setInstructor(event.target.value)}
             />
         </div>
@@ -100,7 +101,7 @@ const CreateInviteTemplate = props => {
             <input 
               type="text" 
               id="title"  
-               
+              required
               onChange={event => setTitle(event.target.value)}
             />
         </div>
@@ -109,8 +110,8 @@ const CreateInviteTemplate = props => {
           <textarea 
             id="agenda" 
             className="materialize-textarea"
+            required
             onChange={event => setAgenda(event.target.value)}
-            
           />
         </div>
         <div className="input-field">
@@ -127,8 +128,8 @@ const CreateInviteTemplate = props => {
           <textarea 
             id="willLearn" 
             className="materialize-textarea"
-            onChange={event => setWillLearn(event.target.value)}
-            
+            required
+            onChange={event => setWillLearn(event.target.value)}           
           />
         </div>
         <div className="input-field">
