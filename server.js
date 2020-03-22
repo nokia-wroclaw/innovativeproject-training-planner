@@ -21,9 +21,11 @@ connection.once("open", () => {
 
 const usersRouter = require("./routes/users");
 const invTemplRouter = require("./routes/inviteTemplate");
+const invRouter = require("./routes/invitation");
 
 app.use("/users", usersRouter);
 app.use("/inviteTemplate", invTemplRouter);
+app.use("/sendInvite", invRouter);
 
 app.listen(port, () => {
   console.log(`Server is running on port: ${port}`);
