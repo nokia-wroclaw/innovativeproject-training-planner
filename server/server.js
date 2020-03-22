@@ -25,8 +25,10 @@ console.log('DB Connection Error: ' + err);
 });
 
 const usersRouter = require('./routes/users');
+const invTemplRouter = require("./routes/inviteTemplate");
 
 app.use('/users', usersRouter);
+app.use("/inviteTemplate", invTemplRouter);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);

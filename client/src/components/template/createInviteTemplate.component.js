@@ -53,7 +53,7 @@ const CreateInviteTemplate = props => {
     console.log(template);
 
     axios.post("/inviteTemplate/save", template).then(res => {
-      console.log(res.data.message);
+      console.log(res.data);
       props.history.push("/templateDashboard");
     });
   }
