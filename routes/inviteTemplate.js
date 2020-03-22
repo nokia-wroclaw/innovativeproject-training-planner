@@ -1,6 +1,14 @@
 const router = require("express").Router();
 let InviteTemplate = require("../models/inviteTemplate.model");
 
+
+router.route("/").get((req, res) => {
+  InviteTemplate.find()
+    .then(invitetemplate => res.json(invitetemplate))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
+
 router.route("/save").post((req, res) => {
   const date = req.body.date;
   const startTime = req.body.startTime;

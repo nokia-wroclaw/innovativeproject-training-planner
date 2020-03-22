@@ -14,6 +14,6 @@ deploy:
     branch: mittrainingplanner-mbednar22
     project-structure-update: mittrainingplanner-mkomorek
     invite-template: mittrainingplanner-jaolejnik
-    branch: mittrainingplanner-cvaniak
+    template-list: mittrainingplanner-cvaniak
 script:
 - echo "skipping tests "
