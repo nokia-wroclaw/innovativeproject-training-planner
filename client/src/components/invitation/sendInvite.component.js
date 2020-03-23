@@ -7,6 +7,7 @@ const SendInvite = props => {
   const [recipents, setRecipents] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
+  const [eventTemp, setEventTemp] = useState(null);
 
   const initInv = template => {
     return `
@@ -23,28 +24,28 @@ const SendInvite = props => {
   };
 
   useEffect(() => {
-    console.log(window.location.href);
     axios.get(window.location.href).then(res => {
       const newTemplate = initInv(res.data[0]);
       setMessage(newTemplate);
+      setEventTemp(res.data[0]);
     });
   }, []);
 
   useEffect(() => {
-    console.log(message);
     M.textareaAutoResize(textareaRef.current);
   }, [message]);
 
   const onSend = event => {
     event.preventDefault();
     const mail = {
-      recipents: recipents,
-      subject: subject,
-      message: message
+      recipents,
+      subject,
+      message,
+      eventTemp
     };
-    console.log(mail);
+    // console.log(mail);
     axios.post("/sendInvite/send", mail).then(res => {
-      console.log("ELDO", res.data);
+      console.log(res.data);
       props.history.push("/templateDashboard");
     });
   };
