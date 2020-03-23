@@ -10,6 +10,8 @@ const SendInvite = props => {
   const [eventTemp, setEventTemp] = useState(null);
 
   const initInv = template => {
+    // PUT REACT-EMAIL-HTML CODE HERE
+    // AND DISPLAY IT INSTEAD OF TEXTAREA
     return `
     date: ${template.date},
     startTime: ${template.startTime},

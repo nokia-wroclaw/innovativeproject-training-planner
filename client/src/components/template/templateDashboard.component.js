@@ -16,7 +16,7 @@ const list = [
 const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState(list);
   useEffect(() => {
-    axios.get("/inviteTemplate").then(response => {
+    axios.get("/inviteTemplate/getall").then(response => {
       setTemplateList(response.data);
     });
   }, []);
