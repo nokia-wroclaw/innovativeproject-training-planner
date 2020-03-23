@@ -11,7 +11,7 @@ deploy:
     docker-introduce: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
     project-structure-update: mittrainingplanner-mkomorek
-    invite-template: mittrainingplanner-jaolejnik
+    calendar-event: mittrainingplanner-jaolejnik
     template-list: mittrainingplanner-cvaniak
 script:
   - echo "skipping tests"
