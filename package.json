@@ -3,7 +3,8 @@
   "scripts": {
     "server": "nodemon server/server.js",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
+    "dep": "npm i && npm i --prefix client && npm i --prefix server",
+    "dev": "npm run dep && concurrently \"npm run server\" \"npm run client\""
   },
   "license": "MIT",
   "dependencies": {
