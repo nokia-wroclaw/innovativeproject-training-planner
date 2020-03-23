@@ -22,12 +22,7 @@ const CreateInviteTemplate = props => {
     M.Datepicker.init(elems, {
       format: "dd mmm yyyy",
       onSelect: argDate => {
-        const stringDate =
-          argDate.getDate() +
-          "/" +
-          argDate.getMonth() +
-          "/" +
-          argDate.getFullYear();
+        const stringDate = argDate.toDateString();
         setDate(stringDate);
       }
     });
@@ -50,7 +45,7 @@ const CreateInviteTemplate = props => {
       materials
     };
 
-    console.log(template);
+    // console.log(template);
 
     axios.post("/inviteTemplate/save", template).then(res => {
       console.log(res.data);
