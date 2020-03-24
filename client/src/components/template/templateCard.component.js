@@ -13,11 +13,11 @@ const sendInv = invID => {
 
 const TemplateCard = props => {
   return (
-    <div className="card blue darken-1">
+    <div className="card hoverable blue darken-1">
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
           {props.item.instructor}
-          <i className="material-icons right">close</i>
+          {/* <i className="material-icons right">close</i> */}
         </span>
         <p>{props.item.date}</p>
       </div>

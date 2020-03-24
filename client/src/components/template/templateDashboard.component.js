@@ -15,6 +15,7 @@ const list = [
 
 const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState(list);
+  
   useEffect(() => {
     axios.get("/inviteTemplate/getall").then(response => {
       setTemplateList(response.data);
@@ -22,16 +23,7 @@ const TemplateDashboard = () => {
   }, []);
 
   return (
-    <div className="container center col s11">
-      <div className="row">
-        {templatelist.map(item => (
-          <div className="col s12 m6" key={item._id}>
-            {" "}
-            <TemplateCard item={item} />{" "}
-          </div>
-        ))}
-      </div>
-
+    <div className="container center">
       <h5 className="center">
         <Link
           to="/inviteTemplate"
@@ -40,6 +32,14 @@ const TemplateDashboard = () => {
           <i className="material-icons">add</i>
         </Link>
       </h5>
+      <div className="row">
+        {templatelist.map(item => (
+          <div className="col s12 m6" key={item._id}>
+            {" "}
+            <TemplateCard item={item} />{" "}
+          </div>
+        ))}
+      </div>
     </div>
   );
 };
