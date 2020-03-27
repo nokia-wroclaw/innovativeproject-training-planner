@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import TemplateCard from "./templateCard.component";
+import M from "materialize-css";
 import axios from "axios";
 
 const list = [
@@ -15,30 +16,80 @@ const list = [
 
 const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState(list);
-  
+  const [searchQuery, setSearchQuery] = useState("");
+
   useEffect(() => {
-    axios.get("/inviteTemplate/getall").then(response => {
-      setTemplateList(response.data);
+    // init materialize css components
+    var elems = document.querySelectorAll(".fixed-action-btn");
+    var instances = M.FloatingActionButton.init(elems, {
+      direction: "left",
+      hoverEnabled: false
     });
   }, []);
 
+  useEffect(() => {
+    // if searchQuery changes its value
+    if (searchQuery !== "") {
+      // and it's not an empty string
+      // send GET request to find matching template
+      axios.get(`/inviteTemplate/get/${searchQuery}`).then(res => {
+        setTemplateList(res.data);
+      });
+    } else {
+      // if it's an empty string then show all templates
+      axios.get(`/inviteTemplate/all`).then(res => {
+        setTemplateList(res.data);
+      });
+    }
+  }, [searchQuery]);
+
+  const onSubmit = event => {
+    // on submit just clear search bar
+    event.preventDefault();
+    setSearchQuery("");
+  };
+
   return (
     <div className="container center">
-      <h5 className="center">
-        <Link
-          to="/inviteTemplate"
-          className="btn-floating pulse btn-large waves-effect waves-light pink lighten-1"
-        >
-          <i className="material-icons">add</i>
-        </Link>
+      <h5>
+        <div className="row">
+          <div className="col s6 offset-s3">
+            <nav>
+              <div className="nav-wrapper blue darken-1">
+                <form onSubmit={onSubmit}>
+                  <div className="input-field">
+                    <input
+                      id="search"
+                      type="search"
+                      required
+                      value={searchQuery}
+                      onChange={event => setSearchQuery(event.target.value)}
+                    />
+                    <label className="label-icon" htmlFor="search">
+                      <i className="material-icons">search</i>
+                    </label>
+                    <i className="material-icons">close</i>
+                  </div>
+                </form>
+              </div>
+            </nav>
+          </div>
+        </div>
       </h5>
       <div className="row">
         {templatelist.map(item => (
           <div className="col s12 m6" key={item._id}>
-            {" "}
             <TemplateCard item={item} />{" "}
           </div>
         ))}
+      </div>
+      <div className="fixed-action-btn left">
+        <Link
+          to="/inviteTemplate"
+          className="btn-floating pulse btn-large waves-effect waves-light pink"
+        >
+          <i className="material-icons">add</i>
+        </Link>
       </div>
     </div>
   );
