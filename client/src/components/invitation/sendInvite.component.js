@@ -3,7 +3,7 @@ import M from "materialize-css";
 import axios from "axios";
 
 const SendInvite = props => {
-  const textareaRef = React.createRef();
+  const textareaRef = React.createRef(); // create reference point to the textarea
   const [recipents, setRecipents] = useState("");
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -26,6 +26,8 @@ const SendInvite = props => {
   };
 
   useEffect(() => {
+    // Send GET request to the current URL (that stores template's ID).
+    //  Response is an array of one template stored as JSON .
     axios.get(window.location.href).then(res => {
       const newTemplate = initInv(res.data[0]);
       setMessage(newTemplate);
@@ -34,6 +36,8 @@ const SendInvite = props => {
   }, []);
 
   useEffect(() => {
+    // Resize textarea when var. message changes its value (so on load)
+    // (Otherwise, textarea would resize only after it was clicked)
     M.textareaAutoResize(textareaRef.current);
   }, [message]);
 
@@ -45,7 +49,8 @@ const SendInvite = props => {
       message,
       eventTemp
     };
-    // console.log(mail);
+    // Send POST request that will trigger nodemailer, which is responsible
+    // for sending mails. Then redirect URL to template dashboard.
     axios.post("/sendInvite/send", mail).then(res => {
       console.log(res.data);
       props.history.push("/templateDashboard");

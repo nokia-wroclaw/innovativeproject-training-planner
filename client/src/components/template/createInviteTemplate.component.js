@@ -28,7 +28,7 @@ const CreateInviteTemplate = props => {
     });
   }, []);
 
-  function onSubmit(event) {
+  const onSubmit = event => {
     event.preventDefault();
     console.log(date);
 
@@ -51,7 +51,7 @@ const CreateInviteTemplate = props => {
       console.log(res.data);
       props.history.push("/templateDashboard");
     });
-  }
+  };
 
   return (
     <div className="container">

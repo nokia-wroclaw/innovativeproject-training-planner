@@ -4,19 +4,20 @@ const ical = require("ical-generator");
 let InviteTemplate = require("../models/inviteTemplate.model");
 
 router.route("/:_id").get((req, res) => {
-  console.log(req.params);
-  InviteTemplate.find(req.params)
-    .then(templates => res.json(templates))
+  // req.params = template's ID
+  InviteTemplate.find(req.params) // find in the DB cluster a template with matching ID
+    .then(templates => res.json(templates)) // then send it as a response
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+// Joins date and time strings and inits a new date object.
 const transformDate = (dateStr, timeStr) => {
   let datetime = dateStr + " " + timeStr;
   datetime = new Date(datetime);
-  // datetimeStr = datetimeStr.toISOString().replace(/[^0-9T]/gi, "");
   return datetime;
 };
 
+// Generates contents for invitation.ics file
 const generateIcs = eventTemp => {
   const startDate = transformDate(eventTemp.date, eventTemp.startTime);
   const endDate = transformDate(eventTemp.date, eventTemp.endTime);
@@ -40,6 +41,7 @@ const generateIcs = eventTemp => {
   }).toString();
 };
 
+// Nodemialers transport data
 const transport = {
   host: "smtp.gmail.com",
   secure: false,
@@ -49,7 +51,7 @@ const transport = {
   }
 };
 
-const transporter = nodemailer.createTransport(transport);
+const transporter = nodemailer.createTransport(transport); // Init transporter
 
 transporter.verify((error, success) => {
   if (error) {
@@ -60,6 +62,7 @@ transporter.verify((error, success) => {
 });
 
 router.route("/send").post((req, res) => {
+  // req.body = mail details and data for generating .ics file
   const emails = req.body.recipents;
   const subject = req.body.subject;
   const message = req.body.message;
