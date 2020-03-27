@@ -16,6 +16,10 @@ const inviteTemplateSchema = new Schema(
       type: String,
       required: true
     },
+    trainingType: {
+      type: String,
+      required: true
+    },
     instructor: {
       type: String, // string for now, I'm thinking of creating custom type
       required: true

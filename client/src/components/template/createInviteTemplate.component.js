@@ -6,6 +6,7 @@ const CreateInviteTemplate = props => {
   const [date, setDate] = useState("null");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [trainingType, setTrainingType] = useState("");
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -17,6 +18,9 @@ const CreateInviteTemplate = props => {
   useEffect(() => {
     var elems = document.querySelectorAll(".timepicker");
     M.Timepicker.init(elems, {});
+
+    elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems, {});
 
     elems = document.querySelectorAll(".datepicker");
     M.Datepicker.init(elems, {
@@ -36,6 +40,7 @@ const CreateInviteTemplate = props => {
       date,
       startTime,
       endTime,
+      trainingType,
       instructor,
       title,
       agenda,
@@ -82,6 +87,18 @@ const CreateInviteTemplate = props => {
               onSelect={event => setEndTime(event.target.value)}
             />
           </div>
+        </div>
+        <div class="input-field">
+          <select 
+            onChange={event => setTrainingType(event.target.value)}
+            required
+            >
+            <option disabled>Choose your option</option>
+            <option value="Software Training">Software Training</option>
+            <option value="Hardware Training">Hardware Training</option>
+            <option value="Soft Skills Training">Soft Skills Training</option>
+          </select>
+          <label>Training type </label>
         </div>
         <div className="input-field">
           <label htmlFor="instructor">Instructor</label>

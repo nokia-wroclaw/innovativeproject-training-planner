@@ -11,6 +11,7 @@ router.route("/save").post((req, res) => {
   const date = req.body.date;
   const startTime = req.body.startTime;
   const endTime = req.body.endTime;
+  const trainingType = req.body.trainingType;
   const instructor = req.body.instructor;
   const title = req.body.title;
   const agenda = req.body.agenda;
@@ -23,6 +24,7 @@ router.route("/save").post((req, res) => {
     date,
     startTime,
     endTime,
+    trainingType,
     instructor,
     title,
     agenda,
