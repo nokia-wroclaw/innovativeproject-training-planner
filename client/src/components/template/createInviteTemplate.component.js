@@ -6,6 +6,7 @@ const CreateInviteTemplate = props => {
   const [date, setDate] = useState("null");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
+  const [trainingType, setTrainingType] = useState("General Training");
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -18,6 +19,9 @@ const CreateInviteTemplate = props => {
     var elems = document.querySelectorAll(".timepicker");
     M.Timepicker.init(elems, {});
 
+    elems = document.querySelectorAll('select');
+    M.FormSelect.init(elems, {});
+
     elems = document.querySelectorAll(".datepicker");
     M.Datepicker.init(elems, {
       format: "dd mmm yyyy",
@@ -25,17 +29,20 @@ const CreateInviteTemplate = props => {
         const stringDate = argDate.toDateString();
         setDate(stringDate);
       }
+      
     });
   }, []);
 
   const onSubmit = event => {
     event.preventDefault();
-    console.log(date);
+    // console.log(date);
+    // console.log(template);
 
     const template = {
       date,
       startTime,
       endTime,
+      trainingType,
       instructor,
       title,
       agenda,
@@ -44,8 +51,6 @@ const CreateInviteTemplate = props => {
       mustKnow,
       materials
     };
-
-    // console.log(template);
 
     axios.post("/inviteTemplate/save", template).then(res => {
       console.log(res.data);
@@ -82,6 +87,18 @@ const CreateInviteTemplate = props => {
               onSelect={event => setEndTime(event.target.value)}
             />
           </div>
+        </div>
+        <div className="input-field">
+          <select 
+            onChange={event => setTrainingType(event.target.value)}
+            required
+            >
+            <option value="General Training">General Training</option>
+            <option value="Software Training">Software Training</option>
+            <option value="Hardware Training">Hardware Training</option>
+            <option value="Soft Skills Training">Soft Skills Training</option>
+          </select>
+          <label>Training type </label>
         </div>
         <div className="input-field">
           <label htmlFor="instructor">Instructor</label>
