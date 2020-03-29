@@ -6,7 +6,7 @@ const CreateInviteTemplate = props => {
   const [date, setDate] = useState("null");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
-  const [trainingType, setTrainingType] = useState("");
+  const [trainingType, setTrainingType] = useState("General Training");
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
   const [agenda, setAgenda] = useState("");
@@ -34,7 +34,8 @@ const CreateInviteTemplate = props => {
 
   function onSubmit(event) {
     event.preventDefault();
-    console.log(date);
+    // console.log(date);
+    // console.log(template);
 
     const template = {
       date,
@@ -49,8 +50,6 @@ const CreateInviteTemplate = props => {
       mustKnow,
       materials
     };
-
-    // console.log(template);
 
     axios.post("/inviteTemplate/save", template).then(res => {
       console.log(res.data);
