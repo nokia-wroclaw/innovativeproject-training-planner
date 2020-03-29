@@ -88,12 +88,11 @@ const CreateInviteTemplate = props => {
             />
           </div>
         </div>
-        <div class="input-field">
+        <div className="input-field">
           <select 
             onChange={event => setTrainingType(event.target.value)}
             required
             >
-            <option disabled>Choose your option</option>
             <option value="Software Training">Software Training</option>
             <option value="Hardware Training">Hardware Training</option>
             <option value="Soft Skills Training">Soft Skills Training</option>

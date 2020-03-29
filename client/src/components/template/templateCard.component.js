@@ -16,9 +16,11 @@ function setCardColor(trainingType) {
   if(trainingType === "Software Training")
     cardColor = "#1e88e5"; // blue darken-1
   else if(trainingType === "Hardware Training")
-    cardColor = "#7c4dff" // deep-purple accent-2
+    cardColor = "#7c4dff"  // deep-purple accent-2
   else if(trainingType === "Soft Skills Training")
-    cardColor = "#26a69a" // teal lighten-1
+    cardColor = "#26a69a"  // teal lighten-1
+  else
+    cardColor = "#9e9e9e"
   return cardColor;
 }
 
