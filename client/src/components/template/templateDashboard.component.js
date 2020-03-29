@@ -17,14 +17,22 @@ const list = [
 const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState(list);
   const [searchQuery, setSearchQuery] = useState("");
+  const [tooltip, setTooltip] = useState("");
 
   useEffect(() => {
     // init materialize css components
-    var elems = document.querySelectorAll(".fixed-action-btn");
-    var instances = M.FloatingActionButton.init(elems, {
+    let elems = document.querySelectorAll(".fixed-action-btn");
+    let instances = M.FloatingActionButton.init(elems, {
       direction: "left",
       hoverEnabled: false
     });
+    // init tooltip for add a new template button
+    elems = document.querySelectorAll(".tooltipped");
+    let tooltipTmp = M.Tooltip.init(elems, {
+      position: "left",
+      html: "Create a new invitation template"
+    });
+    setTooltip(tooltipTmp[0]);
   }, []);
 
   useEffect(() => {
@@ -42,6 +50,11 @@ const TemplateDashboard = () => {
       });
     }
   }, [searchQuery]);
+
+  const onAddNew = () => {
+    // close tooltip after clicking on the button
+    tooltip.destroy(); // change to .close() if AddNew will be modal
+  };
 
   const onSubmit = event => {
     // on submit just clear search bar
@@ -83,7 +96,7 @@ const TemplateDashboard = () => {
           </div>
         ))}
       </div>
-      <div className="fixed-action-btn left">
+      <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
         <Link
           to="/inviteTemplate"
           className="btn-floating pulse btn-large waves-effect waves-light pink"

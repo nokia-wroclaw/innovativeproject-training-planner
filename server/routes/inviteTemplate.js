@@ -4,7 +4,13 @@ let InviteTemplate = require("../models/inviteTemplate.model");
 router.route("/get/:searchQuery").get((req, res) => {
   let regexBase = req.params.searchQuery.replace(/\s/g, "|");
   regexBase = new RegExp(regexBase, "gi");
-  InviteTemplate.find({ title: { $regex: regexBase } }) // get matching templates from cluster
+  InviteTemplate.find({
+    $or: [
+      { title: { $regex: regexBase } }, // get byt matching title
+      { instructor: { $regex: regexBase } }, // or instructor
+      { description: { $regex: regexBase } } // or description
+    ]
+  }) // get matching templates from cluster
     .then(inviteTemplate => res.json(inviteTemplate)) // send them as a response
     .catch(err => res.status(400).json("Error: " + err));
 });

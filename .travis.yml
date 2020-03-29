@@ -1,6 +1,6 @@
 language: node_js
 node_js:
-- stable
+  - stable
 install: skip
 deploy:
   provider: heroku
@@ -11,7 +11,7 @@ deploy:
     docker-introduce: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
     project-structure-update: mittrainingplanner-mkomorek
-    calendar-event: mittrainingplanner-jaolejnik
+    template-search-bar: mittrainingplanner-jaolejnik
     template-list: mittrainingplanner-cvaniak
 script:
   - echo "skipping tests"
