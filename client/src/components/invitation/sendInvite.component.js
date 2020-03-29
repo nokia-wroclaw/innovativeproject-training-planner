@@ -55,6 +55,7 @@ const SendInvite = props => {
       console.log(res.data);
       props.history.push("/templateDashboard");
     });
+    M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
   };
 
   return (

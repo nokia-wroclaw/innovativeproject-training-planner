@@ -99,7 +99,7 @@ const TemplateDashboard = () => {
       <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
         <Link
           to="/inviteTemplate"
-          className="btn-floating pulse btn-large waves-effect waves-light pink"
+          className="btn-floating pulse btn-large waves-effect waves-light pink lighten-1"
         >
           <i className="material-icons">add</i>
         </Link>
