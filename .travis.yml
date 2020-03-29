@@ -12,6 +12,6 @@ deploy:
     branch: mittrainingplanner-mbednar22
     project-structure-update: mittrainingplanner-mkomorek
     calendar-event: mittrainingplanner-jaolejnik
-    template-list: mittrainingplanner-cvaniak
+    login-gmail: mittrainingplanner-cvaniak
 script:
   - echo "skipping tests"
