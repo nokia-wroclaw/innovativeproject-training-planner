@@ -29,6 +29,7 @@ const CreateInviteTemplate = props => {
         const stringDate = argDate.toDateString();
         setDate(stringDate);
       }
+      
     });
   }, []);
 
