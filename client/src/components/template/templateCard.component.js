@@ -52,8 +52,8 @@ const TemplateCard = props => {
         <span className="card-title activator">{props.item.title}</span>
         <p>{props.item.description.trunc(80)}</p>
       </div>{" "}
-      <div className="card-action">
-        <Link to={sendInv(props.item._id)}>Send Invitation</Link>
+      <div className="card-action center">
+        <Link to={sendInv(props.item._id)}>SEND INVITATION</Link>
       </div>
     </div>
   );
