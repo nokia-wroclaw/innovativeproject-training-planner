@@ -93,6 +93,7 @@ const CreateInviteTemplate = props => {
             onChange={event => setTrainingType(event.target.value)}
             required
             >
+            <option value="General Training">General Training</option>
             <option value="Software Training">Software Training</option>
             <option value="Hardware Training">Hardware Training</option>
             <option value="Soft Skills Training">Soft Skills Training</option>
