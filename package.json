@@ -8,8 +8,6 @@
     "url": "https://github.com/nokia-wroclaw/innovativeproject-training-planner"
   },
   "dependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2",
     "react-google-login": "^5.1.2"
   },
   "scripts": {
