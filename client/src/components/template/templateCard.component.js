@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import M from "materialize-css";
 
 String.prototype.trunc =
   String.prototype.trunc ||
@@ -34,6 +35,35 @@ const setCardColor = trainingType => {
   return cardColor;
 };
 
+const TemplateDetails = props => {
+  useEffect(() => {
+    let elems = document.querySelectorAll(".modal");
+    M.Modal.init(elems, {});
+  }, []);
+
+  return (
+    <div id={props.item._id} class="modal">
+      <div className="modal-content">
+        <h3>{props.item.title}</h3>
+        <p>{props.item.date}</p>
+        <p>{props.item.startTime}</p>
+        <p>{props.item.endTime}</p>
+        <p>{props.item.instructor}</p>
+        <p>{props.item.agenda}</p>
+        <p>{props.item.description}</p>
+        <p>{props.item.willLearn}</p>
+        <p>{props.item.mustKnow}</p>
+        <p>{props.item.materials}</p>
+      </div>
+      <div className="modal-footer">
+        <a href="#!" class="modal-close btn-flat">
+          <i className="material-icons right">close</i>
+        </a>
+      </div>
+    </div>
+  );
+};
+
 const TemplateCard = props => {
   return (
     <div
@@ -48,13 +78,30 @@ const TemplateCard = props => {
         <p>{props.item.date}</p>
       </div>
       <div className="card-content white-text">
-        {setCardIcon(props.item.trainingType)}
-        <span className="card-title activator">{props.item.title}</span>
-        <p>{props.item.description.trunc(80)}</p>
-      </div>{" "}
-      <div className="card-action center">
-        <Link to={sendInv(props.item._id)}>SEND INVITATION</Link>
+        <div className="row">
+          <div className="col s10 offset-s1">
+            <span className="card-title activator">{props.item.title}</span>
+            <p>{props.item.description.trunc(80)}</p>
+          </div>
+          <div className="col s1">{setCardIcon(props.item.trainingType)}</div>
+        </div>
+        <div className="row"></div>
+        <div class="divider"></div>
       </div>
+      <TemplateDetails item={props.item} />
+      <div className="row">
+        <div className="col s6">
+          <a className="modal-trigger btn-flat" data-target={props.item._id}>
+            <i class="material-icons left">event_note</i>DETAILS
+          </a>
+        </div>
+        <div className="col s6">
+          <a className="btn-flat" href={sendInv(props.item._id)}>
+            <i class="material-icons left">mail</i>SEND
+          </a>
+        </div>
+      </div>
+      <div className="row"></div>
     </div>
   );
 };
