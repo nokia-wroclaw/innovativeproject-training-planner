@@ -96,9 +96,9 @@ const TemplateCard = props => {
           </a>
         </div>
         <div className="col s6">
-          <a className="btn-flat" href={sendInv(props.item._id)}>
+          <Link className="btn-flat" to={sendInv(props.item._id)}>
             <i class="material-icons left">mail</i>SEND
-          </a>
+          </Link>
         </div>
       </div>
       <div className="row"></div>
