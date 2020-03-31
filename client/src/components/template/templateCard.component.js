@@ -2,11 +2,11 @@ import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import M from "materialize-css";
 
-String.prototype.trunc =
-  String.prototype.trunc ||
-  function(n) {
-    return this.length > n ? this.substr(0, n - 1) + "&hellip;" : this;
-  };
+// String.prototype.trunc =
+//   String.prototype.trunc ||
+//   function(n) {
+//     return this.length > n ? this.substr(0, n - 1) + "&hellip;" : this;
+//   };
 
 const sendInv = invID => {
   return `/sendInvite/${invID}`;
@@ -50,7 +50,7 @@ const TemplateDetails = props => {
         <p>{props.item.endTime}</p>
         <p>{props.item.instructor}</p>
         <p>{props.item.agenda}</p>
-        <p>{props.item.description}</p>
+        <p>{props.item.tion}</p>
         <p>{props.item.willLearn}</p>
         <p>{props.item.mustKnow}</p>
         <p>{props.item.materials}</p>
@@ -73,7 +73,6 @@ const TemplateCard = props => {
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
           {props.item.instructor}
-          {/* <i className="material-icons right">close</i> */}
         </span>
         <p>{props.item.date}</p>
       </div>
@@ -81,7 +80,7 @@ const TemplateCard = props => {
         <div className="row">
           <div className="col s10 offset-s1">
             <span className="card-title activator">{props.item.title}</span>
-            <p>{props.item.description.trunc(80)}</p>
+            <p className="truncate">{props.item.description}</p>
           </div>
           <div className="col s1">{setCardIcon(props.item.trainingType)}</div>
         </div>
