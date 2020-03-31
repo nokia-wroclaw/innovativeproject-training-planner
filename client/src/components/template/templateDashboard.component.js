@@ -18,6 +18,19 @@ const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState(list);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
+  const [layout, setLayout] = useState(["col s12 m6"]);
+
+  const generateLayout = () => {
+    let tmp = [];
+    templatelist.forEach(item => {
+      if (item.title.length > 40) {
+        tmp.push("col s12 m12");
+      } else {
+        tmp.push("col s12 m6");
+      }
+    });
+    setLayout(tmp);
+  };
 
   useEffect(() => {
     // init materialize css components
@@ -36,7 +49,12 @@ const TemplateDashboard = () => {
   }, []);
 
   useEffect(() => {
+    generateLayout();
+  }, [templatelist]);
+
+  useEffect(() => {
     // if searchQuery changes its value
+    console.log(layout);
     if (searchQuery !== "") {
       // and it's not an empty string
       // send GET request to find matching template
@@ -90,8 +108,8 @@ const TemplateDashboard = () => {
         </div>
       </h5>
       <div className="row">
-        {templatelist.map(item => (
-          <div className="col m6" key={item._id}>
+        {templatelist.map((item, i) => (
+          <div className={layout[i]} key={item._id}>
             <TemplateCard item={item} />
           </div>
         ))}
