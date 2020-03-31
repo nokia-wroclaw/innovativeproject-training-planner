@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
+import ReactEmailHTML from "../invitation/reactEmailHtml.component";
 import M from "materialize-css";
 
 // String.prototype.trunc =
@@ -13,7 +14,6 @@ const sendInv = invID => {
 };
 
 const setCardIcon = trainingType => {
-  let cardColor;
   if (trainingType === "Software Training")
     return <i className="material-icons right">computer</i>;
   else if (trainingType === "Hardware Training")
@@ -43,23 +43,7 @@ const TemplateDetails = props => {
 
   return (
     <div id={props.item._id} class="modal">
-      <div className="modal-content">
-        <h3>{props.item.title}</h3>
-        <p>{props.item.date}</p>
-        <p>{props.item.startTime}</p>
-        <p>{props.item.endTime}</p>
-        <p>{props.item.instructor}</p>
-        <p>{props.item.agenda}</p>
-        <p>{props.item.tion}</p>
-        <p>{props.item.willLearn}</p>
-        <p>{props.item.mustKnow}</p>
-        <p>{props.item.materials}</p>
-      </div>
-      <div className="modal-footer">
-        <a href="#!" class="modal-close btn-flat">
-          <i className="material-icons right">close</i>
-        </a>
-      </div>
+      <div className="modal-content">{ReactEmailHTML(props.item)}</div>
     </div>
   );
 };
@@ -79,12 +63,14 @@ const TemplateCard = props => {
       <div className="card-content white-text">
         <div className="row">
           <div className="col s10 offset-s1">
-            <span className="card-title activator">{props.item.title}</span>
+            <span className="card-title activator truncate">
+              {props.item.title}
+            </span>
             <p className="truncate">{props.item.description}</p>
           </div>
           <div className="col s1">{setCardIcon(props.item.trainingType)}</div>
         </div>
-        <div className="row"></div>
+        <br />
         <div class="divider"></div>
       </div>
       <TemplateDetails item={props.item} />
@@ -100,7 +86,7 @@ const TemplateCard = props => {
           </Link>
         </div>
       </div>
-      <div className="row"></div>
+      <br />
     </div>
   );
 };

@@ -18,9 +18,9 @@ const transformDate = (dateStr, timeStr) => {
 };
 
 // Generates contents for invitation.ics file
-const generateIcs = eventTemp => {
-  const startDate = transformDate(eventTemp.date, eventTemp.startTime);
-  const endDate = transformDate(eventTemp.date, eventTemp.endTime);
+const generateIcs = template => {
+  const startDate = transformDate(template.date, template.startTime);
+  const endDate = transformDate(template.date, template.endTime);
 
   return ical({
     prodId: {
@@ -34,8 +34,8 @@ const generateIcs = eventTemp => {
         start: startDate,
         end: endDate,
         timestamp: startDate,
-        summary: eventTemp.title,
-        organizer: `${eventTemp.instructor} <mail@example.com>`
+        summary: template.title,
+        organizer: `${template.instructor} <mail@example.com>`
       }
     ]
   }).toString();
@@ -66,14 +66,14 @@ router.route("/send").post((req, res) => {
   const emails = req.body.recipents;
   const subject = req.body.subject;
   const message = req.body.message;
-  const eventTemp = req.body.eventTemp;
-  const eventContent = generateIcs(eventTemp);
+  const template = req.body.template;
+  const eventContent = generateIcs(template);
 
   let mail = {
     from: "testing",
     to: emails,
     subject: subject,
-    text: message,
+    html: message,
     icalEvent: {
       filename: "invitation.ics",
       method: "request",
@@ -85,7 +85,7 @@ router.route("/send").post((req, res) => {
     if (err) {
       res.json("failed :(");
     } else {
-      res.json("Message successfully send!");
+      res.json("Message successfully sent!");
     }
   });
 });
