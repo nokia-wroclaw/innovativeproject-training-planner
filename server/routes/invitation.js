@@ -63,7 +63,7 @@ transporter.verify((error, success) => {
 
 router.route("/send").post((req, res) => {
   // req.body = mail details and data for generating .ics file
-  const emails = req.body.recipents;
+  const emails = req.body.recipients;
   const subject = req.body.subject;
   const message = req.body.message;
   const template = req.body.template;

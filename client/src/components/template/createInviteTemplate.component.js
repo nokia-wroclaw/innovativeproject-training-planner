@@ -19,7 +19,7 @@ const CreateInviteTemplate = props => {
     var elems = document.querySelectorAll(".timepicker");
     M.Timepicker.init(elems, {});
 
-    elems = document.querySelectorAll('select');
+    elems = document.querySelectorAll("select");
     M.FormSelect.init(elems, {});
 
     elems = document.querySelectorAll(".datepicker");
@@ -29,7 +29,6 @@ const CreateInviteTemplate = props => {
         const stringDate = argDate.toDateString();
         setDate(stringDate);
       }
-      
     });
   }, []);
 
@@ -89,10 +88,10 @@ const CreateInviteTemplate = props => {
           </div>
         </div>
         <div className="input-field">
-          <select 
+          <select
             onChange={event => setTrainingType(event.target.value)}
             required
-            >
+          >
             <option value="General Training">General Training</option>
             <option value="Software Training">Software Training</option>
             <option value="Hardware Training">Hardware Training</option>

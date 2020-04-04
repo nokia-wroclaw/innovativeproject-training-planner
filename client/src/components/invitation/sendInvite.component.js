@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { renderEmail } from "react-html-email";
 import ReactEmailHTML from "./reactEmailHtml.component";
+import BetterChips from "../layout/betterChips.componenet.js";
 import M from "materialize-css";
 import axios from "axios";
 
 const SendInvite = props => {
-  const [recipents, setRecipents] = useState("");
+  const [recipients, setRecipients] = useState([]);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [template, setTemplate] = useState("");
@@ -19,13 +20,17 @@ const SendInvite = props => {
   }, []);
 
   useEffect(() => {
+    console.log(recipients);
+  }, [recipients]);
+
+  useEffect(() => {
     setMessage(renderEmail(ReactEmailHTML(template)));
   }, [template]);
 
   const onSend = event => {
     event.preventDefault();
     const mail = {
-      recipents,
+      recipients: recipients.join(","),
       subject,
       message,
       template
@@ -41,16 +46,14 @@ const SendInvite = props => {
 
   return (
     <div className="container">
-      <form className="white col s12" style={{ padding: "0 20px" }}>
+      <form className="white col s12" onSubmit={onSend}>
         <div className="row center">
-          <div className="input-field col s6 offset-s3">
-            <label htmlFor="recipents">Recipents</label>
-            <input
-              type="email"
-              id="recipents"
-              required
-              value={recipents}
-              onChange={e => setRecipents(e.target.value)}
+          <div className="col s6 offset-s3">
+            <BetterChips
+              label="Recipients"
+              inputType="email"
+              value={recipients}
+              onEnter={setRecipients}
             />
           </div>
           <div className="input-field col s6 offset-s3">
@@ -67,9 +70,7 @@ const SendInvite = props => {
             {ReactEmailHTML(template)}
           </div>
           <div className="input-field col s6 offset-s3">
-            <button className="btn pink lighten-1 z-depth-0" onClick={onSend}>
-              Send
-            </button>
+            <button className="btn pink lighten-1 z-depth-0">Send</button>
           </div>
         </div>
       </form>
