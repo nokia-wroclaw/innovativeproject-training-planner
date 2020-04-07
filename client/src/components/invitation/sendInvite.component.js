@@ -35,13 +35,19 @@ const SendInvite = props => {
       message,
       template
     };
+
     // Send POST request that will trigger nodemailer, which is responsible
     // for sending mails. Then redirect URL to template dashboard.
     axios.post("/sendInvite/send", mail).then(res => {
       console.log(res.data);
-      props.history.push("/templateDashboard");
     });
     M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
+    props.history.push("/templateDashboard");
+  };
+
+  const onCancel = event => {
+    event.preventDefault();
+    props.history.goBack();
   };
 
   return (
@@ -69,8 +75,19 @@ const SendInvite = props => {
           <div className="card-panel col s6 m8 offset-m2">
             {ReactEmailHTML(template)}
           </div>
-          <div className="input-field col s6 offset-s3">
-            <button className="btn pink lighten-1 z-depth-0">Send</button>
+        </div>
+        <div className="input-field col s6 offset-s3">
+          <div className="row center">
+            <div className="col s2 offset-s4">
+              <button className="btn pink lighten-1" onClick={onCancel}>
+                <i className="material-icons left">cancel</i>CANCEL
+              </button>
+            </div>
+            <div className="col s2">
+              <button className="btn pink lighten-1">
+                <i className="material-icons left">mail</i>SEND
+              </button>
+            </div>
           </div>
         </div>
       </form>

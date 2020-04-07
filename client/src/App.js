@@ -11,8 +11,11 @@ import UserProfile from "./components/user/userProfile.component";
 function App() {
   return (
     <BrowserRouter>
-      <div className="App">
+      <div id="app" className="App">
         <Navbar />
+        <br />
+        <br />
+        <br />
         <Switch>
           <Route exact path="/" />
           <Route path="/useres" component={CreateUser} />

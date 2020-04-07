@@ -55,4 +55,11 @@ router.route("/save").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.route("/delete/:_id").post((req, res) => {
+  // req.params = template's ID
+  InviteTemplate.remove(req.params)
+    .then(() => res.json("Invite template deleted!"))
+    .catch(err => res.status(400).json("Error: " + err));
+});
+
 module.exports = router;

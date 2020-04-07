@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 const BetterChips = props => {
-  // props: inputType, label
+  // props: inputType, label, required
   const [inputValue, setInputValue] = useState("");
   const [chipsContent, setChipsContent] = useState([]);
 
@@ -14,12 +14,20 @@ const BetterChips = props => {
   }, [props, chipsContent]);
 
   const keyPress = e => {
-    if (e.keyCode === 13 && validEmail(e.target.value)) {
+    // temporary solution -> better one required TODO
+    if (e.keyCode === 13) {
       e.preventDefault();
-      let test = [...chipsContent, e.target.value];
-      console.log(test);
-      setChipsContent(test);
-      setInputValue("");
+      if (props.inputType === "email" && validEmail(e.target.value)) {
+        let test = [...chipsContent, e.target.value];
+        console.log(test);
+        setChipsContent(test);
+        setInputValue("");
+      } else {
+        let test = [...chipsContent, e.target.value];
+        console.log(test);
+        setChipsContent(test);
+        setInputValue("");
+      }
     }
   };
 

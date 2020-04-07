@@ -1,13 +1,8 @@
 import React, { useEffect } from "react";
 import { Link } from "react-router-dom";
 import ReactEmailHTML from "../invitation/reactEmailHtml.component";
+import axios from "axios";
 import M from "materialize-css";
-
-// String.prototype.trunc =
-//   String.prototype.trunc ||
-//   function(n) {
-//     return this.length > n ? this.substr(0, n - 1) + "&hellip;" : this;
-//   };
 
 const sendInv = invID => {
   return `/sendInvite/${invID}`;
@@ -39,11 +34,56 @@ const TemplateDetails = props => {
   useEffect(() => {
     let elems = document.querySelectorAll(".modal");
     M.Modal.init(elems, {});
+    elems = document.querySelectorAll(".pushpin");
+    M.Pushpin.init(elems);
   }, []);
 
+  const deleteThis = e => {
+    e.preventDefault();
+    axios.post(`/inviteTemplate/delete/${props.item._id}`).then(res => {
+      console.log(res.data);
+    });
+    window.location.reload(); // for now
+  };
+
   return (
-    <div id={props.item._id} class="modal">
-      <div className="modal-content">{ReactEmailHTML(props.item)}</div>
+    <div id={props.item._id} className="modal">
+      <div className="modal-footer">
+        <div className="row">
+          <div className="col s3 offset-s2">
+            <a href="/" className="modal-close  btn-flat" onClick={deleteThis}>
+              <i className="material-icons red-text text-lighten-1 left">
+                delete
+              </i>
+              DELETE
+            </a>
+          </div>
+          <div className="col s2">
+            <Link href="#!" className="modal-close btn-flat ">
+              <i className="material-icons left">edit</i>EDIT
+            </Link>
+          </div>
+          <div className="col s2">
+            <Link
+              className="modal-close btn-flat"
+              to={`/sendInvite/${props.item._id}`}
+            >
+              <i className="material-icons left">mail</i>SEND
+            </Link>
+          </div>
+          <div className="col s1 offset-s2">
+            <a href="#!" className="modal-close btn-flat">
+              <i className="material-icons gray">close</i>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div className="row">
+        <div className="container">
+          <div className="divider blue darken-2" />
+          <div className="modal-content">{ReactEmailHTML(props.item)}</div>
+        </div>
+      </div>
     </div>
   );
 };
@@ -71,18 +111,22 @@ const TemplateCard = props => {
           <div className="col s1">{setCardIcon(props.item.trainingType)}</div>
         </div>
         <br />
-        <div class="divider"></div>
+        <div className="divider" />
       </div>
       <TemplateDetails item={props.item} />
       <div className="row">
         <div className="col s6">
-          <a className="modal-trigger btn-flat" data-target={props.item._id}>
-            <i class="material-icons left">event_note</i>DETAILS
+          <a
+            className="modal-trigger btn-flat"
+            href="#!"
+            data-target={props.item._id}
+          >
+            <i className="material-icons left">event_note</i>DETAILS
           </a>
         </div>
         <div className="col s6">
           <Link className="btn-flat" to={sendInv(props.item._id)}>
-            <i class="material-icons left">mail</i>SEND
+            <i className="material-icons left">mail</i>SEND
           </Link>
         </div>
       </div>

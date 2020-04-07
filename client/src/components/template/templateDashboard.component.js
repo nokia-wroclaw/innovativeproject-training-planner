@@ -4,18 +4,8 @@ import TemplateCard from "./templateCard.component";
 import M from "materialize-css";
 import axios from "axios";
 
-const list = [
-  {
-    _id: "1",
-    instructor: "Testowy Instruktor",
-    title: "Testowy Tytuł - baza nie działa",
-    date: "10/2/2020",
-    description: "Testowy Opis"
-  }
-];
-
 const TemplateDashboard = () => {
-  const [templatelist, setTemplateList] = useState(list);
+  const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
 

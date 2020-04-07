@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import BetterChips from "../layout/betterChips.componenet.js";
 import axios from "axios";
 import M from "materialize-css";
 
@@ -9,7 +10,7 @@ const CreateInviteTemplate = props => {
   const [trainingType, setTrainingType] = useState("General Training");
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
-  const [agenda, setAgenda] = useState("");
+  const [agenda, setAgenda] = useState([]);
   const [description, setDescription] = useState("");
   const [willLearn, setWillLearn] = useState("");
   const [mustKnow, setMustKnow] = useState("");
@@ -34,8 +35,6 @@ const CreateInviteTemplate = props => {
 
   const onSubmit = event => {
     event.preventDefault();
-    // console.log(date);
-    // console.log(template);
 
     const template = {
       date,
@@ -44,7 +43,7 @@ const CreateInviteTemplate = props => {
       trainingType,
       instructor,
       title,
-      agenda,
+      agenda: agenda.join("\n"),
       description,
       willLearn,
       mustKnow,
@@ -60,7 +59,7 @@ const CreateInviteTemplate = props => {
   return (
     <div className="container">
       <form className="white col s12" onSubmit={onSubmit}>
-        <h5 className="grey-text text-darken-3"> Crete Template </h5>
+        <h5 className="grey-text text-darken-3"> Create Template </h5>
         <div className="input-field">
           <label htmlFor="date">Date</label>
           <input type="text" id="date" className="datepicker" required />
@@ -118,20 +117,19 @@ const CreateInviteTemplate = props => {
           />
         </div>
         <div className="input-field">
-          <label htmlFor="agenda">Agneda</label>
-          <textarea
-            id="agenda"
-            className="materialize-textarea"
-            required
-            onChange={event => setAgenda(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
           <label htmlFor="description">Description</label>
           <textarea
             id="description"
             className="materialize-textarea"
             onChange={event => setDescription(event.target.value)}
+          />
+        </div>
+        <div className="input-field">
+          <BetterChips
+            label="Agenda"
+            inputType="text"
+            value={agenda}
+            onEnter={setAgenda}
           />
         </div>
         <div className="input-field">
