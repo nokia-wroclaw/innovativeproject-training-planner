@@ -17,6 +17,7 @@
     "axios": "^0.19.2",
     "eslint-plugin-flowtype": "^3.13.0",
     "materialize-css": "^1.0.0-rc.2",
+    "react-html-email": "^3.0.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
