@@ -1,5 +1,6 @@
 const express = require("express");
 const cors = require("cors");
+const OktaJwtVerifier = require("@okta/jwt-verifier");
 const path = require("path");
 const mongoose = require("mongoose");
 
