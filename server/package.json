@@ -9,6 +9,8 @@
     "directory": "server"
   },
   "dependencies": {
+    "@okta/jwt-verifier": "1.0.0",
+    "@okta/okta-auth-js": "^3.0.1",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
