@@ -5,24 +5,48 @@ const BetterChips = props => {
   const [inputValue, setInputValue] = useState("");
   const [chipsContent, setChipsContent] = useState([]);
 
+  const onEnter = props.onEnter;
+  useEffect(() => {
+    onEnter(chipsContent);
+  }, [onEnter, chipsContent]);
+
   const validEmail = mail => {
-    return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(mail);
+    // checks of the mail is a valid with regex
+    // improper regex (passes: name@mail) needed, because materilize's validate
+    // thinks that's good enough
+    // for a proper mail add "+\.[A-Z]" here ---------------V
+    let re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]{2,}$/gim;
+    return re.test(mail);
   };
 
-  useEffect(() => {
-    props.onEnter(chipsContent);
-  }, [props, chipsContent]);
+  const containsObject = (obj, list) => {
+    let i;
+    for (i = 0; i < list.length; i++) {
+      if (list[i] === obj) {
+        return true;
+      }
+    }
+    return false;
+  };
 
   const keyPress = e => {
-    // temporary solution -> better one required TODO
-    if (e.keyCode === 13) {
-      e.preventDefault();
-      if (props.inputType === "email" && validEmail(e.target.value)) {
-        let test = [...chipsContent, e.target.value];
-        console.log(test);
-        setChipsContent(test);
-        setInputValue("");
-      } else {
+    // if a button is pressed when the field is being filled
+    // 13 - enter, 32 - space, 9 - tab, 188 - ,(comma)
+    if (validEmail(e.target.value)) {
+      if (
+        e.keyCode === 13 ||
+        e.keyCode === 32 ||
+        e.keyCode === 9 ||
+        e.keyCode === 188
+      ) {
+        if (containsObject(e.target.value, chipsContent)) {
+          e.preventDefault();
+          setInputValue("");
+          return;
+        }
+        if (e.keyCode === 13) {
+          e.preventDefault();
+        }
         let test = [...chipsContent, e.target.value];
         console.log(test);
         setChipsContent(test);

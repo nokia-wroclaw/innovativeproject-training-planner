@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { renderEmail } from "react-html-email";
+import { renderEmail, configStyleValidator } from "react-html-email";
 import ReactEmailHTML from "./reactEmailHtml.component";
 import BetterChips from "../layout/betterChips.componenet.js";
 import M from "materialize-css";
@@ -24,6 +24,25 @@ const SendInvite = props => {
   }, [recipients]);
 
   useEffect(() => {
+    configStyleValidator({
+      // When strict, incompatible style properties will result in an error.
+      strict: true,
+
+      // Whether to warn when compatibility notes for a style property exist.
+      warn: true,
+
+      // Platforms to consider for compatibility checks.
+      platforms: [
+        "gmail",
+        "gmail-android",
+        "apple-mail",
+        "apple-ios",
+        "yahoo-mail",
+        "outlook",
+        "outlook-legacy",
+        "outlook-web"
+      ]
+    });
     setMessage(renderEmail(ReactEmailHTML(template)));
   }, [template]);
 
@@ -43,11 +62,6 @@ const SendInvite = props => {
     });
     M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
     props.history.push("/templateDashboard");
-  };
-
-  const onCancel = event => {
-    event.preventDefault();
-    props.history.goBack();
   };
 
   return (
@@ -79,9 +93,9 @@ const SendInvite = props => {
         <div className="input-field col s6 offset-s3">
           <div className="row center">
             <div className="col s2 offset-s4">
-              <button className="btn pink lighten-1" onClick={onCancel}>
+              <a className="btn pink lighten-1" href="/templateDashboard">
                 <i className="material-icons left">cancel</i>CANCEL
-              </button>
+              </a>
             </div>
             <div className="col s2">
               <button className="btn pink lighten-1">

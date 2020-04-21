@@ -37,7 +37,8 @@ const generateIcs = template => {
         summary: template.title,
         organizer: `${template.instructor} <mail@example.com>`
       }
-    ]
+    ],
+    method: "request"
   }).toString();
 };
 
