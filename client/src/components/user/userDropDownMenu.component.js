@@ -60,13 +60,6 @@ const UserDropDownMenu = () => {
           </Link>
         </li>
         <li className="divider" tabIndex="-1"></li>
-
-          <li>
-            <a onClick={logout}>
-              {" "}
-              <i className="material-icons">settings_power</i>Logout
-            </a>
-          </li>
         {(function() {
           if (authState.isAuthenticated) {
             return (
