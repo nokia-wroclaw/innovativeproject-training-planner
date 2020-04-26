@@ -2,7 +2,6 @@ const router = require("express").Router();
 const OktaJwtVerifier = require("@okta/jwt-verifier");
 let InviteTemplate = require("../models/inviteTemplate.model");
 
-
 const oktaJwtVerifier = new OktaJwtVerifier({
   issuer: "https://dev-820510.okta.com/oauth2/default",
   clientId: "0oa53fc7pgZWm2jyj4x6",
@@ -23,7 +22,7 @@ function authenticationRequired(req, res, next) {
   const accessToken = match[1];
   const expectedAudience = "api://default";
 
-  console.log("authenticationRequired",  req.headers.username);
+  console.log("authenticationRequired", req.headers.username);
   return oktaJwtVerifier
     .verifyAccessToken(accessToken, expectedAudience)
     .then(jwt => {
@@ -37,9 +36,7 @@ function authenticationRequired(req, res, next) {
     });
 }
 
-
-
-router.route("/get/:searchQuery").get( authenticationRequired, (req, res) => {
+router.route("/get/:searchQuery").get(authenticationRequired, (req, res) => {
   let regexBase = req.params.searchQuery.replace(/\s/g, "|");
   regexBase = new RegExp(regexBase, "gi");
   InviteTemplate.find({
@@ -49,7 +46,7 @@ router.route("/get/:searchQuery").get( authenticationRequired, (req, res) => {
       { description: { $regex: regexBase } } // or description
     ],
     $and: [
-      { username: req.headers.username }// or description
+      { userName: req.headers.username } // or description
     ]
   }) // get matching templates from cluster
     .then(inviteTemplate => res.json(inviteTemplate)) // send them as a response
@@ -57,11 +54,11 @@ router.route("/get/:searchQuery").get( authenticationRequired, (req, res) => {
 });
 
 // all query should have authenticationRequired like here
-router.route("/all").get( authenticationRequired, (req, res) => {
-  console.log("all user ", req.headers.username)
+router.route("/all").get(authenticationRequired, (req, res) => {
+  console.log("all user ", req.headers.username);
   InviteTemplate.find({
     $and: [
-      { username: req.headers.username }// or description
+      { userName: req.headers.username } // or description
     ]
   }) // get all templates from cluster
     .then(inviteTemplate => res.json(inviteTemplate)) // send them as a response
