@@ -54,14 +54,17 @@ const UserProfile = () => {
 
 
     return(
-      <div>
-            <h5 className="center">There will be some stuff about user profile.</h5>
+    <div>
+      <br />
+      <br />
+      <br />
 
-                  <h5 className="center">There will be some stuff about user profile.</h5>
-
-                        <h5 className="center">There will be some stuff about user profile.</h5>
-
+      {userInfo && (
+        <div>
+          <p>You are logged as {userInfo.preferred_username}!</p>
         </div>
+      )}
+    </div>
     )
 }
 

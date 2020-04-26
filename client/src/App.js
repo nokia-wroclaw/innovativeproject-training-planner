@@ -20,19 +20,22 @@ const config = {
 function App() {
   return (
     <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route path="/useres" component={CreateUser} />
+          <Route path="/sendInvite" component={SendInvite} />
+        </Switch>
+      </div>
+
       <Security {...config}>
         <Navbar />
-      </Security>
-      <Security {...config}>
+        <Route exact path="/" />
         <Route path="/" exact={true} component={Home} />
-        <Route path="/profile" component={UserProfile} />
-      </Security>
-      <div id="app" className="App">
         <Route path="/inviteTemplate" component={CreateInviteTemplate} />
         <Route path="/templateDashboard" component={TemplateDashboard} />
-        <Route path="/useres" component={CreateUser} />
-        <Route path="/sendInvite" component={SendInvite} />
-      </div>
+        <Route path="/implicit/callback" component={LoginCallback} />
+        <Route path="/profile" component={UserProfile} />
+      </Security>
     </BrowserRouter>
   );
 }
