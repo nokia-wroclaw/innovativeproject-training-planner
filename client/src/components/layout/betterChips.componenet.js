@@ -47,12 +47,16 @@ const BetterChips = props => {
         if (e.keyCode === 13) {
           e.preventDefault();
         }
-        let test = [...chipsContent, e.target.value];
-        console.log(test);
-        setChipsContent(test);
+        setChipsContent([...chipsContent, e.target.value]);
         setInputValue("");
       }
     }
+  };
+
+  const deleteThis = (event, email) => {
+    // Deletes chips
+    event.preventDefault();
+    setChipsContent(prev => prev.filter(item => item !== email));
   };
 
   return (
@@ -66,9 +70,15 @@ const BetterChips = props => {
         onKeyDown={keyPress}
       />
       {props.value.map(email => (
-        <div className="chip">
+        <div className="chip" key={email}>
           {email}
-          <i className="close material-icons">close</i>
+          <a
+            href="!"
+            className="btn-flat"
+            onClick={event => deleteThis(event, email)}
+          >
+            <i className="material-icons">close</i>
+          </a>
         </div>
       ))}
     </div>

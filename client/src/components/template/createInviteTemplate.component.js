@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import BetterChips from "../layout/betterChips.componenet.js";
 import axios from "axios";
 import M from "materialize-css";
 
@@ -10,7 +9,7 @@ const CreateInviteTemplate = props => {
   const [trainingType, setTrainingType] = useState("General Training");
   const [instructor, setInstructor] = useState("");
   const [title, setTitle] = useState("");
-  const [agenda, setAgenda] = useState([]);
+  const [agenda, setAgenda] = useState("");
   const [description, setDescription] = useState("");
   const [willLearn, setWillLearn] = useState("");
   const [mustKnow, setMustKnow] = useState("");
@@ -43,7 +42,7 @@ const CreateInviteTemplate = props => {
       trainingType,
       instructor,
       title,
-      agenda: agenda.join("\n"),
+      agenda,
       description,
       willLearn,
       mustKnow,
@@ -125,11 +124,11 @@ const CreateInviteTemplate = props => {
           />
         </div>
         <div className="input-field">
-          <BetterChips
-            label="Agenda"
-            inputType="text"
-            value={agenda}
-            onEnter={setAgenda}
+          <label htmlFor="description">Agenda</label>
+          <textarea
+            id="agenda"
+            className="materialize-textarea"
+            onChange={event => setAgenda(event.target.value)}
           />
         </div>
         <div className="input-field">
