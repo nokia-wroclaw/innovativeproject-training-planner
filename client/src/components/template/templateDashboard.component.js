@@ -1,31 +1,30 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useOktaAuth } from "@okta/okta-react";
 import TemplateCard from "./templateCard.component";
 import M from "materialize-css";
 import axios from "axios";
 
 const TemplateDashboard = () => {
-  const { authState } = useOktaAuth();
+  const { authState, authService } = useOktaAuth();
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
+  const [userInfo, setUserInfo] = useState(null);
 
-
-    // // This useEffect is used to get info about user
-    // // It probably can be put as local value only after loggin
-    // useEffect(() => {
-    //   if (!authState.isAuthenticated) {
-    //     // When user isn't authenticated, forget any user info
-    //     setUserInfo(null);
-    //   } else {
-    //     authService.getUser().then(info => {
-    //       setUserInfo(info);
-    //       console.log("You are logging as " + info.preferred_username);
-    //     });
-    //   }
-    // }, [authState, authService]); // Update if authState changes
-
-
+  // This useEffect is used to get info about user
+  // It probably can be put as local value only after loggin
+  useEffect(() => {
+    if (!authState.isAuthenticated) {
+      // When user isn't authenticated, forget any user info
+      setUserInfo(null);
+    } else {
+      authService.getUser().then(info => {
+        setUserInfo(info);
+        console.log("You are logging as " + info.preferred_username);
+      });
+    }
+  }, [authState, authService]); // Update if authState changes
 
   useEffect(() => {
     // init materialize css components
@@ -45,19 +44,40 @@ const TemplateDashboard = () => {
 
   useEffect(() => {
     // if searchQuery changes its value
-    if (searchQuery !== "") {
-      // and it's not an empty string
-      // send GET request to find matching template
-      axios.get(`/inviteTemplate/get/${searchQuery}`).then(res => {
-        setTemplateList(res.data);
-      });
-    } else {
-      // if it's an empty string then show all templates
-      axios.get(`/inviteTemplate/all`).then(res => {
-        setTemplateList(res.data);
+    if (authState.isAuthenticated) {
+      const { accessToken } = authState;
+
+      authService.getUser().then(info => {
+      console.log(info, info.prefered_username);
+        if (searchQuery !== "") {
+          // and it's not an empty string
+          // send GET request to find matching template
+          axios
+            .get(`/inviteTemplate/get/${searchQuery}`, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                userName: info.preferred_username
+              }
+            })
+            .then(res => {
+              setTemplateList(res.data);
+            });
+        } else {
+          // if it's an empty string then show all templates
+          axios
+            .get(`/inviteTemplate/all`, {
+              headers: {
+                Authorization: `Bearer ${accessToken}`,
+                username: info.preferred_username
+              }
+            })
+            .then(res => {
+              setTemplateList(res.data);
+            });
+        }
       });
     }
-  }, [searchQuery]);
+  }, [searchQuery, authState]);
 
   const onAddNew = () => {
     // close tooltip after clicking on the button
@@ -72,6 +92,7 @@ const TemplateDashboard = () => {
 
   return (
     <div className="container center">
+    <br />
       <h5>
         <div className="row">
           <div className="col s6 offset-s3">
