@@ -5,9 +5,27 @@ import M from "materialize-css";
 import axios from "axios";
 
 const TemplateDashboard = () => {
+  const { authState } = useOktaAuth();
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
+
+
+    // // This useEffect is used to get info about user
+    // // It probably can be put as local value only after loggin
+    // useEffect(() => {
+    //   if (!authState.isAuthenticated) {
+    //     // When user isn't authenticated, forget any user info
+    //     setUserInfo(null);
+    //   } else {
+    //     authService.getUser().then(info => {
+    //       setUserInfo(info);
+    //       console.log("You are logging as " + info.preferred_username);
+    //     });
+    //   }
+    // }, [authState, authService]); // Update if authState changes
+
+
 
   useEffect(() => {
     // init materialize css components
