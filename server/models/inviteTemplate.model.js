@@ -45,6 +45,9 @@ const inviteTemplateSchema = new Schema(
     },
     materials: {
       type: String
+    },
+    userName: {
+      type: Array
     }
   },
   {
