@@ -49,7 +49,7 @@ router.route("/get/:searchQuery").get( authenticationRequired, (req, res) => {
       { description: { $regex: regexBase } } // or description
     ],
     $and: [
-      { username: req.headers.username }// or description
+      { userName: req.headers.username }// or description
     ]
   }) // get matching templates from cluster
     .then(inviteTemplate => res.json(inviteTemplate)) // send them as a response
@@ -61,7 +61,7 @@ router.route("/all").get( authenticationRequired, (req, res) => {
   console.log("all user ", req.headers.username)
   InviteTemplate.find({
     $and: [
-      { username: req.headers.username }// or description
+      { userName: req.headers.username }// or description
     ]
   }) // get all templates from cluster
     .then(inviteTemplate => res.json(inviteTemplate)) // send them as a response
@@ -81,6 +81,7 @@ router.route("/save").post((req, res) => {
   const willLearn = req.body.willLearn;
   const mustKnow = req.body.mustKnow;
   const materials = req.body.materials;
+  const userName = req.body.userName;
 
   const newTemplate = new InviteTemplate({
     date,
@@ -93,7 +94,8 @@ router.route("/save").post((req, res) => {
     description,
     willLearn,
     mustKnow,
-    materials
+    materials,
+    userName
   });
 
   newTemplate

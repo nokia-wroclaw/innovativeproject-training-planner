@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useOktaAuth } from "@okta/okta-react";
 import axios from "axios";
 import M from "materialize-css";
 
@@ -14,6 +15,25 @@ const CreateInviteTemplate = props => {
   const [willLearn, setWillLearn] = useState("");
   const [mustKnow, setMustKnow] = useState("");
   const [materials, setMaterials] = useState("");
+  const { authState, authService } = useOktaAuth();
+  const [userInfo, setUserInfo] = useState(null);
+
+    useEffect(() => {
+      if (!authState.isAuthenticated) {
+        // When user isn't authenticated, forget any user info
+        setUserInfo(null);
+      } else {
+        authService.getUser().then(info => {
+          console.log(info);
+          setUserInfo(info);
+        });
+
+        authService.getIdToken().then(info => {
+          console.log(info);
+          setUserInfo(info);
+        });
+      }
+    }, [authState, authService]); // Update if authState changes
 
   useEffect(() => {
     var elems = document.querySelectorAll(".timepicker");
@@ -34,6 +54,7 @@ const CreateInviteTemplate = props => {
 
   const onSubmit = event => {
     event.preventDefault();
+    let userName = userInfo.preferred_username
 
     const template = {
       date,
@@ -46,7 +67,8 @@ const CreateInviteTemplate = props => {
       description,
       willLearn,
       mustKnow,
-      materials
+      materials,
+      userName
     };
 
     axios.post("/inviteTemplate/save", template).then(res => {

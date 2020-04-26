@@ -48,7 +48,7 @@ const TemplateDashboard = () => {
       const { accessToken } = authState;
 
       authService.getUser().then(info => {
-      console.log(info, info.prefered_username);
+      // console.log(info, info.preferred_username);
         if (searchQuery !== "") {
           // and it's not an empty string
           // send GET request to find matching template
