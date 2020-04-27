@@ -3,7 +3,7 @@ import axios from "axios";
 import M from "materialize-css";
 
 const CreateInviteTemplate = props => {
-  const [date, setDate] = useState("null");
+  const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
   const [trainingType, setTrainingType] = useState("General Training");
@@ -14,8 +14,11 @@ const CreateInviteTemplate = props => {
   const [willLearn, setWillLearn] = useState("");
   const [mustKnow, setMustKnow] = useState("");
   const [materials, setMaterials] = useState("");
+  const [mode, setMode] = useState("non-initialized");
+  const [id, setId] = useState("");
 
   useEffect(() => {
+    // runs on load
     var elems = document.querySelectorAll(".timepicker");
     M.Timepicker.init(elems, {});
 
@@ -30,7 +33,46 @@ const CreateInviteTemplate = props => {
         setDate(stringDate);
       }
     });
+
+    let idTmp = window.location.href;
+    let i = idTmp.lastIndexOf("/");
+    idTmp = idTmp.slice(i + 1);
+    setMode("create");
+    if (idTmp !== "inviteTemplate" && idTmp.length === 24) {
+      setMode("edit");
+      setId(idTmp);
+    }
   }, []);
+
+  useEffect(() => {
+    if (mode === "edit") {
+      axios.get(`/sendInvite/get/${id}`).then(res => {
+        setDate(res.data[0].date);
+        setStartTime(res.data[0].startTime);
+        setEndTime(res.data[0].endTime);
+        setTrainingType(res.data[0].trainingType);
+        setInstructor(res.data[0].instructor);
+        setTitle(res.data[0].title);
+        setAgenda(res.data[0].agenda);
+        setDescription(res.data[0].description);
+        setWillLearn(res.data[0].willLearn);
+        setMustKnow(res.data[0].mustKnow);
+        setMaterials(res.data[0].materials);
+        M.updateTextFields();
+      });
+    }
+  }, [mode, id]);
+
+  const header = () => {
+    if (mode === "create") {
+      return "Create Template";
+    }
+    if (mode === "edit") {
+      return "Edit Template";
+    } else {
+      return "";
+    }
+  };
 
   const onSubmit = event => {
     event.preventDefault();
@@ -49,19 +91,33 @@ const CreateInviteTemplate = props => {
       materials
     };
 
-    axios.post("/inviteTemplate/save", template).then(res => {
-      console.log(res.data);
-      props.history.push("/templateDashboard");
-    });
+    if (mode === "create") {
+      axios.post(`/inviteTemplate/save`, template).then(res => {
+        console.log(res.data);
+        props.history.push("/templateDashboard");
+      });
+    }
+    if (mode === "edit") {
+      axios.post(`/inviteTemplate/update/${id}`, template).then(res => {
+        console.log(res.data);
+        props.history.push("/templateDashboard");
+      });
+    }
   };
 
   return (
     <div className="container">
       <form className="white col s12" onSubmit={onSubmit}>
-        <h5 className="grey-text text-darken-3"> Create Template </h5>
+        <h5 className="grey-text text-darken-3"> {header()} </h5>
         <div className="input-field">
           <label htmlFor="date">Date</label>
-          <input type="text" id="date" className="datepicker" required />
+          <input
+            type="text"
+            id="date"
+            className="datepicker"
+            required
+            value={date}
+          />
         </div>
         <div className="row">
           <div className="input-field col s6">
@@ -71,6 +127,7 @@ const CreateInviteTemplate = props => {
               id="startTime"
               className="timepicker"
               required
+              value={startTime}
               onSelect={event => setStartTime(event.target.value)}
             />
           </div>
@@ -81,12 +138,14 @@ const CreateInviteTemplate = props => {
               id="endTime"
               className="timepicker"
               required
+              value={endTime}
               onSelect={event => setEndTime(event.target.value)}
             />
           </div>
         </div>
         <div className="input-field">
           <select
+            value={trainingType}
             onChange={event => setTrainingType(event.target.value)}
             required
           >
@@ -103,6 +162,7 @@ const CreateInviteTemplate = props => {
             type="text"
             id="instructor"
             required
+            value={instructor}
             onChange={event => setInstructor(event.target.value)}
           />
         </div>
@@ -112,6 +172,7 @@ const CreateInviteTemplate = props => {
             type="text"
             id="title"
             required
+            value={title}
             onChange={event => setTitle(event.target.value)}
           />
         </div>
@@ -120,14 +181,16 @@ const CreateInviteTemplate = props => {
           <textarea
             id="description"
             className="materialize-textarea"
+            value={description}
             onChange={event => setDescription(event.target.value)}
           />
         </div>
         <div className="input-field">
-          <label htmlFor="description">Agenda</label>
+          <label htmlFor="agenda">Agenda</label>
           <textarea
             id="agenda"
             className="materialize-textarea"
+            value={agenda}
             onChange={event => setAgenda(event.target.value)}
           />
         </div>
@@ -137,6 +200,7 @@ const CreateInviteTemplate = props => {
             id="willLearn"
             className="materialize-textarea"
             required
+            value={willLearn}
             onChange={event => setWillLearn(event.target.value)}
           />
         </div>
@@ -145,6 +209,7 @@ const CreateInviteTemplate = props => {
           <textarea
             id="mustKnow"
             className="materialize-textarea"
+            value={mustKnow}
             onChange={event => setMustKnow(event.target.value)}
           />
         </div>
@@ -153,12 +218,23 @@ const CreateInviteTemplate = props => {
           <textarea
             id="materials"
             className="materialize-textarea"
+            value={materials}
             onChange={event => setMaterials(event.target.value)}
           />
         </div>
-        <div className="input-field">
-          <button className="btn pink lighten-1 z-depth-0">Submit</button>
+        <div className="row">
+          <div className="col s2 offset-s4">
+            <a className="btn pink lighten-1" href="/templateDashboard">
+              <i className="material-icons left">cancel</i>CANCEL
+            </a>
+          </div>
+          <div className="col s2">
+            <button className="btn pink lighten-1 z-depth-0">
+              <i className="material-icons left">save</i>SAVE
+            </button>
+          </div>
         </div>
+        <div className="input-field"></div>
       </form>
     </div>
   );

@@ -59,7 +59,10 @@ const TemplateDetails = props => {
             </a>
           </div>
           <div className="col s2">
-            <Link href="#!" className="modal-close btn-flat ">
+            <Link
+              to={`/inviteTemplate/${props.item._id}`}
+              className="modal-close btn-flat "
+            >
               <i className="material-icons left">edit</i>EDIT
             </Link>
           </div>

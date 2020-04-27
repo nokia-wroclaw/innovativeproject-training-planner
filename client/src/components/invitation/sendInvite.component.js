@@ -12,9 +12,14 @@ const SendInvite = props => {
   const [template, setTemplate] = useState("");
 
   useEffect(() => {
-    // Send GET request to the current URL (that stores template's ID).
+    // Send GET request to retrieve the template data.
     //  Response is an array of one template stored as JSON .
-    axios.get(window.location.href).then(res => {
+    let id = window.location.href;
+    let i = id.lastIndexOf("/");
+    id = id.slice(i + 1);
+    console.log(id);
+    console.log(`sendInvite/get/${id}`);
+    axios.get(`/sendInvite/get/${id}`).then(res => {
       setTemplate(res.data[0]);
     });
   }, []);

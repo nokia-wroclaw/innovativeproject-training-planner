@@ -23,31 +23,8 @@ router.route("/all").get((req, res) => {
 
 router.route("/save").post((req, res) => {
   // req.body is a template as JSON
-  const date = req.body.date;
-  const startTime = req.body.startTime;
-  const endTime = req.body.endTime;
-  const trainingType = req.body.trainingType;
-  const instructor = req.body.instructor;
-  const title = req.body.title;
-  const agenda = req.body.agenda;
-  const description = req.body.description;
-  const willLearn = req.body.willLearn;
-  const mustKnow = req.body.mustKnow;
-  const materials = req.body.materials;
-
-  const newTemplate = new InviteTemplate({
-    date,
-    startTime,
-    endTime,
-    trainingType,
-    instructor,
-    title,
-    agenda,
-    description,
-    willLearn,
-    mustKnow,
-    materials
-  });
+  const template = req.body;
+  const newTemplate = new InviteTemplate(template);
 
   newTemplate
     .save() // Save to DB
@@ -55,9 +32,15 @@ router.route("/save").post((req, res) => {
     .catch(err => res.status(400).json("Error: " + err));
 });
 
+router.route("/update/:id").post((req, res) => {
+  const template = req.body;
+  InviteTemplate.updateOne({ _id: req.params.id }, template) // Save to DB
+    .then(() => res.json("Invite template updated."));
+});
+
 router.route("/delete/:_id").post((req, res) => {
   // req.params = template's ID
-  InviteTemplate.remove(req.params)
+  InviteTemplate.deleteOne(req.params)
     .then(() => res.json("Invite template deleted!"))
     .catch(err => res.status(400).json("Error: " + err));
 });

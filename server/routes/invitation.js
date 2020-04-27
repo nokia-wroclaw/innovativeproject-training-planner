@@ -3,7 +3,7 @@ const nodemailer = require("nodemailer");
 const ical = require("ical-generator");
 let InviteTemplate = require("../models/inviteTemplate.model");
 
-router.route("/:_id").get((req, res) => {
+router.route("/get/:_id").get((req, res) => {
   // req.params = template's ID
   InviteTemplate.find(req.params) // find in the DB cluster a template with matching ID
     .then(templates => res.json(templates)) // then send it as a response
