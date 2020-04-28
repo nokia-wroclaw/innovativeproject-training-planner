@@ -1,18 +1,24 @@
 language: node_js
-node_js:
-  - stable
-install: skip
+node_js: stable
+cache: npm
+install:
+  - npm run init
+  - npm run build
+script: echo "skipping tests"
 deploy:
   provider: heroku
   api_key:
     secure: agyxTYhK2hTikNAusrDZ1pBZ5BIL+HUm+r6XyaEO3RQptSJArj88WquAvopTo1dQ8fpW4uJBs+Q2L6B8vuwRdFqSlg8mUFxShEfM8R4kbPmxt7HyEC1fjRZSxQblVKkvGWG6XX1Rr3kLaDF78nd6pAqFIb/NNkjcK7++LTeVja+B49AiRrd+GYJX4iu+cBqzHP7/E1XKvmOUAbnfzBTldqxxic5GFYeAZAj/6MAqdby6rqhjfppRpk7jIQnzTO3nIdBlHLjV+pq3V4OSOQ1w7j2szXx7jHbyyCsa880axLM2cKaHzLVh5Bg0T/vQE18L9u/97zHeWGCR1nunpT3MoR80pikVnDog2jYzjVPFD+3edZ4qE/I+42fMhUv/mFu9WA1MBXVoBqDRYujmhsA3pBi0/KQm3GIzNUBR1sD9iTJBai0C/B1qreFLBauW7eZ16mFmzsR2kx14kJJEzPQpnRnZtS8iz+4dyttvgyLitEWz3l4LAaoDIVoPGzIABpcbOVjxMOqu9P/LIZZh6FMwV7fQ+FKKRzNKEmAeFdaH1wE0qKJ++skS6cYPBevP/MmHa6FyCUdMNYLgeT6s1gmN1C4WhwPNTlRlFp10fpHIoFdJONkt5WUAuaPKJKO1Zvzok/3sYy7eZh3KU4cfkMXOz125nkKSgbfFk/spYlLCteE=
   app:
     master: mittrainingplanner-master
-    docker-introduce: mittrainingplanner-starmarek
+    unit-tests: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
     calendar-2-general: mittrainingplanner-mkomorek
     template-filtering: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak
+<<<<<<< HEAD
     refactor: mittrainingplanner-refactored
 script:
   - echo "skipping tests"
+=======
+>>>>>>> d5a809b... Add install stage to travis
