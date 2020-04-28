@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useOktaAuth } from "@okta/okta-react";
 import { Link } from "react-router-dom";
 import M from "materialize-css";
@@ -12,24 +12,6 @@ const UserDropDownMenu = () => {
   //-------------------------------------------------------------
 
   const { authState, authService } = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
-
-  useEffect(() => {
-    if (!authState.isAuthenticated) {
-      // When user isn't authenticated, forget any user info
-      setUserInfo(null);
-    } else {
-      authService.getUser().then(info => {
-        console.log(info);
-        setUserInfo(info);
-      });
-
-      authService.getIdToken().then(info => {
-        console.log(info);
-        setUserInfo(info);
-      });
-    }
-  }, [authState, authService]); // Update if authState changes
 
   const login = async () => {
     // Redirect to '/' after login
@@ -64,7 +46,7 @@ const UserDropDownMenu = () => {
           if (authState.isAuthenticated) {
             return (
               <li>
-                <a onClick={logout}>
+                <a onClick={logout} href="!#">
                   {" "}
                   <i className="material-icons">settings_power</i>Logout
                 </a>
@@ -73,7 +55,7 @@ const UserDropDownMenu = () => {
           } else {
             return (
               <li>
-                <a onClick={login}>
+                <a onClick={login}  href="!#">
                   {" "}
                   <i className="material-icons">settings_power</i>Login
                 </a>

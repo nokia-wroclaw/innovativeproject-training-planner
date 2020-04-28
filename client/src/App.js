@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { Security, LoginCallback, useOktaAuth } from "@okta/okta-react";
+import { Security, LoginCallback} from "@okta/okta-react";
 
 import Navbar from "./components/layout/navbar.component";
 import TemplateDashboard from "./components/template/templateDashboard.component";

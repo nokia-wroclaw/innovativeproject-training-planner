@@ -39,7 +39,7 @@ const UserProfile = () => {
             console.log("NotLogged1");
 
           }
-        }, [userInfo]);
+        }, [userInfo, authState]);
 
 
 
@@ -50,7 +50,7 @@ const UserProfile = () => {
       } else {
         console.log("cos")
       }
-    }, []); // Update if authState changes
+    }, [authState]); // Update if authState changes
 
 
     return(

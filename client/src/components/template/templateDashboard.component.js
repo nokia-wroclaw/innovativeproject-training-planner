@@ -10,22 +10,9 @@ const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
-  const [userInfo, setUserInfo] = useState(null);
 
   // This useEffect is used to get info about user
   // It probably can be put as local value only after loggin
-  useEffect(() => {
-    if (!authState.isAuthenticated) {
-      // When user isn't authenticated, forget any user info
-      setUserInfo(null);
-    } else {
-      authService.getUser().then(info => {
-        setUserInfo(info);
-        console.log("You are logging as " + info.preferred_username);
-      });
-    }
-  }, [authState, authService]); // Update if authState changes
-
   useEffect(() => {
     // init materialize css components
     let elems = document.querySelectorAll(".fixed-action-btn");
@@ -77,7 +64,7 @@ const TemplateDashboard = () => {
         }
       });
     }
-  }, [searchQuery, authState]);
+  }, [searchQuery, authState, authService]);
 
   const onAddNew = () => {
     // close tooltip after clicking on the button
