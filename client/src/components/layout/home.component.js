@@ -19,17 +19,6 @@ const Home = () => {
     }
   }, [authState, authService]); // Update if authState changes
 
-  const login = async () => {
-    // Redirect to '/' after login
-    authService.login("/");
-  };
-
-  const logout = async () => {
-    // Redirect to '/' after logout
-    console.log("----------------------");
-    authService.logout("/");
-  };
-
   if (authState.isPending) {
     return <div>Loading...</div>;
   }
