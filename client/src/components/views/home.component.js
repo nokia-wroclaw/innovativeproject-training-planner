@@ -5,19 +5,15 @@ const Home = () => {
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
 
-  // This useEffect is used to get info about user
-  // It probably can be put as local value only after loggin
   useEffect(() => {
     if (!authState.isAuthenticated) {
-      // When user isn't authenticated, forget any user info
       setUserInfo(null);
     } else {
       authService.getUser().then(info => {
         setUserInfo(info);
-        console.log("You are logging as " + info.preferred_username);
       });
     }
-  }, [authState, authService]); // Update if authState changes
+  }, [authState, authService]);
 
   if (authState.isPending) {
     return <div>Loading...</div>;
@@ -25,9 +21,6 @@ const Home = () => {
 
   return (
     <div className="App">
-      <br />
-      <br />
-      <br />
       {userInfo && (
         <div>
           <p>Welcome back, {userInfo.preferred_username}!</p>

@@ -14,11 +14,12 @@ const BetterChips = props => {
     // checks of the mail is a valid with regex
     // improper regex (passes: name@mail) needed, because materilize's validate
     // thinks that's good enough
-    // for a proper mail add "+\.[A-Z]" here ---------------V
+    // for a proper mail add "+\.[A-Z]" here -------------V
     let re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]{2,}$/gim;
     return re.test(mail);
   };
 
+  // TODO move to base.js
   const containsObject = (obj, list) => {
     let i;
     for (i = 0; i < list.length; i++) {
@@ -53,12 +54,12 @@ const BetterChips = props => {
     }
   };
 
-  const deleteThis = (event, email) => {
-    // Deletes chips
+  const deleteChip = (event, email) => {
     event.preventDefault();
     setChipsContent(prev => prev.filter(item => item !== email));
   };
 
+  // TODO transform map to function
   return (
     <div className="input-field">
       <label>{props.label}</label>
@@ -75,7 +76,7 @@ const BetterChips = props => {
           <a
             href="!"
             className="btn-flat"
-            onClick={event => deleteThis(event, email)}
+            onClick={event => deleteChip(event, email)}
           >
             <i className="material-icons">close</i>
           </a>
