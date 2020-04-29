@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useOktaAuth } from "@okta/okta-react";
-import TemplateCard from "./templateCard.component";
+import TemplateCard from "../template/templateCard.component";
 import M from "materialize-css";
 import axios from "axios";
 
@@ -11,16 +11,12 @@ const TemplateDashboard = () => {
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
 
-  // This useEffect is used to get info about user
-  // It probably can be put as local value only after loggin
   useEffect(() => {
-    // init materialize css components
     let elems = document.querySelectorAll(".fixed-action-btn");
     M.FloatingActionButton.init(elems, {
       direction: "left",
       hoverEnabled: false
     });
-    // init tooltip for add a new template button
     elems = document.querySelectorAll(".tooltipped");
     let tooltipTmp = M.Tooltip.init(elems, {
       position: "left",
@@ -30,15 +26,11 @@ const TemplateDashboard = () => {
   }, []);
 
   useEffect(() => {
-    // if searchQuery changes its value
     if (authState.isAuthenticated) {
       const { accessToken } = authState;
 
       authService.getUser().then(info => {
-      // console.log(info, info.preferred_username);
         if (searchQuery !== "") {
-          // and it's not an empty string
-          // send GET request to find matching template
           axios
             .get(`/inviteTemplate/get/${searchQuery}`, {
               headers: {
@@ -50,7 +42,6 @@ const TemplateDashboard = () => {
               setTemplateList(res.data);
             });
         } else {
-          // if it's an empty string then show all templates
           axios
             .get(`/inviteTemplate/all`, {
               headers: {
@@ -67,19 +58,17 @@ const TemplateDashboard = () => {
   }, [searchQuery, authState, authService]);
 
   const onAddNew = () => {
-    // close tooltip after clicking on the button
-    tooltip.destroy(); // change to .close() if AddNew will be modal
+    tooltip.destroy();
   };
 
   const onSubmit = event => {
-    // on submit just clear search bar
     event.preventDefault();
     setSearchQuery("");
   };
 
   return (
     <div className="container center">
-    <br />
+      <br />
       <h5>
         <div className="row">
           <div className="col s6 offset-s3">

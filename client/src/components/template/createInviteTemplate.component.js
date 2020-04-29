@@ -22,23 +22,16 @@ const CreateInviteTemplate = props => {
 
   useEffect(() => {
     if (!authState.isAuthenticated) {
-      // When user isn't authenticated, forget any user info
       setUserInfo(null);
     } else {
       authService.getUser().then(info => {
-        console.log(info);
-        setUserInfo(info);
-      });
-
-      authService.getIdToken().then(info => {
-        console.log(info);
         setUserInfo(info);
       });
     }
-  }, [authState, authService]); // Update if authState changes
+  }, [authState, authService]);
 
   useEffect(() => {
-    // runs on load
+    // runs on pageload
     var elems = document.querySelectorAll(".timepicker");
     M.Timepicker.init(elems, {});
 
@@ -64,6 +57,7 @@ const CreateInviteTemplate = props => {
     }
   }, []);
 
+  // TODO fix updates
   useEffect(() => {
     if (mode === "edit") {
       axios.get(`/sendInvite/get/${id}`).then(res => {
@@ -89,8 +83,6 @@ const CreateInviteTemplate = props => {
     }
     if (mode === "edit") {
       return "Edit Template";
-    } else {
-      return "";
     }
   };
 

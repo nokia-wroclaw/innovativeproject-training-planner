@@ -4,10 +4,7 @@ import ReactEmailHTML from "../invitation/reactEmailHtml.component";
 import axios from "axios";
 import M from "materialize-css";
 
-const sendInv = invID => {
-  return `/sendInvite/${invID}`;
-};
-
+// TODO rethink whole purpose
 const setCardIcon = trainingType => {
   if (trainingType === "Software Training")
     return <i className="material-icons right">computer</i>;
@@ -34,8 +31,6 @@ const TemplateDetails = props => {
   useEffect(() => {
     let elems = document.querySelectorAll(".modal");
     M.Modal.init(elems, {});
-    elems = document.querySelectorAll(".pushpin");
-    M.Pushpin.init(elems);
   }, []);
 
   const deleteThis = e => {
@@ -43,7 +38,7 @@ const TemplateDetails = props => {
     axios.post(`/inviteTemplate/delete/${props.item._id}`).then(res => {
       console.log(res.data);
     });
-    window.location.reload(); // for now
+    window.location.reload();
   };
 
   return (
@@ -128,7 +123,7 @@ const TemplateCard = props => {
           </a>
         </div>
         <div className="col s6">
-          <Link className="btn-flat" to={sendInv(props.item._id)}>
+          <Link className="btn-flat" to={`/sendInvite/${props.item._id}`}>
             <i className="material-icons left">mail</i>SEND
           </Link>
         </div>
