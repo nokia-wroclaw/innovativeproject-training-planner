@@ -21,7 +21,7 @@ const inviteTemplateSchema = new Schema(
       required: true
     },
     instructor: {
-      type: String, // string for now, I'm thinking of creating custom type
+      type: String,
       required: true
     },
     title: {
