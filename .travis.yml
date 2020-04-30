@@ -13,5 +13,6 @@ deploy:
     project-structure-update: mittrainingplanner-mkomorek
     chips: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak
+    refactor: mittrainingplanner-refactored
 script:
   - echo "skipping tests"

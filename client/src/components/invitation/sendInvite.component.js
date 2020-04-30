@@ -15,8 +15,6 @@ const SendInvite = props => {
     let id = window.location.href;
     let i = id.lastIndexOf("/");
     id = id.slice(i + 1);
-    console.log(id);
-    console.log(`sendInvite/get/${id}`);
     axios.get(`/sendInvite/get/${id}`).then(res => {
       setTemplate(res.data[0]);
     });
@@ -36,12 +34,16 @@ const SendInvite = props => {
     };
 
     axios.post("/sendInvite/send", mail).then(res => {
-      console.log(res.data);
+      if (res.data.sent) {
+        M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
+        props.history.push("/templateDashboard");
+      } else {
+        M.toast({
+          html: "SOMETHING WENT WRONG :(",
+          classes: "rounded pink lighten-1"
+        });
+      }
     });
-
-    // TODO make it dependand on post success
-    M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
-    props.history.push("/templateDashboard");
   };
 
   return (
@@ -50,6 +52,7 @@ const SendInvite = props => {
         <div className="row center">
           <div className="col s6 offset-s3">
             <BetterChips
+              required
               label="Recipients"
               inputType="email"
               value={recipients}

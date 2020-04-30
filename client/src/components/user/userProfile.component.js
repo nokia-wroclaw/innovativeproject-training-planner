@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useOktaAuth } from "@okta/okta-react";
+import React from "react";
 
 const UserProfile = () => {
   return (
