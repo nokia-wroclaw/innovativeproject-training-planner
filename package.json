@@ -8,10 +8,25 @@
     "url": "https://github.com/nokia-wroclaw/innovativeproject-training-planner"
   },
   "dependencies": {
-    "concurrently": "^5.1.0",
-    "nodemon": "^2.0.2"
+    "@babel/plugin-transform-runtime": "^7.9.6",
+    "@babel/preset-env": "^7.9.6",
+    "@babel/preset-react": "^7.9.4",
+    "@babel/runtime": "^7.9.6",
+    "react-test-renderer": "^16.13.1",
+    "@typescript-eslint/eslint-plugin": "^2.30.0",
+    "eslint": "^6.8.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-flowtype": "^4.7.0",
+    "eslint-plugin-import": "^2.20.2",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-react": "^7.19.0",
+    "eslint-plugin-react-hooks": "^3.0.0"
   },
   "scripts": {
+    "lint:fix": "eslint --fix",
+    "lint": "eslint",
+    "test": "jest",
+    "travis": "npm i --no-optional --no-fund --only=prod && npm i --prefix client --only=prod --no-optional --no-fund --loglevel warn && npm i --prefix server --no-fund",
     "build": "npm run build --prefix client",
     "start": "nodemon server/server.js",
     "client": "npm start --prefix client",
@@ -19,5 +34,9 @@
     "init": "npm i --no-optional --no-fund && npm i --prefix client --no-optional --no-fund --loglevel warn && npm i --prefix server --no-fund",
     "reinstall": "npm run rm && npm run init",
     "dev": "concurrently \"npm start\" \"npm run client\""
+  },
+  "devDependencies": {
+    "concurrently": "^5.2.0",
+    "nodemon": "^2.0.3"
   }
 }

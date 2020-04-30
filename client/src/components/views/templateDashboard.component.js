@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { useOktaAuth } from "@okta/okta-react";
-import TemplateCard from "../template/templateCard.component";
-import M from "materialize-css";
-import axios from "axios";
+import React, {useEffect, useState} from 'react';
+import {Link} from 'react-router-dom';
+import {useOktaAuth} from '@okta/okta-react';
+import TemplateCard from './templateCard.component';
+import M from 'materialize-css';
+import axios from 'axios';
 
 const linkStyle = {
   width: "5%",
@@ -16,7 +16,7 @@ const searchbarStyle = {
 };
 
 const TemplateDashboard = () => {
-  const { authState, authService } = useOktaAuth();
+  const {authState, authService} = useOktaAuth();
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
@@ -50,7 +50,7 @@ const TemplateDashboard = () => {
 
   useEffect(() => {
     if (authState.isAuthenticated) {
-      const { accessToken } = authState;
+      const {accessToken} = authState;
 
       authService.getUser().then((info) => {
         if (searchQuery !== "") {
@@ -103,7 +103,7 @@ const TemplateDashboard = () => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setSearchQuery("");
+    setSearchQuery('');
   };
 
   const tabClickHandler = (event) => {

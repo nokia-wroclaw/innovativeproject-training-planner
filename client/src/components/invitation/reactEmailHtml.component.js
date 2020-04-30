@@ -1,15 +1,15 @@
-import React from "react";
-import { Email, Item, Span, Box } from "react-html-email";
+import React from 'react';
+import {Email, Item, Span, Box} from 'react-html-email';
 
-const ReactEmailHTML = template => {
+const ReactEmailHTML = (template) => {
   const defaultText = {
     fontSize: 10,
-    fontWeight: "bold",
-    color: "gray"
+    fontWeight: 'bold',
+    color: 'gray',
   };
 
   const templateText = {
-    fontSize: 15
+    fontSize: 15,
   };
 
   return (
@@ -28,7 +28,7 @@ const ReactEmailHTML = template => {
           <br />
           <Span {...templateText}>{template.date}</Span>
           <Span {...templateText}>
-            {template.startTime + " - " + template.endTime}
+            {template.startTime + ' - ' + template.endTime}
           </Span>
         </Item>
         <Item align="left">
