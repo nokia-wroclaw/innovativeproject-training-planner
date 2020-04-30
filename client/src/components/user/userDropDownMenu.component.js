@@ -1,31 +1,31 @@
-import React, { useEffect} from "react";
-import { useOktaAuth } from "@okta/okta-react";
-import { Link } from "react-router-dom";
-import M from "materialize-css";
+import React, {useEffect} from 'react';
+import {useOktaAuth} from '@okta/okta-react';
+import {Link} from 'react-router-dom';
+import M from 'materialize-css';
 
 const UserDropDownMenu = () => {
   useEffect(() => {
-    var elems = document.querySelectorAll(".dropdown-trigger");
-    M.Dropdown.init(elems, { alignment: "left", constrainWidth: false });
+    const elems = document.querySelectorAll('.dropdown-trigger');
+    M.Dropdown.init(elems, {alignment: 'left', constrainWidth: false});
   }, []);
 
-  //-------------------------------------------------------------
+  // -------------------------------------------------------------
 
-  const { authState, authService } = useOktaAuth();
+  const {authState, authService} = useOktaAuth();
 
   const login = async () => {
     // Redirect to '/' after login
-    console.log("----------------------");
-    authService.login("/");
+    console.log('----------------------');
+    authService.login('/');
   };
 
   const logout = async () => {
     // Redirect to '/' after logout
-    console.log("----------------------");
-    authService.logout("/");
+    console.log('----------------------');
+    authService.logout('/');
   };
 
-  //-------------------------------------------------------------
+  // -------------------------------------------------------------
 
   return (
     <a
@@ -33,7 +33,7 @@ const UserDropDownMenu = () => {
       href="#!"
       data-target="dropdown1"
     >
-      {" "}
+      {' '}
       MK
       <ul id="dropdown1" className="dropdown-content">
         <li>
@@ -47,7 +47,7 @@ const UserDropDownMenu = () => {
             return (
               <li>
                 <a onClick={logout} href="!#">
-                  {" "}
+                  {' '}
                   <i className="material-icons">settings_power</i>Logout
                 </a>
               </li>
@@ -55,8 +55,8 @@ const UserDropDownMenu = () => {
           } else {
             return (
               <li>
-                <a onClick={login}  href="!#">
-                  {" "}
+                <a onClick={login} href="!#">
+                  {' '}
                   <i className="material-icons">settings_power</i>Login
                 </a>
               </li>

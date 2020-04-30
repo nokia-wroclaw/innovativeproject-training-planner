@@ -1,46 +1,46 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import ReactEmailHTML from "../invitation/reactEmailHtml.component";
-import axios from "axios";
-import M from "materialize-css";
+import React, {useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import ReactEmailHTML from '../invitation/reactEmailHtml.component';
+import axios from 'axios';
+import M from 'materialize-css';
 
-const sendInv = invID => {
+const sendInv = (invID) => {
   return `/sendInvite/${invID}`;
 };
 
-const setCardIcon = trainingType => {
-  if (trainingType === "Software Training")
+const setCardIcon = (trainingType) => {
+  if (trainingType === 'Software Training') {
     return <i className="material-icons right">computer</i>;
-  else if (trainingType === "Hardware Training")
+  } else if (trainingType === 'Hardware Training') {
     return <i className="material-icons right">build</i>;
-  else if (trainingType === "Soft Skills Training")
+  } else if (trainingType === 'Soft Skills Training') {
     return <i className="material-icons right">group</i>;
-  else return <i className="material-icons right">work</i>;
+  } else return <i className="material-icons right">work</i>;
 };
 
-const setCardColor = trainingType => {
+const setCardColor = (trainingType) => {
   let cardColor;
-  if (trainingType === "Software Training") cardColor = "#1e88e5";
+  if (trainingType === 'Software Training') cardColor = '#1e88e5';
   // blue darken-1
-  else if (trainingType === "Hardware Training") cardColor = "#7c4dff";
+  else if (trainingType === 'Hardware Training') cardColor = '#7c4dff';
   // deep-purple accent-2
-  else if (trainingType === "Soft Skills Training") cardColor = "#26a69a";
+  else if (trainingType === 'Soft Skills Training') cardColor = '#26a69a';
   // teal lighten-1
-  else cardColor = "#9e9e9e";
+  else cardColor = '#9e9e9e';
   return cardColor;
 };
 
-const TemplateDetails = props => {
+const TemplateDetails = (props) => {
   useEffect(() => {
-    let elems = document.querySelectorAll(".modal");
+    let elems = document.querySelectorAll('.modal');
     M.Modal.init(elems, {});
-    elems = document.querySelectorAll(".pushpin");
+    elems = document.querySelectorAll('.pushpin');
     M.Pushpin.init(elems);
   }, []);
 
-  const deleteThis = e => {
+  const deleteThis = (e) => {
     e.preventDefault();
-    axios.post(`/inviteTemplate/delete/${props.item._id}`).then(res => {
+    axios.post(`/inviteTemplate/delete/${props.item._id}`).then((res) => {
       console.log(res.data);
     });
     window.location.reload(); // for now
@@ -91,11 +91,11 @@ const TemplateDetails = props => {
   );
 };
 
-const TemplateCard = props => {
+const TemplateCard = (props) => {
   return (
     <div
       className="card hoverable"
-      style={{ backgroundColor: setCardColor(props.item.trainingType) }}
+      style={{backgroundColor: setCardColor(props.item.trainingType)}}
     >
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">

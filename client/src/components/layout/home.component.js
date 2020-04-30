@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
-import { useOktaAuth } from "@okta/okta-react";
+import React, {useEffect, useState} from 'react';
+import {useOktaAuth} from '@okta/okta-react';
 
 const Home = () => {
-  const { authState, authService } = useOktaAuth();
+  const {authState, authService} = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
 
   // This useEffect is used to get info about user
@@ -12,9 +12,9 @@ const Home = () => {
       // When user isn't authenticated, forget any user info
       setUserInfo(null);
     } else {
-      authService.getUser().then(info => {
+      authService.getUser().then((info) => {
         setUserInfo(info);
-        console.log("You are logging as " + info.preferred_username);
+        console.log('You are logging as ' + info.preferred_username);
       });
     }
   }, [authState, authService]); // Update if authState changes

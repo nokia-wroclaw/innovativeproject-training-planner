@@ -1,11 +1,11 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import UserDropDownMenu from "../user/userDropDownMenu.component";
-import M from "materialize-css";
+import React, {useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import UserDropDownMenu from '../user/userDropDownMenu.component';
+import M from 'materialize-css';
 
 const Navbar = () => {
   useEffect(() => {
-    let elems = document.querySelectorAll(".pushpin");
+    const elems = document.querySelectorAll('.pushpin');
     M.Pushpin.init(elems);
   });
 
@@ -13,7 +13,7 @@ const Navbar = () => {
     <div>
       <nav
         className="nav-wrapper blue darken-3 pinned"
-        style={{ position: "fixed", zIndex: 9999 }}
+        style={{position: 'fixed', zIndex: 9999}}
         data-targe="app"
       >
         <Link to="/" className="brand-logo center">
@@ -26,8 +26,8 @@ const Navbar = () => {
         </ul>
         <ul className="right">
           <li>
-            {" "}
-            <UserDropDownMenu />{" "}
+            {' '}
+            <UserDropDownMenu />{' '}
           </li>
         </ul>
       </nav>
