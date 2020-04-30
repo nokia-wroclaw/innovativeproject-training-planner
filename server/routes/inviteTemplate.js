@@ -62,6 +62,7 @@ router.route("/all").get(authenticationRequired, (req, res) => {
 router.route("/save").post((req, res) => {
   // req.body is a template as JSON
   const template = req.body;
+  console.log(template);
   const newTemplate = new InviteTemplate(template);
 
   newTemplate
@@ -72,6 +73,7 @@ router.route("/save").post((req, res) => {
 
 router.route("/update/:id").post((req, res) => {
   const template = req.body;
+  console.log(template);
   InviteTemplate.updateOne({ _id: req.params.id }, template).then(() =>
     res.json("Invite template updated.")
   );

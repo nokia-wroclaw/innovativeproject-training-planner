@@ -8,6 +8,7 @@ const transformDate = (dateStr, timeStr) => {
   datetime = new Date(datetime);
   return datetime;
 };
+
 router.route("/get/:_id").get((req, res) => {
   // req.params is template's ID
   InviteTemplate.find(req.params)
@@ -80,9 +81,9 @@ router.route("/send").post((req, res) => {
 
   transporter.sendMail(mail, (err, data) => {
     if (err) {
-      res.json("failed :(");
+      res.json({ message: "failed", sent: false });
     } else {
-      res.json("Message successfully sent!");
+      res.json({ message: "Message successfully sent!", sent: true });
     }
   });
 });

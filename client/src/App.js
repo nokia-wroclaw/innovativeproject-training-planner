@@ -1,12 +1,13 @@
 import React from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Security, LoginCallback } from "@okta/okta-react";
+
+import Home from "./components/views/home.component";
 import Navbar from "./components/layout/navbar.component";
-import TemplateDashboard from "./components/views/templateDashboard.component";
-import CreateInviteTemplate from "./components/template/createInviteTemplate.component";
 import SendInvite from "./components/invitation/sendInvite.component";
 import UserProfile from "./components/user/userProfile.component";
-import Home from "./components/views/home.component";
+import TemplateDashboard from "./components/views/templateDashboard.component";
+import CreateInviteTemplate from "./components/template/createInviteTemplate.component";
 
 // TODO make it a local variable
 const config = {

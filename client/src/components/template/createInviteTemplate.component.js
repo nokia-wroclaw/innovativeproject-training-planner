@@ -57,7 +57,6 @@ const CreateInviteTemplate = props => {
     }
   }, []);
 
-  // TODO fix updates
   useEffect(() => {
     if (mode === "edit") {
       axios.get(`/sendInvite/get/${id}`).then(res => {

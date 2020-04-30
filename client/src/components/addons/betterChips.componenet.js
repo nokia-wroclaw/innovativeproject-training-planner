@@ -59,12 +59,17 @@ const BetterChips = props => {
     setChipsContent(prev => prev.filter(item => item !== email));
   };
 
-  // TODO transform map to function
+  const showRequired = isRequired => {
+    if (!isRequired) return false;
+
+    return !chipsContent.length > 0;
+  };
+
   return (
     <div className="input-field">
       <label>{props.label}</label>
       <input
-        required={props.required}
+        required={showRequired(props.required)}
         type={props.inputType}
         value={inputValue}
         onChange={e => setInputValue(e.target.item)}
