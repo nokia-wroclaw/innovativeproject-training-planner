@@ -2,9 +2,9 @@ language: node_js
 node_js: stable
 cache: npm
 install:
-  - npm run init
+  - npm run travis
   - npm run build
-script: echo "skipping tests"
+script: npm run lint .
 deploy:
   provider: heroku
   api_key:

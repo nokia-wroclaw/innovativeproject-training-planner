@@ -7,13 +7,13 @@ import axios from "axios";
 
 const SendInvite = (props) => {
   const [recipients, setRecipients] = useState([]);
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [template, setTemplate] = useState("");
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [template, setTemplate] = useState('');
 
   useEffect(() => {
     let id = window.location.href;
-    let i = id.lastIndexOf("/");
+    const i = id.lastIndexOf('/');
     id = id.slice(i + 1);
     axios.get(`/sendInvite/get/${id}`).then((res) => {
       setTemplate(res.data[0]);
@@ -38,7 +38,7 @@ const SendInvite = (props) => {
   const onSend = (event) => {
     event.preventDefault();
     const mail = {
-      recipients: recipients.join(","),
+      recipients: recipients.join(','),
       subject,
       message,
       template,

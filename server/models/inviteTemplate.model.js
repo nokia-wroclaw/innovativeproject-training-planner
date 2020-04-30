@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
@@ -61,6 +61,6 @@ const inviteTemplateSchema = new Schema(
   }
 );
 
-const InviteTemplate = mongoose.model("InviteTemplate", inviteTemplateSchema);
+const InviteTemplate = mongoose.model('InviteTemplate', inviteTemplateSchema);
 
 module.exports = InviteTemplate;

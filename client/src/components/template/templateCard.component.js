@@ -19,7 +19,7 @@ cardIconDictionary.add("General Training", "work");
 
 const TemplateDetails = (props) => {
   useEffect(() => {
-    let elems = document.querySelectorAll(".modal");
+    let elems = document.querySelectorAll('.modal');
     M.Modal.init(elems, {});
   }, []);
 
