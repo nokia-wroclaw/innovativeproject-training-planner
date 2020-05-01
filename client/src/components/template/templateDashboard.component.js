@@ -107,7 +107,7 @@ const TemplateDashboard = () => {
       </h5>
       <div className="row">
         {templatelist.map((item) => (
-          <div className="col s12 m6" key="item">
+          <div className="col s12 m6" key={item._id}>
             <TemplateCard item={item} />
           </div>
         ))}

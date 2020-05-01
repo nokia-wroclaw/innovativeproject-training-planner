@@ -139,3 +139,4 @@ const TemplateCard = (props) => {
 };
 
 export default TemplateCard;
+export {setCardIcon, setCardColor};

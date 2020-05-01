@@ -4,7 +4,9 @@ cache: npm
 install:
   - npm run travis
   - npm run build
-script: npm run lint .
+script: 
+  - npm run lint
+  - npm test
 deploy:
   provider: heroku
   api_key:
