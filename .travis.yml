@@ -12,6 +12,6 @@ deploy:
     branch: mittrainingplanner-mbednar22
     project-structure-update: mittrainingplanner-mkomorek
     chips: mittrainingplanner-jaolejnik
-    okta-auth-v3: mittrainingplanner-cvaniak
+    home_page: mittrainingplanner-cvaniak
 script:
   - echo "skipping tests"
