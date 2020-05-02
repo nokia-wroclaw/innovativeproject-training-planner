@@ -1,14 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import UserDropDownMenu from "../user/userDropDownMenu.component";
-import M from "materialize-css";
+import LoginLogout from "../user/loginLogout.component.";
 
 const Navbar = () => {
-  useEffect(() => {
-    let elems = document.querySelectorAll(".pushpin");
-    M.Pushpin.init(elems);
-  });
-
   return (
     <div>
       <nav
@@ -26,8 +20,7 @@ const Navbar = () => {
         </ul>
         <ul className="right">
           <li>
-            {" "}
-            <UserDropDownMenu />{" "}
+            <LoginLogout />
           </li>
         </ul>
       </nav>

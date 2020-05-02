@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import containsObject from "../../toolset/baseFunctions"
 
 const BetterChips = props => {
   // props: inputType, label, required
@@ -14,19 +15,9 @@ const BetterChips = props => {
     // checks of the mail is a valid with regex
     // improper regex (passes: name@mail) needed, because materilize's validate
     // thinks that's good enough
-    // for a proper mail add "+\.[A-Z]" here ---------------V
+    // for a proper mail add "+\.[A-Z]" here -------------V
     let re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]{2,}$/gim;
     return re.test(mail);
-  };
-
-  const containsObject = (obj, list) => {
-    let i;
-    for (i = 0; i < list.length; i++) {
-      if (list[i] === obj) {
-        return true;
-      }
-    }
-    return false;
   };
 
   const keyPress = e => {
@@ -53,17 +44,22 @@ const BetterChips = props => {
     }
   };
 
-  const deleteThis = (event, email) => {
-    // Deletes chips
+  const deleteChip = (event, email) => {
     event.preventDefault();
     setChipsContent(prev => prev.filter(item => item !== email));
+  };
+
+  const showRequired = isRequired => {
+    if (!isRequired) return false;
+
+    return !chipsContent.length > 0;
   };
 
   return (
     <div className="input-field">
       <label>{props.label}</label>
       <input
-        required={props.required}
+        required={showRequired(props.required)}
         type={props.inputType}
         value={inputValue}
         onChange={e => setInputValue(e.target.item)}
@@ -75,7 +71,7 @@ const BetterChips = props => {
           <a
             href="!"
             className="btn-flat"
-            onClick={event => deleteThis(event, email)}
+            onClick={event => deleteChip(event, email)}
           >
             <i className="material-icons">close</i>
           </a>

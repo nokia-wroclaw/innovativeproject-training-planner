@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { renderEmail, configStyleValidator } from "react-html-email";
+import { renderEmail } from "react-html-email";
 import ReactEmailHTML from "./reactEmailHtml.component";
-import BetterChips from "../layout/betterChips.componenet.js";
+import BetterChips from "../addons/betterChips.componenet.js";
 import M from "materialize-css";
 import axios from "axios";
 
@@ -12,42 +12,15 @@ const SendInvite = props => {
   const [template, setTemplate] = useState("");
 
   useEffect(() => {
-    // Send GET request to retrieve the template data.
-    //  Response is an array of one template stored as JSON .
     let id = window.location.href;
     let i = id.lastIndexOf("/");
     id = id.slice(i + 1);
-    console.log(id);
-    console.log(`sendInvite/get/${id}`);
     axios.get(`/sendInvite/get/${id}`).then(res => {
       setTemplate(res.data[0]);
     });
   }, []);
 
   useEffect(() => {
-    console.log(recipients);
-  }, [recipients]);
-
-  useEffect(() => {
-    configStyleValidator({
-      // When strict, incompatible style properties will result in an error.
-      strict: true,
-
-      // Whether to warn when compatibility notes for a style property exist.
-      warn: true,
-
-      // Platforms to consider for compatibility checks.
-      platforms: [
-        "gmail",
-        "gmail-android",
-        "apple-mail",
-        "apple-ios",
-        "yahoo-mail",
-        "outlook",
-        "outlook-legacy",
-        "outlook-web"
-      ]
-    });
     setMessage(renderEmail(ReactEmailHTML(template)));
   }, [template]);
 
@@ -60,13 +33,17 @@ const SendInvite = props => {
       template
     };
 
-    // Send POST request that will trigger nodemailer, which is responsible
-    // for sending mails. Then redirect URL to template dashboard.
     axios.post("/sendInvite/send", mail).then(res => {
-      console.log(res.data);
+      if (res.data.sent) {
+        M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
+        props.history.push("/templateDashboard");
+      } else {
+        M.toast({
+          html: "SOMETHING WENT WRONG :(",
+          classes: "rounded pink lighten-1"
+        });
+      }
     });
-    M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
-    props.history.push("/templateDashboard");
   };
 
   return (
@@ -75,6 +52,7 @@ const SendInvite = props => {
         <div className="row center">
           <div className="col s6 offset-s3">
             <BetterChips
+              required
               label="Recipients"
               inputType="email"
               value={recipients}

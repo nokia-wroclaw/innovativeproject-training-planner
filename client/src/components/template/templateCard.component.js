@@ -3,39 +3,24 @@ import { Link } from "react-router-dom";
 import ReactEmailHTML from "../invitation/reactEmailHtml.component";
 import axios from "axios";
 import M from "materialize-css";
+import Dictionary from "../../toolset/dictionary"
 
-const sendInv = invID => {
-  return `/sendInvite/${invID}`;
-};
+var cardColorDictionary = new Dictionary();
+cardColorDictionary.add("Software Training", "#1e88e5");
+cardColorDictionary.add("Hardware Training", "#7c4dff");
+cardColorDictionary.add("Soft Skills Training", "#26a69a");
+cardColorDictionary.add("General Training", "#9e9e9e");
 
-const setCardIcon = trainingType => {
-  if (trainingType === "Software Training")
-    return <i className="material-icons right">computer</i>;
-  else if (trainingType === "Hardware Training")
-    return <i className="material-icons right">build</i>;
-  else if (trainingType === "Soft Skills Training")
-    return <i className="material-icons right">group</i>;
-  else return <i className="material-icons right">work</i>;
-};
-
-const setCardColor = trainingType => {
-  let cardColor;
-  if (trainingType === "Software Training") cardColor = "#1e88e5";
-  // blue darken-1
-  else if (trainingType === "Hardware Training") cardColor = "#7c4dff";
-  // deep-purple accent-2
-  else if (trainingType === "Soft Skills Training") cardColor = "#26a69a";
-  // teal lighten-1
-  else cardColor = "#9e9e9e";
-  return cardColor;
-};
+var cardIconDictionary = new Dictionary();
+cardIconDictionary.add("Software Training", "computer");
+cardIconDictionary.add("Hardware Training", "build");
+cardIconDictionary.add("Soft Skills Training", "group");
+cardIconDictionary.add("General Training", "work");
 
 const TemplateDetails = props => {
   useEffect(() => {
     let elems = document.querySelectorAll(".modal");
     M.Modal.init(elems, {});
-    elems = document.querySelectorAll(".pushpin");
-    M.Pushpin.init(elems);
   }, []);
 
   const deleteThis = e => {
@@ -43,7 +28,7 @@ const TemplateDetails = props => {
     axios.post(`/inviteTemplate/delete/${props.item._id}`).then(res => {
       console.log(res.data);
     });
-    window.location.reload(); // for now
+    window.location.reload();
   };
 
   return (
@@ -95,7 +80,7 @@ const TemplateCard = props => {
   return (
     <div
       className="card hoverable"
-      style={{ backgroundColor: setCardColor(props.item.trainingType) }}
+      style={{ backgroundColor: cardColorDictionary.get(props.item.trainingType) }}
     >
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
@@ -111,7 +96,9 @@ const TemplateCard = props => {
             </span>
             <p className="truncate">{props.item.description}</p>
           </div>
-          <div className="col s1">{setCardIcon(props.item.trainingType)}</div>
+          <div className="col s1">
+            <i className="material-icons right">{cardIconDictionary.get(props.item.trainingType)}</i>
+          </div>
         </div>
         <br />
         <div className="divider" />
@@ -128,7 +115,7 @@ const TemplateCard = props => {
           </a>
         </div>
         <div className="col s6">
-          <Link className="btn-flat" to={sendInv(props.item._id)}>
+          <Link className="btn-flat" to={`/sendInvite/${props.item._id}`}>
             <i className="material-icons left">mail</i>SEND
           </Link>
         </div>

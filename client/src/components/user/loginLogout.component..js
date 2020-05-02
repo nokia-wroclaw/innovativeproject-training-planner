@@ -1,16 +1,8 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useOktaAuth } from "@okta/okta-react";
-import { Link } from "react-router-dom";
-import M from "materialize-css";
 
-const UserDropDownMenu = () => {
-  useEffect(() => {
-    var elems = document.querySelectorAll(".dropdown-trigger");
-    M.Dropdown.init(elems, { alignment: "left", constrainWidth: false });
-  }, []);
-
-  //-------------------------------------------------------------
-
+// TODO rework UI -> will be done when user will be developed
+const LoginLogout = () => {
   const { authState, authService } = useOktaAuth();
 
   const login = async () => {
@@ -59,4 +51,4 @@ const UserDropDownMenu = () => {
   return <div>{logInOutButton()}</div>;
 };
 
-export default UserDropDownMenu;
+export default LoginLogout;
