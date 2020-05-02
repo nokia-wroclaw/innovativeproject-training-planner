@@ -24,15 +24,15 @@ var Dictionary = function(){
   };
   
   this.size = function() {
-    var n = 0;
-    for (var key in this.data) {
-      n++;
-    }
-    return n;
+    return Object.keys(this.data).length;
   };
   
   this.keys = function() {
-    return Object.keys(this).length;
+    var keys = [];
+    for (var key in this.data) {
+      keys.push(key);
+    }
+    return keys;
   };
   
   this.values = function(){
