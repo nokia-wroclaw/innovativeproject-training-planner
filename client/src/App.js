@@ -9,7 +9,7 @@ import UserProfile from "./components/user/userProfile.component";
 import TemplateDashboard from "./components/views/templateDashboard.component";
 import CreateInviteTemplate from "./components/template/createInviteTemplate.component";
 
-// TODO make it a local variable
+// TODO make it a local variable or something
 const config = {
   issuer: "https://dev-820510.okta.com/oauth2/default",
   redirectUri: window.location.origin + "/implicit/callback",
