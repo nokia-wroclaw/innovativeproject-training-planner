@@ -32,11 +32,7 @@ var Dictionary = function(){
   };
   
   this.keys = function() {
-    var keys = [];
-    for (var key in this.data) {
-      keys.push(key);
-    }
-    return keys;
+    return Object.keys(this).length;
   };
   
   this.values = function(){
