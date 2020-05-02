@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import containsObject from "../../toolset/base"
+import containsObject from "../../toolset/baseFunctions"
 
 const BetterChips = props => {
   // props: inputType, label, required
