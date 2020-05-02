@@ -18,7 +18,7 @@ const config = {
   pkce: true
 };
 
-function App() {
+const App = props => {
   return (
     <BrowserRouter>
       <Security {...config}>
@@ -34,6 +34,6 @@ function App() {
       </Security>
     </BrowserRouter>
   );
-}
+};
 
 export default App;

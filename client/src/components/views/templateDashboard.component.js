@@ -23,6 +23,12 @@ const TemplateDashboard = () => {
       html: "Create a new invitation template"
     });
     setTooltip(tooltipTmp[0]);
+
+    elems = document.querySelectorAll(".dropdown-trigger");
+    M.Dropdown.init(elems);
+
+    elems = document.querySelectorAll("select");
+    M.FormSelect.init(elems);
   }, []);
 
   useEffect(() => {
@@ -67,47 +73,64 @@ const TemplateDashboard = () => {
   };
 
   return (
-    <div className="container center">
-      <br />
-      <h5>
-        <div className="row">
-          <div className="col s6 offset-s3">
-            <nav>
-              <div className="nav-wrapper blue darken-1">
-                <form onSubmit={onSubmit}>
-                  <div className="input-field">
-                    <input
-                      id="search"
-                      type="search"
-                      required
-                      value={searchQuery}
-                      onChange={event => setSearchQuery(event.target.value)}
-                    />
-                    <label className="label-icon" htmlFor="search">
-                      <i className="material-icons">search</i>
-                    </label>
-                    <i className="material-icons">close</i>
-                  </div>
-                </form>
-              </div>
-            </nav>
-          </div>
-        </div>
-      </h5>
-      <div className="row">
-        {templatelist.map((item, i) => (
-          <div className="col s12 m6">
-            <TemplateCard item={item} />
-          </div>
-        ))}
-      </div>
-      <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
-        <Link
-          to="/inviteTemplate"
-          className="btn-floating pulse btn-large waves-effect waves-light pink lighten-1"
+    <div>
+      <nav class="nav-wrapper blue darken-3" style={{ marginBottom: 50 }}>
+        <span
+          className="left flow-text"
+          style={{ marginRight: "1%", marginLeft: "5%" }}
         >
-          <i className="material-icons">add</i>
-        </Link>
+          <i className="material-icons left">filter_list</i>Filter:
+        </span>
+        <ul className="left" style={{ width: "20%" }}>
+          <li style={{ width: "33%" }}>
+            <Link>Pending</Link>
+          </li>
+          <li style={{ width: "33%" }}>
+            <Link>Sent</Link>
+          </li>
+          <li className="active" style={{ width: "33%" }}>
+            <Link>
+              All
+              <span class="badge">
+                <i className="material-icons white-text">check</i>
+              </span>
+            </Link>
+          </li>
+        </ul>
+        <ul className="right" style={{ marginRight: "5%", marginLeft: "5%" }}>
+          <form onSubmit={onSubmit}>
+            <div className="input-field">
+              <input
+                id="search"
+                type="search"
+                required
+                value={searchQuery}
+                onChange={event => setSearchQuery(event.target.value)}
+              />
+              <label className="label-icon text" htmlFor="search">
+                <i className="material-icons right">search</i>
+              </label>
+              <i className="material-icons">close</i>
+            </div>
+          </form>
+        </ul>
+      </nav>
+      <div className="container center">
+        <div className="row">
+          {templatelist.map((item, i) => (
+            <div className="col s12 m6">
+              <TemplateCard item={item} />
+            </div>
+          ))}
+        </div>
+        <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
+          <Link
+            to="/inviteTemplate"
+            className="btn-floating pulse btn-large waves-effect waves-light pink lighten-1"
+          >
+            <i className="material-icons">add</i>
+          </Link>
+        </div>
       </div>
     </div>
   );
