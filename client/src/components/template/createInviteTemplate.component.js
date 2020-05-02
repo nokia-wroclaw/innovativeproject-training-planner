@@ -3,7 +3,7 @@ import { useOktaAuth } from "@okta/okta-react";
 import axios from "axios";
 import M from "materialize-css";
 
-const CreateInviteTemplate = props => {
+const CreateInviteTemplate = (props) => {
   const [date, setDate] = useState("");
   const [startTime, setStartTime] = useState("");
   const [endTime, setEndTime] = useState("");
@@ -24,7 +24,7 @@ const CreateInviteTemplate = props => {
     if (!authState.isAuthenticated) {
       setUserInfo(null);
     } else {
-      authService.getUser().then(info => {
+      authService.getUser().then((info) => {
         setUserInfo(info);
       });
     }
@@ -41,10 +41,10 @@ const CreateInviteTemplate = props => {
     elems = document.querySelectorAll(".datepicker");
     M.Datepicker.init(elems, {
       format: "dd mmm yyyy",
-      onSelect: argDate => {
+      onSelect: (argDate) => {
         const stringDate = argDate.toDateString();
         setDate(stringDate);
-      }
+      },
     });
 
     let idTmp = window.location.href;
@@ -59,7 +59,7 @@ const CreateInviteTemplate = props => {
 
   useEffect(() => {
     if (mode === "edit") {
-      axios.get(`/sendInvite/get/${id}`).then(res => {
+      axios.get(`/sendInvite/get/${id}`).then((res) => {
         setDate(res.data[0].date);
         setStartTime(res.data[0].startTime);
         setEndTime(res.data[0].endTime);
@@ -85,7 +85,7 @@ const CreateInviteTemplate = props => {
     }
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     let userName = userInfo.preferred_username;
 
@@ -101,17 +101,18 @@ const CreateInviteTemplate = props => {
       willLearn,
       mustKnow,
       materials,
-      userName
+      userName,
+      sent: false,
     };
 
     if (mode === "create") {
-      axios.post(`/inviteTemplate/save`, template).then(res => {
+      axios.post(`/inviteTemplate/save`, template).then((res) => {
         console.log(res.data);
         props.history.push("/templateDashboard");
       });
     }
     if (mode === "edit") {
-      axios.post(`/inviteTemplate/update/${id}`, template).then(res => {
+      axios.post(`/inviteTemplate/update/${id}`, template).then((res) => {
         console.log(res.data);
         props.history.push("/templateDashboard");
       });
@@ -141,7 +142,7 @@ const CreateInviteTemplate = props => {
               className="timepicker"
               required
               value={startTime}
-              onSelect={event => setStartTime(event.target.value)}
+              onSelect={(event) => setStartTime(event.target.value)}
             />
           </div>
           <div className="input-field col s6">
@@ -152,14 +153,14 @@ const CreateInviteTemplate = props => {
               className="timepicker"
               required
               value={endTime}
-              onSelect={event => setEndTime(event.target.value)}
+              onSelect={(event) => setEndTime(event.target.value)}
             />
           </div>
         </div>
         <div className="input-field">
           <select
             value={trainingType}
-            onChange={event => setTrainingType(event.target.value)}
+            onChange={(event) => setTrainingType(event.target.value)}
             required
           >
             <option value="General Training">General Training</option>
@@ -176,7 +177,7 @@ const CreateInviteTemplate = props => {
             id="instructor"
             required
             value={instructor}
-            onChange={event => setInstructor(event.target.value)}
+            onChange={(event) => setInstructor(event.target.value)}
           />
         </div>
         <div className="input-field">
@@ -186,7 +187,7 @@ const CreateInviteTemplate = props => {
             id="title"
             required
             value={title}
-            onChange={event => setTitle(event.target.value)}
+            onChange={(event) => setTitle(event.target.value)}
           />
         </div>
         <div className="input-field">
@@ -195,7 +196,7 @@ const CreateInviteTemplate = props => {
             id="description"
             className="materialize-textarea"
             value={description}
-            onChange={event => setDescription(event.target.value)}
+            onChange={(event) => setDescription(event.target.value)}
           />
         </div>
         <div className="input-field">
@@ -204,7 +205,7 @@ const CreateInviteTemplate = props => {
             id="agenda"
             className="materialize-textarea"
             value={agenda}
-            onChange={event => setAgenda(event.target.value)}
+            onChange={(event) => setAgenda(event.target.value)}
           />
         </div>
         <div className="input-field">
@@ -214,7 +215,7 @@ const CreateInviteTemplate = props => {
             className="materialize-textarea"
             required
             value={willLearn}
-            onChange={event => setWillLearn(event.target.value)}
+            onChange={(event) => setWillLearn(event.target.value)}
           />
         </div>
         <div className="input-field">
@@ -223,7 +224,7 @@ const CreateInviteTemplate = props => {
             id="mustKnow"
             className="materialize-textarea"
             value={mustKnow}
-            onChange={event => setMustKnow(event.target.value)}
+            onChange={(event) => setMustKnow(event.target.value)}
           />
         </div>
         <div className="input-field">
@@ -232,7 +233,7 @@ const CreateInviteTemplate = props => {
             id="materials"
             className="materialize-textarea"
             value={materials}
-            onChange={event => setMaterials(event.target.value)}
+            onChange={(event) => setMaterials(event.target.value)}
           />
         </div>
         <div className="row">
