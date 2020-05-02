@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import containsObject from "../../toolset/base"
 
 const BetterChips = props => {
   // props: inputType, label, required
@@ -17,17 +18,6 @@ const BetterChips = props => {
     // for a proper mail add "+\.[A-Z]" here -------------V
     let re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[A-Z0-9.-]{2,}$/gim;
     return re.test(mail);
-  };
-
-  // TODO move to base.js
-  const containsObject = (obj, list) => {
-    let i;
-    for (i = 0; i < list.length; i++) {
-      if (list[i] === obj) {
-        return true;
-      }
-    }
-    return false;
   };
 
   const keyPress = e => {
