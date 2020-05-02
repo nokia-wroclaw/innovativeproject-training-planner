@@ -1,10 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-<<<<<<< HEAD
 import LoginLogout from "../user/loginLogout.component.";
-=======
-import UserDropDownMenu from "../user/userDropDownMenu.component";
->>>>>>> b201e1f... Updated: templateDashboard navbar
 
 const Navbar = (props) => {
   return (

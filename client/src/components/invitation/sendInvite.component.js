@@ -5,7 +5,7 @@ import BetterChips from "../addons/betterChips.componenet.js";
 import M from "materialize-css";
 import axios from "axios";
 
-const SendInvite = props => {
+const SendInvite = (props) => {
   const [recipients, setRecipients] = useState([]);
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
@@ -15,7 +15,7 @@ const SendInvite = props => {
     let id = window.location.href;
     let i = id.lastIndexOf("/");
     id = id.slice(i + 1);
-    axios.get(`/sendInvite/get/${id}`).then(res => {
+    axios.get(`/sendInvite/get/${id}`).then((res) => {
       setTemplate(res.data[0]);
     });
   }, []);
@@ -24,23 +24,36 @@ const SendInvite = props => {
     setMessage(renderEmail(ReactEmailHTML(template)));
   }, [template]);
 
-  const onSend = event => {
+  const markAsSent = () => {
+    let markedTemplate = template;
+    markedTemplate.sent = true;
+    let id = window.location.href;
+    let i = id.lastIndexOf("/");
+    id = id.slice(i + 1);
+    axios.post(`/inviteTemplate/update/${id}`, markedTemplate).then((res) => {
+      console.log(res.data);
+      props.history.push("/templateDashboard");
+    });
+  };
+
+  const onSend = (event) => {
     event.preventDefault();
     const mail = {
       recipients: recipients.join(","),
       subject,
       message,
-      template
+      template,
     };
 
-    axios.post("/sendInvite/send", mail).then(res => {
+    axios.post("/sendInvite/send", mail).then((res) => {
       if (res.data.sent) {
         M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
+        markAsSent();
         props.history.push("/templateDashboard");
       } else {
         M.toast({
           html: "SOMETHING WENT WRONG :(",
-          classes: "rounded pink lighten-1"
+          classes: "rounded pink lighten-1",
         });
       }
     });
@@ -66,7 +79,7 @@ const SendInvite = props => {
               id="subject"
               required
               value={subject}
-              onChange={e => setSubject(e.target.value)}
+              onChange={(e) => setSubject(e.target.value)}
             />
           </div>
           <div className="card-panel col s6 m8 offset-m2">

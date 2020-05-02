@@ -7,12 +7,12 @@ import axios from "axios";
 
 const linkStyle = {
   width: "5%",
-  minWidth: 100
+  minWidth: 100,
 };
 
 const searchbarStyle = {
   width: "15%",
-  minWidth: 250
+  minWidth: 250,
 };
 
 const TemplateDashboard = () => {
@@ -20,23 +20,24 @@ const TemplateDashboard = () => {
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
-  const [activeTab, setActiveTab] = useState({
+  const [activeTab, setActiveTab] = useState("pending");
+  const [navbarView, setNavbarView] = useState({
     pending: "active",
     sent: "",
-    all: ""
+    all: "",
   });
 
   useEffect(() => {
     let elems = document.querySelectorAll(".fixed-action-btn");
     M.FloatingActionButton.init(elems, {
       direction: "left",
-      hoverEnabled: false
+      hoverEnabled: false,
     });
 
     elems = document.querySelectorAll(".tooltipped");
     let tooltipTmp = M.Tooltip.init(elems, {
       position: "left",
-      html: "Create a new invitation template"
+      html: "Create a new invitation template",
     });
     setTooltip(tooltipTmp[0]);
 
@@ -45,85 +46,82 @@ const TemplateDashboard = () => {
 
     elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
-
-    const active = {
-      pending: "active",
-      sent: "",
-      all: ""
-    };
-    setActiveTab(active);
   }, []);
 
   useEffect(() => {
     if (authState.isAuthenticated) {
       const { accessToken } = authState;
 
-      authService.getUser().then(info => {
+      authService.getUser().then((info) => {
         if (searchQuery !== "") {
           axios
             .get(`/inviteTemplate/get/${searchQuery}`, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
-                userName: info.preferred_username
-              }
+                userName: info.preferred_username,
+              },
             })
-            .then(res => {
+            .then((res) => {
               setTemplateList(res.data);
             });
         } else {
           axios
-            .get(`/inviteTemplate/all`, {
+            .get(`/inviteTemplate/${activeTab}`, {
               headers: {
                 Authorization: `Bearer ${accessToken}`,
-                username: info.preferred_username
-              }
+                username: info.preferred_username,
+              },
             })
-            .then(res => {
+            .then((res) => {
               setTemplateList(res.data);
             });
         }
       });
     }
-  }, [searchQuery, authState, authService]);
+  }, [searchQuery, authState, authService, activeTab]);
+
+  useEffect(() => {
+    switch (activeTab) {
+      case "pending":
+        setNavbarView({ pending: "active", sent: "", all: "" });
+        break;
+      case "sent":
+        setNavbarView({ pending: "", sent: "active", all: "" });
+        break;
+      case "all":
+        setNavbarView({ pending: "", sent: "", all: "active" });
+        break;
+      default:
+        setNavbarView({ pending: "", sent: "", all: "" });
+        break;
+    }
+  }, [activeTab]);
 
   const onAddNew = () => {
     tooltip.destroy();
   };
 
-  const onSubmit = event => {
+  const onSubmit = (event) => {
     event.preventDefault();
     setSearchQuery("");
   };
 
-  const tabClickHandler = event => {
+  const tabClickHandler = (event) => {
     event.preventDefault();
-    switch (event.target.id) {
-      case "pending":
-        setActiveTab({ pending: "active", sent: "", all: "" });
-        break;
-      case "sent":
-        setActiveTab({ pending: "", sent: "active", all: "" });
-        break;
-      case "all":
-        setActiveTab({ pending: "", sent: "", all: "active" });
-        break;
-      default:
-        setActiveTab({ pending: "", sent: "", all: "" });
-        break;
-    }
+    setActiveTab(event.target.id);
   };
 
   return (
     <div>
       {/* dashboard navbar  */}
-      <nav class="nav-wrapper blue darken-3" style={{ marginBottom: 50 }}>
+      <nav className="nav-wrapper blue darken-3" style={{ marginBottom: 50 }}>
         <ul className="left" style={{ marginLeft: "1%" }}>
           <li>
             <i className="material-icons white-text right">
               subdirectory_arrow_right
             </i>
           </li>
-          <li className={activeTab.pending} style={linkStyle}>
+          <li className={navbarView.pending} style={linkStyle}>
             <Link
               className="center-align"
               id="pending"
@@ -132,26 +130,18 @@ const TemplateDashboard = () => {
               Pending
             </Link>
           </li>
-          <li
-            className={activeTab.sent}
-            style={linkStyle}
-            onClick={tabClickHandler}
-          >
-            <Link className="center-align" id="sent">
+          <li className={navbarView.sent} style={linkStyle}>
+            <Link className="center-align" id="sent" onClick={tabClickHandler}>
               Sent
             </Link>
           </li>
-          <li
-            className={activeTab.all}
-            style={linkStyle}
-            onClick={tabClickHandler}
-          >
-            <Link className="center-align" id="all">
+          <li className={navbarView.all} style={linkStyle}>
+            <Link className="center-align" id="all" onClick={tabClickHandler}>
               All
             </Link>
           </li>
         </ul>
-        <ul className="right" style={{ marginRight: "2%" }}>
+        <ul className="right" style={{ marginRight: "3%" }}>
           <i className="material-icons left">search</i>
           <li style={searchbarStyle}>
             <form onSubmit={onSubmit}>
@@ -162,7 +152,7 @@ const TemplateDashboard = () => {
                 placeholder="Search..."
                 required
                 value={searchQuery}
-                onChange={event => setSearchQuery(event.target.value)}
+                onChange={(event) => setSearchQuery(event.target.value)}
               />
             </form>
           </li>
