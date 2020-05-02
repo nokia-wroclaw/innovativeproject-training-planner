@@ -5,11 +5,26 @@ import TemplateCard from "../template/templateCard.component";
 import M from "materialize-css";
 import axios from "axios";
 
+const linkStyle = {
+  width: "5%",
+  minWidth: 100
+};
+
+const searchbarStyle = {
+  width: "15%",
+  minWidth: 250
+};
+
 const TemplateDashboard = () => {
   const { authState, authService } = useOktaAuth();
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const [tooltip, setTooltip] = useState("");
+  const [activeTab, setActiveTab] = useState({
+    pending: "active",
+    sent: "",
+    all: ""
+  });
 
   useEffect(() => {
     let elems = document.querySelectorAll(".fixed-action-btn");
@@ -17,6 +32,7 @@ const TemplateDashboard = () => {
       direction: "left",
       hoverEnabled: false
     });
+
     elems = document.querySelectorAll(".tooltipped");
     let tooltipTmp = M.Tooltip.init(elems, {
       position: "left",
@@ -29,6 +45,13 @@ const TemplateDashboard = () => {
 
     elems = document.querySelectorAll("select");
     M.FormSelect.init(elems);
+
+    const active = {
+      pending: "active",
+      sent: "",
+      all: ""
+    };
+    setActiveTab(active);
   }, []);
 
   useEffect(() => {
@@ -72,49 +95,81 @@ const TemplateDashboard = () => {
     setSearchQuery("");
   };
 
+  const tabClickHandler = event => {
+    event.preventDefault();
+    switch (event.target.id) {
+      case "pending":
+        setActiveTab({ pending: "active", sent: "", all: "" });
+        break;
+      case "sent":
+        setActiveTab({ pending: "", sent: "active", all: "" });
+        break;
+      case "all":
+        setActiveTab({ pending: "", sent: "", all: "active" });
+        break;
+      default:
+        setActiveTab({ pending: "", sent: "", all: "" });
+        break;
+    }
+  };
+
   return (
     <div>
+      {/* dashboard navbar  */}
       <nav class="nav-wrapper blue darken-3" style={{ marginBottom: 50 }}>
-        <span
-          className="left flow-text"
-          style={{ marginRight: "1%", marginLeft: "5%" }}
-        >
-          <i className="material-icons left">filter_list</i>Filter:
-        </span>
-        <ul className="left" style={{ width: "20%" }}>
-          <li style={{ width: "33%" }}>
-            <Link>Pending</Link>
+        <ul className="left" style={{ marginLeft: "1%" }}>
+          <li>
+            <i className="material-icons white-text right">
+              subdirectory_arrow_right
+            </i>
           </li>
-          <li style={{ width: "33%" }}>
-            <Link>Sent</Link>
+          <li className={activeTab.pending} style={linkStyle}>
+            <Link
+              className="center-align"
+              id="pending"
+              onClick={tabClickHandler}
+            >
+              Pending
+            </Link>
           </li>
-          <li className="active" style={{ width: "33%" }}>
-            <Link>
+          <li
+            className={activeTab.sent}
+            style={linkStyle}
+            onClick={tabClickHandler}
+          >
+            <Link className="center-align" id="sent">
+              Sent
+            </Link>
+          </li>
+          <li
+            className={activeTab.all}
+            style={linkStyle}
+            onClick={tabClickHandler}
+          >
+            <Link className="center-align" id="all">
               All
-              <span class="badge">
-                <i className="material-icons white-text">check</i>
-              </span>
             </Link>
           </li>
         </ul>
-        <ul className="right" style={{ marginRight: "5%", marginLeft: "5%" }}>
-          <form onSubmit={onSubmit}>
-            <div className="input-field">
+        <ul className="right" style={{ marginRight: "2%" }}>
+          <i className="material-icons left">search</i>
+          <li style={searchbarStyle}>
+            <form onSubmit={onSubmit}>
               <input
+                style={{ paddingLeft: 10, paddingRight: 10 }}
+                className="white"
                 id="search"
-                type="search"
+                placeholder="Search..."
                 required
                 value={searchQuery}
                 onChange={event => setSearchQuery(event.target.value)}
               />
-              <label className="label-icon text" htmlFor="search">
-                <i className="material-icons right">search</i>
-              </label>
-              <i className="material-icons">close</i>
-            </div>
-          </form>
+            </form>
+          </li>
         </ul>
       </nav>
+
+      {/* main content */}
       <div className="container center">
         <div className="row">
           {templatelist.map((item, i) => (
