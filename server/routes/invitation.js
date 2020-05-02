@@ -2,12 +2,7 @@ const router = require("express").Router();
 const nodemailer = require("nodemailer");
 const ical = require("ical-generator");
 let InviteTemplate = require("../models/inviteTemplate.model");
-
-const transformDate = (dateStr, timeStr) => {
-  let datetime = dateStr + " " + timeStr;
-  datetime = new Date(datetime);
-  return datetime;
-};
+var baseTools = require("../toolset/base")
 
 router.route("/get/:_id").get((req, res) => {
   // req.params is template's ID
@@ -17,8 +12,8 @@ router.route("/get/:_id").get((req, res) => {
 });
 
 const generateIcs = template => {
-  const startDate = transformDate(template.date, template.startTime);
-  const endDate = transformDate(template.date, template.endTime);
+  const startDate = baseTools.transformDate(template.date, template.startTime);
+  const endDate = baseTools.transformDate(template.date, template.endTime);
 
   return ical({
     prodId: {
@@ -44,7 +39,7 @@ const transport = {
   host: "smtp.gmail.com",
   secure: false,
   auth: {
-    user: `${process.env.MAIL}`,
+    user: `${process.env.GMAIL}`,
     pass: `${process.env.PASS}`
   }
 };
