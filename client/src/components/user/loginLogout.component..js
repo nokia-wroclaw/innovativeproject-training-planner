@@ -1,8 +1,8 @@
 import React from "react";
 import { useOktaAuth } from "@okta/okta-react";
 
-// TODO rework UI and change name to resemble it's puprose better
-const UserDropDownMenu = () => {
+// TODO rework UI -> will be done when user will be developed
+const LoginLogout = () => {
   const { authState, authService } = useOktaAuth();
 
   const login = async () => {
@@ -51,4 +51,4 @@ const UserDropDownMenu = () => {
   return <div>{logInOutButton()}</div>;
 };
 
-export default UserDropDownMenu;
+export default LoginLogout;

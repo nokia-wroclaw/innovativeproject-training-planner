@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import UserDropDownMenu from "../user/userDropDownMenu.component";
+import LoginLogout from "../user/loginLogout.component.";
 
 const Navbar = () => {
   return (
@@ -20,7 +20,7 @@ const Navbar = () => {
         </ul>
         <ul className="right">
           <li>
-            <UserDropDownMenu />
+            <LoginLogout />
           </li>
         </ul>
       </nav>
