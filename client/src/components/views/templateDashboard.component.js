@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useOktaAuth} from '@okta/okta-react';
-import TemplateCard from './templateCard.component';
+import TemplateCard from '../template//templateCard.component';
 import M from 'materialize-css';
 import axios from 'axios';
 
