@@ -1,6 +1,6 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import TemplateCard, {setCardColor} from './templateCard.component';
+import TemplateCard from './templateCard.component';
 import {MemoryRouter} from 'react-router-dom';
 
 const templatelistItemMock = {
@@ -30,10 +30,3 @@ test('Match TemplateCard to snapshot', () => {
   expect(outcome).toMatchSnapshot();
 });
 
-test('Generate TemplateCard background color', () => {
-  const particularColor = setCardColor('Hardware Training');
-  const anyColor = setCardColor('Big Papa Pillow');
-
-  expect(particularColor).toBe('#7c4dff');
-  expect(anyColor).toBe('#9e9e9e');
-});
