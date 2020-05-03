@@ -14,7 +14,10 @@ const Navbar = (props) => {
             <Link to="/templateDashboard">Templates</Link>
           </li>
           <li>
-            <Link to="/calendar">Calendar</Link>
+            <Link to="/userCalendar">User Calendar</Link>
+          </li>
+          <li>
+            <Link to="/generalCalendar">General Calendar</Link>
           </li>
         </ul>
         <ul className="right">
