@@ -25,7 +25,7 @@ const GeneralCalendar = () => {
   },[templateList])
 
   return(
-    <div style={{ height: '600pt'}}>
+    <div style={{ height: '550pt'}}>
       <Calendar
         events={eventList}
         startAccessor="start"

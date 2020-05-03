@@ -10,7 +10,7 @@ import { generateTemplates } from "./calendarModelFunctions";
 // without this line first day is Sunday
 moment.locale('en',{ week:{ dow : 1} });
 
-const UserCalendar = (props) => {
+const UserCalendar = () => {
   const localizer = momentLocalizer(moment);
   const { authState, authService } = useOktaAuth();
   const [templateList, setTemplateList] = useState([]);
