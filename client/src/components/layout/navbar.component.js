@@ -14,14 +14,11 @@ const Navbar = () => {
           Training Planner<i className="material-icons right">watch</i>
         </Link>
         <ul className="left">
-          <li>
-            <Link to="/templateDashboard">Templates</Link>
-          </li>
+          <li> <Link to="/templateDashboard">Templates</Link> </li>
+          <li> <Link to="/calendar">Calendar</Link> </li>
         </ul>
         <ul className="right">
-          <li>
-            <LoginLogout />
-          </li>
+          <li> <LoginLogout /> </li>
         </ul>
       </nav>
       <br />

@@ -1,10 +1,15 @@
-export default function containsObject(obj, list) {
-    let i;
-    for (i = 0; i < list.length; i++) {
-      if (list[i] === obj) {
-        return true;
-      }
+export function containsObject(obj, list) {
+  let i;
+  for (i = 0; i < list.length; i++) {
+    if (list[i] === obj) {
+      return true;
     }
-    return false;
   }
-  
+  return false;
+}
+
+export function transformDate(dateStr, timeStr) {
+  let datetime = dateStr + " " + timeStr;
+  datetime = new Date(datetime);
+  return datetime;
+}

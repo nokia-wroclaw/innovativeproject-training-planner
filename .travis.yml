@@ -10,7 +10,7 @@ deploy:
     master: mittrainingplanner-master
     docker-introduce: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
-    project-structure-update: mittrainingplanner-mkomorek
+    calendar_1: mittrainingplanner-mkomorek
     chips: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak
     refactor: mittrainingplanner-refactored
