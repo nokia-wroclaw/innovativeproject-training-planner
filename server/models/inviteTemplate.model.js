@@ -6,52 +6,55 @@ const inviteTemplateSchema = new Schema(
   {
     date: {
       type: String,
-      required: true
+      required: true,
     },
     startTime: {
       type: String,
-      required: true
+      required: true,
     },
     endTime: {
       type: String,
-      required: true
+      required: true,
     },
     trainingType: {
       type: String,
-      required: true
+      required: true,
     },
     instructor: {
       type: String,
-      required: true
+      required: true,
     },
     title: {
       type: String,
-      required: true
+      required: true,
     },
     agenda: {
       type: String,
-      required: true
+      required: true,
     },
     description: {
       type: String,
-      required: true
+      required: true,
     },
     willLearn: {
       type: String,
-      required: true
+      required: true,
     },
     mustKnow: {
-      type: String
+      type: String,
     },
     materials: {
-      type: String
+      type: String,
     },
     userName: {
-      type: Array
-    }
+      type: Array,
+    },
+    sent: {
+      type: Boolean,
+    },
   },
   {
-    timestamps: true
+    timestamps: true,
   }
 );
 

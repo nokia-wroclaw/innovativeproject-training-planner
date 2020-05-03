@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import ReactEmailHTML from "../invitation/reactEmailHtml.component";
 import axios from "axios";
 import M from "materialize-css";
-import Dictionary from "../../toolset/dictionary"
+import Dictionary from "../../toolset/dictionary";
 
 var cardColorDictionary = new Dictionary();
 cardColorDictionary.add("Software Training", "#1e88e5");
@@ -17,18 +17,17 @@ cardIconDictionary.add("Hardware Training", "build");
 cardIconDictionary.add("Soft Skills Training", "group");
 cardIconDictionary.add("General Training", "work");
 
-const TemplateDetails = props => {
+const TemplateDetails = (props) => {
   useEffect(() => {
     let elems = document.querySelectorAll(".modal");
     M.Modal.init(elems, {});
   }, []);
 
-  const deleteThis = e => {
+  const deleteThis = (e) => {
     e.preventDefault();
-    axios.post(`/inviteTemplate/delete/${props.item._id}`).then(res => {
-      console.log(res.data);
+    axios.post(`/inviteTemplate/delete/${props.item._id}`).then(() => {
+      window.location.reload();
     });
-    window.location.reload();
   };
 
   return (
@@ -76,17 +75,54 @@ const TemplateDetails = props => {
   );
 };
 
-const TemplateCard = props => {
+const TemplateCard = (props) => {
+  const showSentMark = (isSent) => {
+    if (isSent)
+      return (
+        <div
+          style={{
+            width: 0,
+            height: 100,
+            backgroundColor: "transparent",
+            position: "absolute",
+            left: 25,
+            border: "solid 15px #ffdb4d",
+            borderBottom: "solid 15px transparent",
+            borderTopLeftRadius: 5,
+            borderTopRightRadius: 5,
+          }}
+        >
+          <div
+            style={{
+              fontWeight: "bold",
+              position: "relative",
+              writingMode: "vertical-rl",
+              textOrientation: "upright",
+              textAlign: "left",
+              color: "white",
+              right: 12,
+            }}
+          >
+            SENT
+          </div>
+        </div>
+      );
+  };
   return (
     <div
       className="card hoverable"
-      style={{ backgroundColor: cardColorDictionary.get(props.item.trainingType) }}
+      style={{
+        backgroundColor: cardColorDictionary.get(props.item.trainingType),
+      }}
     >
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
           {props.item.instructor}
         </span>
         <p>{props.item.date}</p>
+      </div>
+      <div style={{ position: "absolute" }}>
+        {showSentMark(props.item.sent)}
       </div>
       <div className="card-content white-text">
         <div className="row">
@@ -97,7 +133,9 @@ const TemplateCard = props => {
             <p className="truncate">{props.item.description}</p>
           </div>
           <div className="col s1">
-            <i className="material-icons right">{cardIconDictionary.get(props.item.trainingType)}</i>
+            <i className="material-icons right">
+              {cardIconDictionary.get(props.item.trainingType)}
+            </i>
           </div>
         </div>
         <br />
