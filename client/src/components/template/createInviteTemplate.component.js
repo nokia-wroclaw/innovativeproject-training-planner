@@ -1,23 +1,24 @@
-import React, { useState, useEffect } from "react";
-import { useOktaAuth } from "@okta/okta-react";
-import axios from "axios";
-import M from "materialize-css";
+import React, {useState, useEffect} from 'react';
+import {useOktaAuth} from '@okta/okta-react';
+import axios from 'axios';
+import M from 'materialize-css';
 
 const CreateInviteTemplate = (props) => {
-  const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [trainingType, setTrainingType] = useState("General Training");
-  const [instructor, setInstructor] = useState("");
-  const [title, setTitle] = useState("");
-  const [agenda, setAgenda] = useState("");
-  const [description, setDescription] = useState("");
-  const [willLearn, setWillLearn] = useState("");
-  const [mustKnow, setMustKnow] = useState("");
-  const [materials, setMaterials] = useState("");
-  const [mode, setMode] = useState("non-initialized");
-  const [id, setId] = useState("");
-  const { authState, authService } = useOktaAuth();
+  const [date, setDate] = useState('');
+  const [startTime, setStartTime] = useState('');
+  const [endTime, setEndTime] = useState('');
+  const [trainingType, setTrainingType] = useState('General Training');
+  const [instructor, setInstructor] = useState('');
+  const [title, setTitle] = useState('');
+  const [agenda, setAgenda] = useState('');
+  const [description, setDescription] = useState('');
+  const [willLearn, setWillLearn] = useState('');
+  const [mustKnow, setMustKnow] = useState('');
+  const [materials, setMaterials] = useState('');
+  const [mode, setMode] = useState('non-initialized');
+  const [id, setId] = useState('');
+  const [openTrainging, setOpenTrainging] = useState(false);
+  const {authState, authService} = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
@@ -31,16 +32,16 @@ const CreateInviteTemplate = (props) => {
   }, [authState, authService]);
 
   useEffect(() => {
-    // runs on pageload
-    var elems = document.querySelectorAll(".timepicker");
+    // runs on load
+    let elems = document.querySelectorAll('.timepicker');
     M.Timepicker.init(elems, {});
 
-    elems = document.querySelectorAll("select");
+    elems = document.querySelectorAll('select');
     M.FormSelect.init(elems, {});
 
-    elems = document.querySelectorAll(".datepicker");
+    elems = document.querySelectorAll('.datepicker');
     M.Datepicker.init(elems, {
-      format: "dd mmm yyyy",
+      format: 'dd mmm yyyy',
       onSelect: (argDate) => {
         const stringDate = argDate.toDateString();
         setDate(stringDate);
@@ -48,17 +49,17 @@ const CreateInviteTemplate = (props) => {
     });
 
     let idTmp = window.location.href;
-    let i = idTmp.lastIndexOf("/");
+    const i = idTmp.lastIndexOf('/');
     idTmp = idTmp.slice(i + 1);
-    setMode("create");
-    if (idTmp !== "inviteTemplate" && idTmp.length === 24) {
-      setMode("edit");
+    setMode('create');
+    if (idTmp !== 'inviteTemplate' && idTmp.length === 24) {
+      setMode('edit');
       setId(idTmp);
     }
   }, []);
 
   useEffect(() => {
-    if (mode === "edit") {
+    if (mode === 'edit') {
       axios.get(`/sendInvite/get/${id}`).then((res) => {
         setDate(res.data[0].date);
         setStartTime(res.data[0].startTime);
@@ -71,23 +72,24 @@ const CreateInviteTemplate = (props) => {
         setWillLearn(res.data[0].willLearn);
         setMustKnow(res.data[0].mustKnow);
         setMaterials(res.data[0].materials);
+        setOpenTrainging(res.data[0].openTrainging);
         M.updateTextFields();
       });
     }
   }, [mode, id]);
 
   const header = () => {
-    if (mode === "create") {
-      return "Create Template";
+    if (mode === 'create') {
+      return 'Create Template';
     }
-    if (mode === "edit") {
-      return "Edit Template";
+    if (mode === 'edit') {
+      return 'Edit Template';
     }
   };
 
   const onSubmit = (event) => {
     event.preventDefault();
-    let userName = userInfo.preferred_username;
+    const userName = userInfo.preferred_username;
 
     const template = {
       date,
@@ -103,16 +105,17 @@ const CreateInviteTemplate = (props) => {
       materials,
       userName,
       sent: false,
+      openTrainging,
     };
 
-    if (mode === "create") {
+    if (mode === 'create') {
       axios.post(`/inviteTemplate/save`, template).then(() => {
-        props.history.push("/templateDashboard");
+        props.history.push('/templateDashboard');
       });
     }
-    if (mode === "edit") {
+    if (mode === 'edit') {
       axios.post(`/inviteTemplate/update/${id}`, template).then(() => {
-        props.history.push("/templateDashboard");
+        props.history.push('/templateDashboard');
       });
     }
   };
@@ -234,6 +237,21 @@ const CreateInviteTemplate = (props) => {
             onChange={(event) => setMaterials(event.target.value)}
           />
         </div>
+        <form action="#">
+          <p>
+            <label>
+              <input
+                id="openTrainging"
+                type="checkbox"
+                value={openTrainging}
+                onChange={(event) => setOpenTrainging(event.target.checked)}
+              />
+              <span>
+                Public training - all interested persons can come to the meeting
+              </span>
+            </label>
+          </p>
+        </form>
         <div className="row">
           <div className="col s2 offset-s4">
             <a className="btn pink lighten-1" href="/templateDashboard">

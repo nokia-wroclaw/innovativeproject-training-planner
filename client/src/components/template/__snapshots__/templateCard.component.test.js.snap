@@ -1,0 +1,526 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Match TemplateCard to snapshot 1`] = `
+<div
+  className="card hoverable"
+  style={
+    Object {
+      "backgroundColor": "#26a69a",
+    }
+  }
+>
+  <div
+    className="card-reveal"
+  >
+    <span
+      className="card-title grey-text text-darken-4"
+    >
+      Jan Nowak
+    </span>
+    <p>
+      Thu Apr 30 2020
+    </p>
+  </div>
+  <div
+    style={
+      Object {
+        "position": "absolute",
+      }
+    }
+  />
+  <div
+    className="card-content white-text"
+  >
+    <div
+      className="row"
+    >
+      <div
+        className="col s10 offset-s1"
+      >
+        <span
+          className="card-title activator truncate"
+        >
+          Jak rozmawiać z ludźmi z grypy, by się nie pozabijać
+        </span>
+        <p
+          className="truncate"
+        >
+          Spotkanie dla ludzi mających trudności z komunikacją w grupie
+        </p>
+      </div>
+      <div
+        className="col s1"
+      >
+        <i
+          className="material-icons right"
+        >
+          group
+        </i>
+      </div>
+    </div>
+    <br />
+    <div
+      className="divider"
+    />
+  </div>
+  <div
+    className="modal"
+    id="5e8cf389fe13d0205e4ae533"
+  >
+    <div
+      className="modal-footer"
+    >
+      <div
+        className="row"
+      >
+        <div
+          className="col s3 offset-s2"
+        >
+          <a
+            className="modal-close  btn-flat"
+            href="/"
+            onClick={[Function]}
+          >
+            <i
+              className="material-icons red-text text-lighten-1 left"
+            >
+              delete
+            </i>
+            DELETE
+          </a>
+        </div>
+        <div
+          className="col s2"
+        >
+          <a
+            className="modal-close btn-flat "
+            href="/inviteTemplate/5e8cf389fe13d0205e4ae533"
+            onClick={[Function]}
+          >
+            <i
+              className="material-icons left"
+            >
+              edit
+            </i>
+            EDIT
+          </a>
+        </div>
+        <div
+          className="col s2"
+        >
+          <a
+            className="modal-close btn-flat"
+            href="/sendInvite/5e8cf389fe13d0205e4ae533"
+            onClick={[Function]}
+          >
+            <i
+              className="material-icons left"
+            >
+              mail
+            </i>
+            SEND
+          </a>
+        </div>
+        <div
+          className="col s1 offset-s2"
+        >
+          <a
+            className="modal-close btn-flat"
+            href="#!"
+          >
+            <i
+              className="material-icons gray"
+            >
+              close
+            </i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div
+      className="row"
+    >
+      <div
+        className="container"
+      >
+        <div
+          className="divider blue darken-2"
+        />
+        <div
+          className="modal-content"
+        >
+          <html
+            lang="en"
+            xmlns="http://www.w3.org/1999/xhtml"
+          >
+            <head>
+              <meta
+                content="text/html; charset=utf-8"
+                httpEquiv="Content-Type"
+              />
+              <meta
+                content="width=device-width, initial-scale=1.0"
+                name="viewport"
+              />
+              <title>
+                Invitation
+              </title>
+            </head>
+            <body
+              style={
+                Object {
+                  "MsTextSizeAdjust": "100%",
+                  "WebkitTextSizeAdjust": "100%",
+                  "margin": 0,
+                  "padding": 0,
+                  "width": "100%",
+                }
+              }
+            >
+              <table
+                align="left"
+                border="0"
+                cellPadding={0}
+                cellSpacing={0}
+                height="100%"
+                valign="top"
+                width="100%"
+              >
+                <tbody>
+                  <tr>
+                    <td
+                      align="center"
+                      valign="top"
+                    >
+                      <table
+                        align="center"
+                        border="0"
+                        cellPadding={0}
+                        cellSpacing={0}
+                        valign="top"
+                        width="600"
+                      >
+                        <tbody>
+                          <table
+                            align="left"
+                            border="0"
+                            cellPadding={0}
+                            cellSpacing={0}
+                            valign="top"
+                            width="600px"
+                          >
+                            <tbody>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 30,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "30px",
+                                      }
+                                    }
+                                  >
+                                    Jak rozmawiać z ludźmi z grypy, by się nie pozabijać
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    INSTRUCTOR: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    Jan Nowak
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    DATE: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    Thu Apr 30 2020
+                                  </span>
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    06:37 PM - 06:43 PM
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    DESCRIPTION: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    Spotkanie dla ludzi mających trudności z komunikacją w grupie
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    AGENDA: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  />
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    WHAT YOU WILL LEARN: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    Jak pracować dobrze w grupie.
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    WHAT YOU MUST ALREADY KNOW: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    blank :)
+                                  </span>
+                                </td>
+                              </tr>
+                              <tr>
+                                <td
+                                  align="left"
+                                >
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "gray",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 10,
+                                        "fontWeight": "bold",
+                                        "lineHeight": "10px",
+                                      }
+                                    }
+                                  >
+                                    MATERIALS: 
+                                  </span>
+                                  <br />
+                                  <span
+                                    style={
+                                      Object {
+                                        "color": "#000",
+                                        "fontFamily": "sans-serif",
+                                        "fontSize": 15,
+                                        "fontWeight": undefined,
+                                        "lineHeight": "15px",
+                                      }
+                                    }
+                                  >
+                                    blank
+                                  </span>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </body>
+          </html>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    className="row"
+  >
+    <div
+      className="col s6"
+    >
+      <a
+        className="modal-trigger btn-flat"
+        data-target="5e8cf389fe13d0205e4ae533"
+        href="#!"
+      >
+        <i
+          className="material-icons left"
+        >
+          event_note
+        </i>
+        DETAILS
+      </a>
+    </div>
+    <div
+      className="col s6"
+    >
+      <a
+        className="btn-flat"
+        href="/sendInvite/5e8cf389fe13d0205e4ae533"
+        onClick={[Function]}
+      >
+        <i
+          className="material-icons left"
+        >
+          mail
+        </i>
+        SEND
+      </a>
+    </div>
+  </div>
+  <br />
+</div>
+`;

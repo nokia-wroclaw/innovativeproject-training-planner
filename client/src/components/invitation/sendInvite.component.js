@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from "react";
-import { renderEmail } from "react-html-email";
-import ReactEmailHTML from "./reactEmailHtml.component";
-import BetterChips from "../addons/betterChips.componenet.js";
-import M from "materialize-css";
-import axios from "axios";
+import React, {useEffect, useState} from 'react';
+import {renderEmail} from 'react-html-email';
+import ReactEmailHTML from './reactEmailHtml.component';
+import BetterChips from '../addons/betterChips.componenet.js';
+import M from 'materialize-css';
+import axios from 'axios';
 
 const SendInvite = (props) => {
   const [recipients, setRecipients] = useState([]);
-  const [subject, setSubject] = useState("");
-  const [message, setMessage] = useState("");
-  const [template, setTemplate] = useState("");
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const [template, setTemplate] = useState('');
 
   useEffect(() => {
     let id = window.location.href;
-    let i = id.lastIndexOf("/");
+    const i = id.lastIndexOf('/');
     id = id.slice(i + 1);
     axios.get(`/sendInvite/get/${id}`).then((res) => {
       setTemplate(res.data[0]);
@@ -25,34 +25,34 @@ const SendInvite = (props) => {
   }, [template]);
 
   const markAsSent = () => {
-    let markedTemplate = template;
+    const markedTemplate = template;
     markedTemplate.sent = true;
     let id = window.location.href;
-    let i = id.lastIndexOf("/");
+    const i = id.lastIndexOf('/');
     id = id.slice(i + 1);
     axios.post(`/inviteTemplate/update/${id}`, markedTemplate).then(() => {
-      props.history.push("/templateDashboard");
+      props.history.push('/templateDashboard');
     });
   };
 
   const onSend = (event) => {
     event.preventDefault();
     const mail = {
-      recipients: recipients.join(","),
+      recipients: recipients.join(','),
       subject,
       message,
       template,
     };
 
-    axios.post("/sendInvite/send", mail).then((res) => {
+    axios.post('/sendInvite/send', mail).then((res) => {
       if (res.data.sent) {
-        M.toast({ html: "E-MAIL SENT!", classes: "rounded pink lighten-1" });
+        M.toast({html: 'E-MAIL SENT!', classes: 'rounded pink lighten-1'});
         markAsSent();
-        props.history.push("/templateDashboard");
+        props.history.push('/templateDashboard');
       } else {
         M.toast({
-          html: "SOMETHING WENT WRONG :(",
-          classes: "rounded pink lighten-1",
+          html: 'SOMETHING WENT WRONG :(',
+          classes: 'rounded pink lighten-1',
         });
       }
     });
