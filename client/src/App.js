@@ -1,15 +1,18 @@
-import React from "react";
-import { BrowserRouter, Route } from "react-router-dom";
-import { Security, LoginCallback } from "@okta/okta-react";
+import React from 'react';
+import {BrowserRouter, Route} from 'react-router-dom';
+import {Security, LoginCallback} from '@okta/okta-react';
 
-import Home from "./components/views/home.component";
-import Navbar from "./components/layout/navbar.component";
-import SendInvite from "./components/invitation/sendInvite.component";
-import UserProfile from "./components/user/userProfile.component";
-import TemplateDashboard from "./components/views/templateDashboard.component";
-import CreateInviteTemplate from "./components/template/createInviteTemplate.component";
-import GeneralCalendarDashboard from "./components/views/generalCalendarDashboard.compoennt"
-import UserCalendarDashboard from "./components/views/userCalendarDashboard.component"
+import Home from './components/views/home.component';
+import Navbar from './components/layout/navbar.component';
+import SendInvite from './components/invitation/sendInvite.component';
+import UserProfile from './components/user/userProfile.component';
+import TemplateDashboard from './components/views/templateDashboard.component';
+import CreateInviteTemplate
+  from './components/template/createInviteTemplate.component';
+import GeneralCalendarDashboard
+  from './components/views/generalCalendarDashboard.compoennt';
+import UserCalendarDashboard
+  from './components/views/userCalendarDashboard.component';
 
 // TODO make it a local variable or something
 const config = {
@@ -19,7 +22,7 @@ const config = {
   pkce: true,
 };
 
-const App = props => {
+const App = (props) => {
   return (
     <BrowserRouter>
       <Security {...config}>

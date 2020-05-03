@@ -1,25 +1,25 @@
-import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
-import ReactEmailHTML from "../invitation/reactEmailHtml.component";
-import axios from "axios";
-import M from "materialize-css";
-import Dictionary from "../../toolset/dictionary";
+import React, {useEffect} from 'react';
+import {Link} from 'react-router-dom';
+import ReactEmailHTML from '../invitation/reactEmailHtml.component';
+import axios from 'axios';
+import M from 'materialize-css';
+import Dictionary from '../../toolset/dictionary';
 
-var cardColorDictionary = new Dictionary();
-cardColorDictionary.add("Software Training", "#1e88e5");
-cardColorDictionary.add("Hardware Training", "#7c4dff");
-cardColorDictionary.add("Soft Skills Training", "#26a69a");
-cardColorDictionary.add("General Training", "#9e9e9e");
+const cardColorDictionary = new Dictionary();
+cardColorDictionary.add('Software Training', '#1e88e5');
+cardColorDictionary.add('Hardware Training', '#7c4dff');
+cardColorDictionary.add('Soft Skills Training', '#26a69a');
+cardColorDictionary.add('General Training', '#9e9e9e');
 
-var cardIconDictionary = new Dictionary();
-cardIconDictionary.add("Software Training", "computer");
-cardIconDictionary.add("Hardware Training", "build");
-cardIconDictionary.add("Soft Skills Training", "group");
-cardIconDictionary.add("General Training", "work");
+const cardIconDictionary = new Dictionary();
+cardIconDictionary.add('Software Training', 'computer');
+cardIconDictionary.add('Hardware Training', 'build');
+cardIconDictionary.add('Soft Skills Training', 'group');
+cardIconDictionary.add('General Training', 'work');
 
 const TemplateDetails = (props) => {
   useEffect(() => {
-    let elems = document.querySelectorAll('.modal');
+    const elems = document.querySelectorAll('.modal');
     M.Modal.init(elems, {});
   }, []);
 
@@ -77,29 +77,29 @@ const TemplateDetails = (props) => {
 
 const TemplateCard = (props) => {
   const showSentMark = (isSent) => {
-    if (isSent)
+    if (isSent) {
       return (
         <div
           style={{
             width: 0,
             height: 100,
-            backgroundColor: "transparent",
-            position: "absolute",
+            backgroundColor: 'transparent',
+            position: 'absolute',
             left: 25,
-            border: "solid 15px #ffdb4d",
-            borderBottom: "solid 15px transparent",
+            border: 'solid 15px #ffdb4d',
+            borderBottom: 'solid 15px transparent',
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
           }}
         >
           <div
             style={{
-              fontWeight: "bold",
-              position: "relative",
-              writingMode: "vertical-rl",
-              textOrientation: "upright",
-              textAlign: "left",
-              color: "white",
+              fontWeight: 'bold',
+              position: 'relative',
+              writingMode: 'vertical-rl',
+              textOrientation: 'upright',
+              textAlign: 'left',
+              color: 'white',
               right: 12,
             }}
           >
@@ -107,6 +107,7 @@ const TemplateCard = (props) => {
           </div>
         </div>
       );
+    }
   };
   return (
     <div
@@ -121,7 +122,7 @@ const TemplateCard = (props) => {
         </span>
         <p>{props.item.date}</p>
       </div>
-      <div style={{ position: "absolute" }}>
+      <div style={{position: 'absolute'}}>
         {showSentMark(props.item.sent)}
       </div>
       <div className="card-content white-text">

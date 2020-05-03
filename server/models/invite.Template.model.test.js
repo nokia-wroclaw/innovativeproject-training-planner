@@ -7,7 +7,7 @@ const mongoose = require('mongoose');
 beforeAll(async () => {
   await mongoose.connect(process.env.MONGO_URL, {
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
   });
 });
 
@@ -44,12 +44,12 @@ const validTemplateMock = {
 };
 
 it('try to throw, if invalid template is saved', async () => {
-  const InviteTemplateWithoutDateField = new InviteTemplate(invalidTemplateMock);
+  const InviteTemplateObject = new InviteTemplate(invalidTemplateMock);
   let err;
   try {
-      await InviteTemplateWithoutDateField.save();
+    await InviteTemplateObject.save();
   } catch (error) {
-      err = error
+    err = error;
   }
   expect(err).toBeInstanceOf(mongoose.Error.ValidationError);
 });
@@ -57,7 +57,7 @@ it('try to throw, if invalid template is saved', async () => {
 it('create & save tempalte successfully', async () => {
   const validTemplate = new InviteTemplate(validTemplateMock);
   const savedTemplate = await validTemplate.save();
-  
+
   expect(savedTemplate._id).toBeDefined();
   expect(savedTemplate.__v).toBeDefined();
   expect(savedTemplate.date).toBeDefined();

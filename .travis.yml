@@ -18,9 +18,3 @@ deploy:
     calendar-2-general: mittrainingplanner-mkomorek
     template-filtering: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak
-<<<<<<< HEAD
-    refactor: mittrainingplanner-refactored
-script:
-  - echo "skipping tests"
-=======
->>>>>>> d5a809b... Add install stage to travis
