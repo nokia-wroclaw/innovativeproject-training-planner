@@ -25,10 +25,9 @@ const TemplateDetails = (props) => {
 
   const deleteThis = (e) => {
     e.preventDefault();
-    axios.post(`/inviteTemplate/delete/${props.item._id}`).then((res) => {
-      console.log(res.data);
+    axios.post(`/inviteTemplate/delete/${props.item._id}`).then(() => {
+      window.location.reload();
     });
-    window.location.reload();
   };
 
   return (
