@@ -30,8 +30,7 @@ const SendInvite = (props) => {
     let id = window.location.href;
     let i = id.lastIndexOf("/");
     id = id.slice(i + 1);
-    axios.post(`/inviteTemplate/update/${id}`, markedTemplate).then((res) => {
-      console.log(res.data);
+    axios.post(`/inviteTemplate/update/${id}`, markedTemplate).then(() => {
       props.history.push("/templateDashboard");
     });
   };

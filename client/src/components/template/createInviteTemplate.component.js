@@ -106,14 +106,12 @@ const CreateInviteTemplate = (props) => {
     };
 
     if (mode === "create") {
-      axios.post(`/inviteTemplate/save`, template).then((res) => {
-        console.log(res.data);
+      axios.post(`/inviteTemplate/save`, template).then(() => {
         props.history.push("/templateDashboard");
       });
     }
     if (mode === "edit") {
-      axios.post(`/inviteTemplate/update/${id}`, template).then((res) => {
-        console.log(res.data);
+      axios.post(`/inviteTemplate/update/${id}`, template).then(() => {
         props.history.push("/templateDashboard");
       });
     }
