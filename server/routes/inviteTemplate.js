@@ -73,6 +73,14 @@ router.route("/sent").get(authenticationRequired, (req, res) => {
     .catch((err) => res.status(400).json("Error: " + err));
 });
 
+router.route("/openTraining").get((req, res) => {
+  InviteTemplate.find({
+    $and: [{ openTrainging: true }],
+  })
+    .then((inviteTemplate) => res.json(inviteTemplate))
+    .catch((err) => res.status(400).json("Error: " + err));
+});
+
 router.route("/save").post((req, res) => {
   // req.body is a template as JSON
   const template = req.body;

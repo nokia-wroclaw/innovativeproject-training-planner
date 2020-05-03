@@ -17,6 +17,7 @@ const CreateInviteTemplate = (props) => {
   const [materials, setMaterials] = useState("");
   const [mode, setMode] = useState("non-initialized");
   const [id, setId] = useState("");
+  const [openTrainging, setOpenTrainging] = useState(false);
   const { authState, authService } = useOktaAuth();
   const [userInfo, setUserInfo] = useState(null);
 
@@ -71,6 +72,7 @@ const CreateInviteTemplate = (props) => {
         setWillLearn(res.data[0].willLearn);
         setMustKnow(res.data[0].mustKnow);
         setMaterials(res.data[0].materials);
+        setOpenTrainging(res.data[0].openTrainging);
         M.updateTextFields();
       });
     }
@@ -103,6 +105,7 @@ const CreateInviteTemplate = (props) => {
       materials,
       userName,
       sent: false,
+      openTrainging,
     };
 
     if (mode === "create") {
@@ -234,6 +237,19 @@ const CreateInviteTemplate = (props) => {
             onChange={(event) => setMaterials(event.target.value)}
           />
         </div>
+        <form action="#">
+          <p>
+            <label>
+              <input
+                id="openTrainging"
+                type="checkbox"
+                value={openTrainging}
+                onChange={(event) => setOpenTrainging(event.target.checked)}
+              />
+              <span>Public training - all interested persons can come to the meeting</span>
+            </label>
+          </p>
+        </form>
         <div className="row">
           <div className="col s2 offset-s4">
             <a className="btn pink lighten-1" href="/templateDashboard">

@@ -8,7 +8,8 @@ import SendInvite from "./components/invitation/sendInvite.component";
 import UserProfile from "./components/user/userProfile.component";
 import TemplateDashboard from "./components/views/templateDashboard.component";
 import CreateInviteTemplate from "./components/template/createInviteTemplate.component";
-import CalendarDashboard from "./components/views/calendarDashboard.component"
+import GeneralCalendarDashboard from "./components/views/generalCalendarDashboard.compoennt"
+import UserCalendarDashboard from "./components/views/userCalendarDashboard.component"
 
 // TODO make it a local variable or something
 const config = {
@@ -30,7 +31,8 @@ const App = props => {
         <Route path="/templateDashboard" component={TemplateDashboard} />
         <Route path="/implicit/callback" component={LoginCallback} />
         <Route path="/profile" component={UserProfile} />
-        <Route path="/calendar" component={CalendarDashboard} />
+        <Route path="/userCalendar" component={UserCalendarDashboard} />
+        <Route path="/generalCalendar" component={GeneralCalendarDashboard} />
       </Security>
     </BrowserRouter>
   );
