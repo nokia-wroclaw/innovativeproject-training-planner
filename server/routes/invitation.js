@@ -3,8 +3,9 @@ const nodemailer = require('nodemailer');
 const ical = require('ical-generator');
 const InviteTemplate = require('../models/inviteTemplate.model');
 const baseTools = require('../toolset/base');
+const okta = require('../toolset/okta');
 
-router.route('/get/:_id').get((req, res) => {
+router.route('/get/:_id').get(okta.authenticationRequired, (req, res) => {
   // req.params is template's ID
   InviteTemplate.find(req.params)
       .then((templates) => res.json(templates))
@@ -54,7 +55,7 @@ transporter.verify((error, success) => {
   }
 });
 
-router.route('/send').post((req, res) => {
+router.route('/send').post(okta.authenticationRequired, (req, res) => {
   // req.body => mail details and data for generating .ics file
   const emails = req.body.recipients;
   const subject = req.body.subject;
