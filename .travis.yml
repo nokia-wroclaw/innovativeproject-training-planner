@@ -4,7 +4,7 @@ cache: npm
 install:
   - npm run travis
   - npm run build
-script: 
+script:
   - npm run lint
   - npm test
 deploy:
@@ -16,5 +16,5 @@ deploy:
     unit-tests: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
     calendar-2-general: mittrainingplanner-mkomorek
-    template-filtering: mittrainingplanner-jaolejnik
+    logout-view: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak
