@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { Calendar, momentLocalizer } from 'react-big-calendar';
-import 'react-big-calendar/lib/css/react-big-calendar.css'
+import React, {useEffect, useState} from 'react';
+import {Calendar, momentLocalizer} from 'react-big-calendar';
+import 'react-big-calendar/lib/css/react-big-calendar.css';
 import moment from 'moment';
-import axios from "axios";
-import { generateTemplates } from "./calendarModelFunctions";
+import axios from 'axios';
+import {generateTemplates} from './calendarModelFunctions';
 
 // Set Monday as a first day of the week in calendar
 // without this line first day is Sunday
-moment.locale('en',{ week:{ dow : 1} });
+moment.locale('en', {week: {dow: 1}});
 
 const GeneralCalendar = () => {
   const localizer = momentLocalizer(moment);
@@ -15,17 +15,18 @@ const GeneralCalendar = () => {
   const [eventList, setEventList] = useState([]);
 
   useEffect(() => {
-      axios.get(`/inviteTemplate/openTraining`).then(res => setTemplateList(res.data));
-  }, [])
+    axios.get(`/inviteTemplate/openTraining`)
+        .then((res) => setTemplateList(res.data));
+  }, []);
 
   useEffect(() => {
-    let tempEvents = [];
+    const tempEvents = [];
     generateTemplates(templateList, tempEvents);
     setEventList(tempEvents);
-  },[templateList])
+  }, [templateList]);
 
-  return(
-    <div style={{ height: '550pt'}}>
+  return (
+    <div style={{height: '550pt'}}>
       <Calendar
         events={eventList}
         startAccessor="start"
@@ -35,7 +36,7 @@ const GeneralCalendar = () => {
         timeslots={6}
       />
     </div>
-  )
-}
+  );
+};
 
-export default GeneralCalendar; 
+export default GeneralCalendar;

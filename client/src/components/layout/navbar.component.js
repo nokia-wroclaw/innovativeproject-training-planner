@@ -1,6 +1,6 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import LoginLogout from "../user/loginLogout.component.";
+import React from 'react';
+import {Link} from 'react-router-dom';
+import LoginLogout from '../user/loginLogout.component.';
 
 const Navbar = (props) => {
   return (

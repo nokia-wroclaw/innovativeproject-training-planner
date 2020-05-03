@@ -4,23 +4,6 @@ import axios from 'axios';
 import M from 'materialize-css';
 
 const CreateInviteTemplate = (props) => {
-<<<<<<< HEAD
-  const [date, setDate] = useState("");
-  const [startTime, setStartTime] = useState("");
-  const [endTime, setEndTime] = useState("");
-  const [trainingType, setTrainingType] = useState("General Training");
-  const [instructor, setInstructor] = useState("");
-  const [title, setTitle] = useState("");
-  const [agenda, setAgenda] = useState("");
-  const [description, setDescription] = useState("");
-  const [willLearn, setWillLearn] = useState("");
-  const [mustKnow, setMustKnow] = useState("");
-  const [materials, setMaterials] = useState("");
-  const [mode, setMode] = useState("non-initialized");
-  const [id, setId] = useState("");
-  const [openTrainging, setOpenTrainging] = useState(false);
-  const { authState, authService } = useOktaAuth();
-=======
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
@@ -34,8 +17,8 @@ const CreateInviteTemplate = (props) => {
   const [materials, setMaterials] = useState('');
   const [mode, setMode] = useState('non-initialized');
   const [id, setId] = useState('');
+  const [openTrainging, setOpenTrainging] = useState(false);
   const {authState, authService} = useOktaAuth();
->>>>>>> b8fe466... ESlint added to travis + jest dependencies
   const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
@@ -58,7 +41,7 @@ const CreateInviteTemplate = (props) => {
 
     elems = document.querySelectorAll('.datepicker');
     M.Datepicker.init(elems, {
-      format: "dd mmm yyyy",
+      format: 'dd mmm yyyy',
       onSelect: (argDate) => {
         const stringDate = argDate.toDateString();
         setDate(stringDate);
@@ -76,7 +59,7 @@ const CreateInviteTemplate = (props) => {
   }, []);
 
   useEffect(() => {
-    if (mode === "edit") {
+    if (mode === 'edit') {
       axios.get(`/sendInvite/get/${id}`).then((res) => {
         setDate(res.data[0].date);
         setStartTime(res.data[0].startTime);
@@ -99,8 +82,8 @@ const CreateInviteTemplate = (props) => {
     if (mode === 'create') {
       return 'Create Template';
     }
-    if (mode === "edit") {
-      return "Edit Template";
+    if (mode === 'edit') {
+      return 'Edit Template';
     }
   };
 
@@ -125,14 +108,14 @@ const CreateInviteTemplate = (props) => {
       openTrainging,
     };
 
-    if (mode === "create") {
+    if (mode === 'create') {
       axios.post(`/inviteTemplate/save`, template).then(() => {
-        props.history.push("/templateDashboard");
+        props.history.push('/templateDashboard');
       });
     }
-    if (mode === "edit") {
+    if (mode === 'edit') {
       axios.post(`/inviteTemplate/update/${id}`, template).then(() => {
-        props.history.push("/templateDashboard");
+        props.history.push('/templateDashboard');
       });
     }
   };
@@ -263,7 +246,9 @@ const CreateInviteTemplate = (props) => {
                 value={openTrainging}
                 onChange={(event) => setOpenTrainging(event.target.checked)}
               />
-              <span>Public training - all interested persons can come to the meeting</span>
+              <span>
+                Public training - all interested persons can come to the meeting
+              </span>
             </label>
           </p>
         </form>

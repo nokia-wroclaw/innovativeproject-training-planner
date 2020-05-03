@@ -1,21 +1,21 @@
-import React from "react";
-import { useOktaAuth } from "@okta/okta-react";
+import React from 'react';
+import {useOktaAuth} from '@okta/okta-react';
 
 // TODO rework UI -> will be done when user will be developed
 const LoginLogout = () => {
-  const { authState, authService } = useOktaAuth();
+  const {authState, authService} = useOktaAuth();
 
   const login = async () => {
     // Redirect to '/' after login
-    authService.login("/");
+    authService.login('/');
   };
 
   const logout = async () => {
     // Redirect to '/' after logout
-    authService.logout("/");
+    authService.logout('/');
   };
 
-  //-------------------------------------------------------------
+  // -------------------------------------------------------------
   const logInOutButton = () => {
     if (authState.isAuthenticated) {
       return (
@@ -24,7 +24,7 @@ const LoginLogout = () => {
             <button
               onClick={logout}
               className="btn waves-light pink lighten-1"
-              style={{ margin: 10 }}
+              style={{margin: 10}}
             >
               Logout
             </button>
@@ -38,7 +38,7 @@ const LoginLogout = () => {
             <button
               onClick={login}
               className="btn pulse waves-effect waves-light pink lighten-1"
-              style={{ margin: 10 }}
+              style={{margin: 10}}
             >
               Login
             </button>

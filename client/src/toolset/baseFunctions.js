@@ -9,7 +9,7 @@ export function containsObject(obj, list) {
 }
 
 export function transformDate(dateStr, timeStr) {
-  let datetime = dateStr + " " + timeStr;
+  let datetime = dateStr + ' ' + timeStr;
   datetime = new Date(datetime);
   return datetime;
 }
