@@ -17,6 +17,9 @@ const searchbarStyle = {
 
 const TemplateDashboard = () => {
   const {authState, authService} = useOktaAuth();
+  const {accessToken} = authState;
+
+  const [username, setUsername] = useState('');
   const [templatelist, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [tooltip, setTooltip] = useState('');
@@ -26,6 +29,12 @@ const TemplateDashboard = () => {
     sent: '',
     all: '',
   });
+
+  useEffect(() => {
+    authService.getUser().then((info) => {
+      setUsername(info.preferred_username);
+    });
+  }, [authService]);
 
   useEffect(() => {
     let elems = document.querySelectorAll('.fixed-action-btn');
@@ -49,36 +58,30 @@ const TemplateDashboard = () => {
   }, []);
 
   useEffect(() => {
-    if (authState.isAuthenticated) {
-      const {accessToken} = authState;
-
-      authService.getUser().then((info) => {
-        if (searchQuery !== '') {
-          axios
-              .get(`/inviteTemplate/get/${searchQuery}`, {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  userName: info.preferred_username,
-                },
-              })
-              .then((res) => {
-                setTemplateList(res.data);
-              });
-        } else {
-          axios
-              .get(`/inviteTemplate/${activeTab}`, {
-                headers: {
-                  Authorization: `Bearer ${accessToken}`,
-                  username: info.preferred_username,
-                },
-              })
-              .then((res) => {
-                setTemplateList(res.data);
-              });
-        }
-      });
+    if (searchQuery !== '') {
+      axios
+          .get(`/inviteTemplate/get/${searchQuery}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              username,
+            },
+          })
+          .then((res) => {
+            setTemplateList(res.data);
+          });
+    } else {
+      axios
+          .get(`/inviteTemplate/${activeTab}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              username,
+            },
+          })
+          .then((res) => {
+            setTemplateList(res.data);
+          });
     }
-  }, [searchQuery, authState, authService, activeTab]);
+  }, [searchQuery, accessToken, username, activeTab]);
 
   useEffect(() => {
     switch (activeTab) {

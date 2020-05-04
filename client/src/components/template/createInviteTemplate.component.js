@@ -5,6 +5,10 @@ import M from 'materialize-css';
 import {getLastUrlParam} from '../../toolset/baseFunctions';
 
 const CreateInviteTemplate = (props) => {
+  const {authState, authService} = useOktaAuth();
+  const {accessToken} = authState;
+
+  const [username, setUsername] = useState('');
   const [date, setDate] = useState('');
   const [startTime, setStartTime] = useState('');
   const [endTime, setEndTime] = useState('');
@@ -19,18 +23,12 @@ const CreateInviteTemplate = (props) => {
   const [mode, setMode] = useState('non-initialized');
   const [id, setId] = useState('');
   const [openTrainging, setOpenTrainging] = useState(false);
-  const {authState, authService} = useOktaAuth();
-  const [userInfo, setUserInfo] = useState(null);
 
   useEffect(() => {
-    if (!authState.isAuthenticated) {
-      setUserInfo(null);
-    } else {
-      authService.getUser().then((info) => {
-        setUserInfo(info);
-      });
-    }
-  }, [authState, authService]);
+    authService.getUser().then((info) => {
+      setUsername(info.preferred_username);
+    });
+  }, [authService]);
 
   useEffect(() => {
     // runs on load
@@ -59,23 +57,29 @@ const CreateInviteTemplate = (props) => {
 
   useEffect(() => {
     if (mode === 'edit') {
-      axios.get(`/sendInvite/get/${id}`).then((res) => {
-        setDate(res.data[0].date);
-        setStartTime(res.data[0].startTime);
-        setEndTime(res.data[0].endTime);
-        setTrainingType(res.data[0].trainingType);
-        setInstructor(res.data[0].instructor);
-        setTitle(res.data[0].title);
-        setAgenda(res.data[0].agenda);
-        setDescription(res.data[0].description);
-        setWillLearn(res.data[0].willLearn);
-        setMustKnow(res.data[0].mustKnow);
-        setMaterials(res.data[0].materials);
-        setOpenTrainging(res.data[0].openTrainging);
-        M.updateTextFields();
-      });
+      axios
+          .get(`/sendInvite/get/${id}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          .then((res) => {
+            setDate(res.data[0].date);
+            setStartTime(res.data[0].startTime);
+            setEndTime(res.data[0].endTime);
+            setTrainingType(res.data[0].trainingType);
+            setInstructor(res.data[0].instructor);
+            setTitle(res.data[0].title);
+            setAgenda(res.data[0].agenda);
+            setDescription(res.data[0].description);
+            setWillLearn(res.data[0].willLearn);
+            setMustKnow(res.data[0].mustKnow);
+            setMaterials(res.data[0].materials);
+            setOpenTrainging(res.data[0].openTrainging);
+            M.updateTextFields();
+          });
     }
-  }, [mode, id]);
+  }, [mode, id, accessToken]);
 
   const header = () => {
     if (mode === 'create') {
@@ -88,7 +92,6 @@ const CreateInviteTemplate = (props) => {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    const userName = userInfo.preferred_username;
 
     const template = {
       date,
@@ -102,20 +105,32 @@ const CreateInviteTemplate = (props) => {
       willLearn,
       mustKnow,
       materials,
-      userName,
+      userName: username,
       sent: false,
-      openTrainging,
+      openTrainging, // TODO fix this misspelling in the whole project
     };
 
     if (mode === 'create') {
-      axios.post(`/inviteTemplate/save`, template).then(() => {
-        props.history.push('/templateDashboard');
-      });
+      axios
+          .post(`/inviteTemplate/save`, template, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          .then(() => {
+            props.history.push('/templateDashboard');
+          });
     }
     if (mode === 'edit') {
-      axios.post(`/inviteTemplate/update/${id}`, template).then(() => {
-        props.history.push('/templateDashboard');
-      });
+      axios
+          .post(`/inviteTemplate/update/${id}`, template, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          .then(() => {
+            props.history.push('/templateDashboard');
+          });
     }
   };
 
