@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useOktaAuth} from '@okta/okta-react';
-import TemplateCard from '../template//templateCard.component';
+import TemplateCard from '../template/templateCard.component';
 import M from 'materialize-css';
 import axios from 'axios';
 
@@ -173,7 +173,8 @@ const TemplateDashboard = () => {
             to="/inviteTemplate"
             className={
               'btn-floating pulse btn-large waves-effect' +
-              'waves-light pink lighten-1'}
+              'waves-light pink lighten-1'
+            }
           >
             <i className="material-icons">add</i>
           </Link>

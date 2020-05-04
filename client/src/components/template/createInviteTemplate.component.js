@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import {useOktaAuth} from '@okta/okta-react';
 import axios from 'axios';
 import M from 'materialize-css';
+import {getLastUrlParam} from '../../toolset/baseFunctions';
 
 const CreateInviteTemplate = (props) => {
   const [date, setDate] = useState('');
@@ -48,9 +49,7 @@ const CreateInviteTemplate = (props) => {
       },
     });
 
-    let idTmp = window.location.href;
-    const i = idTmp.lastIndexOf('/');
-    idTmp = idTmp.slice(i + 1);
+    const idTmp = getLastUrlParam(window.location.href);
     setMode('create');
     if (idTmp !== 'inviteTemplate' && idTmp.length === 24) {
       setMode('edit');
