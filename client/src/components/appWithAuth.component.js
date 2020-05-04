@@ -44,7 +44,6 @@ const AppWithAuth = () => {
     if (!authState.isAuthenticated) {
       return loggedOutView();
     } else {
-      console.log('zalogowany');
       return loggedInView();
     }
   };

@@ -70,7 +70,8 @@ router.route('/update/:id').post(okta.authenticationRequired, (req, res) => {
   );
 });
 
-router.route('/delete/:_id').post(okta.authenticationRequired, (req, res) => {
+// TODO make deleting an item properply secure with auth
+router.route('/delete/:_id').post((req, res) => {
   // req.params => template's ID
   InviteTemplate.deleteOne(req.params)
       .then(() => res.json('Template deleted!'))

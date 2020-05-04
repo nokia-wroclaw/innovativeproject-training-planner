@@ -109,6 +109,7 @@ const TemplateCard = (props) => {
       );
     }
   };
+
   return (
     <div
       className="card hoverable"
