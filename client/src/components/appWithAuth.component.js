@@ -8,7 +8,6 @@ import SendInvite from './invitation/sendInvite.component';
 import UserProfile from './user/userProfile.component';
 import TemplateDashboard from './views/templateDashboard.component';
 import CreateInviteTemplate from './template/createInviteTemplate.component';
-import GeneralCalendarDashboard from './views/generalCalendarDashboard.compoennt';
 import UserCalendarDashboard from './views/userCalendarDashboard.component';
 
 // TODO find and remove unnecessary checks for user auth
@@ -38,7 +37,6 @@ const AppWithAuth = () => {
       <Route path="/implicit/callback" component={LoginCallback} />
       <Route path="/profile" component={UserProfile} />
       <Route path="/userCalendar" component={UserCalendarDashboard} />
-      <Route path="/generalCalendar" component={GeneralCalendarDashboard} />
     </div>
   );
 
@@ -49,7 +47,6 @@ const AppWithAuth = () => {
       console.log('zalogowany');
       return loggedInView();
     }
-    // return loggedInView();
   };
 
   return <div>{showAppContent()}</div>;

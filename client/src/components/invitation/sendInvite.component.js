@@ -1,9 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import {renderEmail} from 'react-html-email';
 import ReactEmailHTML from './reactEmailHtml.component';
-import BetterChips from '../addons/betterChips.componenet.js';
+import BetterChips from '../addons/betterChips.componenet';
 import M from 'materialize-css';
 import axios from 'axios';
+import {getLastUrlParam} from '../../toolset/baseFunctions';
 
 const SendInvite = (props) => {
   const [recipients, setRecipients] = useState([]);
@@ -12,9 +13,7 @@ const SendInvite = (props) => {
   const [template, setTemplate] = useState('');
 
   useEffect(() => {
-    let id = window.location.href;
-    const i = id.lastIndexOf('/');
-    id = id.slice(i + 1);
+    const id = getLastUrlParam(window.location.href);
     axios.get(`/sendInvite/get/${id}`).then((res) => {
       setTemplate(res.data[0]);
     });
@@ -27,9 +26,7 @@ const SendInvite = (props) => {
   const markAsSent = () => {
     const markedTemplate = template;
     markedTemplate.sent = true;
-    let id = window.location.href;
-    const i = id.lastIndexOf('/');
-    id = id.slice(i + 1);
+    const id = getLastUrlParam(window.location.href);
     axios.post(`/inviteTemplate/update/${id}`, markedTemplate).then(() => {
       props.history.push('/templateDashboard');
     });
