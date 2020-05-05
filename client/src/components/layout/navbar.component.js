@@ -16,9 +16,6 @@ const Navbar = (props) => {
           <li>
             <Link to="/userCalendar">User Calendar</Link>
           </li>
-          <li>
-            <Link to="/generalCalendar">General Calendar</Link>
-          </li>
         </ul>
         <ul className="right">
           <li>

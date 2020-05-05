@@ -11,25 +11,30 @@ import {generateTemplates} from './calendarModelFunctions';
 moment.locale('en', {week: {dow: 1}});
 
 const UserCalendar = () => {
-  const localizer = momentLocalizer(moment);
   const {authState, authService} = useOktaAuth();
+  const {accessToken} = authState;
+  const [username, setUsername] = useState('');
+
+  const localizer = momentLocalizer(moment);
   const [templateList, setTemplateList] = useState([]);
   const [eventList, setEventList] = useState([]);
 
   useEffect(() => {
-    if (authState.isAuthenticated) {
-      const {accessToken} = authState;
+    authService.getUser().then((info) => {
+      setUsername(info.preferred_username);
+    });
+  }, [authService]);
 
-      authService.getUser().then((info) => {
-        axios.get(`/inviteTemplate/all`, {
+  useEffect(() => {
+    axios
+        .get(`/inviteTemplate/all`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
-            username: info.preferred_username,
+            username,
           },
-        }).then((res) => setTemplateList(res.data));
-      });
-    }
-  }, [authState, authService]);
+        })
+        .then((res) => setTemplateList(res.data));
+  }, [accessToken, username]);
 
   useEffect(() => {
     const tempEvents = [];
