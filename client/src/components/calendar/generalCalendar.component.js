@@ -9,13 +9,14 @@ import {generateTemplates} from './calendarModelFunctions';
 // without this line first day is Sunday
 moment.locale('en', {week: {dow: 1}});
 
-const GeneralCalendar = () => {
+const GeneralCalendar = (props) => {
   const localizer = momentLocalizer(moment);
   const [templateList, setTemplateList] = useState([]);
   const [eventList, setEventList] = useState([]);
 
   useEffect(() => {
-    axios.get(`/inviteTemplate/openTraining`)
+    axios
+        .get(`/inviteTemplate/openTraining`)
         .then((res) => setTemplateList(res.data));
   }, []);
 
@@ -26,16 +27,15 @@ const GeneralCalendar = () => {
   }, [templateList]);
 
   return (
-    <div style={{height: '550pt'}}>
-      <Calendar
-        events={eventList}
-        startAccessor="start"
-        endAccessor="end"
-        defaultDate={moment().toDate()}
-        localizer={localizer}
-        timeslots={6}
-      />
-    </div>
+    <Calendar
+      style={{height: props.height}}
+      events={eventList}
+      startAccessor="start"
+      endAccessor="end"
+      defaultDate={moment().toDate()}
+      localizer={localizer}
+      timeslots={6}
+    />
   );
 };
 

@@ -5,11 +5,11 @@ const UserCalendarDashboard = () => {
   return (
     <div className="container">
       <h5 className="center">
-        Here you can see all the trainings you have been
-        invited to and those you organize
+        Here you can see all the trainings you have been invited to and those
+        you organize
       </h5>
-      <br></br>
-      <UserCalendar />
+      <br />
+      <UserCalendar height="550pt" />
     </div>
   );
 };
