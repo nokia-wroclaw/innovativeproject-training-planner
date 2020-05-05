@@ -24,7 +24,7 @@ const LoginLogout = () => {
             <button
               onClick={logout}
               className="btn waves-light pink lighten-1"
-              style={{margin: 10}}
+              style={{marginRight: 40, width: 100}}
             >
               Logout
             </button>
@@ -38,7 +38,7 @@ const LoginLogout = () => {
             <button
               onClick={login}
               className="btn pulse waves-effect waves-light pink lighten-1"
-              style={{margin: 10}}
+              style={{marginRight: 40, width: 100}}
             >
               Login
             </button>

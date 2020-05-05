@@ -10,6 +10,7 @@ const UserCalendarDashboard = () => {
       </h5>
       <br />
       <UserCalendar height="550pt" />
+      <br />
     </div>
   );
 };

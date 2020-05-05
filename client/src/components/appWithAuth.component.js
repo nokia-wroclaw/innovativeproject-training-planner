@@ -5,6 +5,7 @@ import {LoginCallback, useOktaAuth} from '@okta/okta-react';
 import Home from './views/home.component';
 import LoginPage from './views/login.component';
 import Navbar from './layout/navbar.component';
+import Footer from './layout/footer.component';
 import SendInvite from './invitation/sendInvite.component';
 import UserProfile from './user/userProfile.component';
 import TemplateDashboard from './views/templateDashboard.component';
@@ -29,6 +30,7 @@ const AppWithAuth = () => {
         )}
       />
       <Route path="/implicit/callback" component={LoginCallback} />
+      <Footer />
     </div>
   );
 
@@ -42,6 +44,7 @@ const AppWithAuth = () => {
       <Route path="/implicit/callback" component={LoginCallback} />
       <Route path="/profile" component={UserProfile} />
       <Route path="/userCalendar" component={UserCalendarDashboard} />
+      <Footer />
     </div>
   );
 
