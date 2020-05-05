@@ -5,7 +5,7 @@ const Home = () => {
   return (
     <div className="container center-align">
       <h1>Home Page</h1>
-      <GeneralCalendar />
+      <GeneralCalendar height="550pt" />
     </div>
   );
 };

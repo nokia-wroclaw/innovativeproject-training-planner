@@ -7,7 +7,7 @@ const Navbar = (props) => {
     <div className="navbar-fixed">
       <nav className="nav-wrapper blue darken-3">
         <Link to="/" className="brand-logo center">
-          Training Planner<i className="material-icons right">watch</i>
+          Training Planner LOGO
         </Link>
         <ul className="left">
           <li>
