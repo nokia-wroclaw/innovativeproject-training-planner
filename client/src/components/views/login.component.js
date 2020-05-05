@@ -38,22 +38,33 @@ const LoginPage = ({authState, authService}) => {
 
   const login = async () => {
     // Redirects to    ---------v--------- after login
-    authService.login('/templateDashboard');
+    authService.login('/');
   };
 
   return (
     <div id="loginPage" className="blue lighten-5">
-      <div className="navbar-fixed" style={{marginBottom: '5%'}}>
+      <div className="navbar-fixed" style={{marginBottom: 50}}>
         <nav className="nav-wrapper blue darken-3">
-          <Link to="/" className="brand-logo center">
-            Training Planner LOGO
+          <Link
+            to="/"
+            className="brand-logo center"
+            style={{fontFamily: 'Denk one'}}
+          >
+            MiTraining Planner
+            <i className="material-icons right">
+              <img
+                src={process.env.PUBLIC_URL + '/logo-white.png'}
+                alt="LOGO"
+                width="60"
+              />
+            </i>
           </Link>
           <ul className="right">
             <li>
               <button
                 onClick={login}
                 className="btn pulse waves-effect waves-light pink lighten-1"
-                style={{margin: 10}}
+                style={{marginRight: 40, width: 100}}
               >
                 Login
               </button>
@@ -63,7 +74,7 @@ const LoginPage = ({authState, authService}) => {
       </div>
 
       <div className="container center-align">
-        <div className="row z-depth-3" style={{marginBottom: '5%'}}>
+        <div className=" z-depth-3" style={{marginBottom: 100}}>
           <div
             className="carousel carousel-slider"
             data-indicators="true"
@@ -76,7 +87,10 @@ const LoginPage = ({authState, authService}) => {
                 </h3>
               </div>
             </div>
-            <div className="carousel-item blue white-text" href="#one!">
+            <div
+              className="carousel-item blue lighten-1 white-text"
+              href="#one!"
+            >
               <div className="container">
                 <h2>QUICK AND SIMPLE</h2>
                 <p className="white-text">
@@ -85,7 +99,7 @@ const LoginPage = ({authState, authService}) => {
               </div>
             </div>
             <div
-              className="carousel-item blue darken-2 white-text"
+              className="carousel-item blue darken-1 white-text"
               href="#two!"
             >
               <div className="container">
@@ -95,7 +109,10 @@ const LoginPage = ({authState, authService}) => {
                 </p>
               </div>
             </div>
-            <div className="carousel-item blue white-text" href="#three!">
+            <div
+              className="carousel-item blue lighten-1 white-text"
+              href="#three!"
+            >
               <div className="container">
                 <h2>EVENT INVITATIONS</h2>
                 <p className="white-text">
@@ -104,7 +121,7 @@ const LoginPage = ({authState, authService}) => {
               </div>
             </div>
             <div
-              className="carousel-item blue darken-2 white-text"
+              className="carousel-item blue darken-1 white-text"
               href="#four!"
             >
               <div className="container">
@@ -117,15 +134,20 @@ const LoginPage = ({authState, authService}) => {
           </div>
         </div>
 
-        <div className="row" style={{marginBottom: '5%'}}>
-          <h3>OPEN FOR PUBLIC TRAININGS CREATED WITH MITRAININGPLANNER</h3>
+        <div style={{marginBottom: 100}}>
+          <h4 style={{fontWeight: 'bold', marginBottom: 50}}>
+            OPEN FOR PUBLIC TRAININGS CREATED WITH MITRAINING PLANNER
+          </h4>
           <div className="z-depth-3 white">
             <GeneralCalendar height="550pt" />
           </div>
         </div>
 
-        <div className="row" style={{marginBottom: '5%'}}>
-          <h3>MORE ABOUT MITRAININGPLANNER</h3>
+        <div>
+          <h4 style={{fontWeight: 'bold', marginBottom: 50}}>
+            {' '}
+            MORE ABOUT MITRAINING PLANNER
+          </h4>
           <ul className="collapsible white">
             <li>
               <div className="collapsible-header">
@@ -154,53 +176,7 @@ const LoginPage = ({authState, authService}) => {
           </ul>
         </div>
       </div>
-
-      <footer className="page-footer blue darken-2">
-        <div className="container">
-          <div className="row">
-            <div className="col l6 s12">
-              <h5 className="white-text">Footer Content</h5>
-              <p className="grey-text text-lighten-4">
-                You can use rows and columns here to organize your footer
-                content.
-              </p>
-            </div>
-            <div className="col l4 offset-l2 s12">
-              <h5 className="white-text">Links</h5>
-              <ul>
-                <li>
-                  <a className="grey-text text-lighten-3" href="#!">
-                    Link 1
-                  </a>
-                </li>
-                <li>
-                  <a className="grey-text text-lighten-3" href="#!">
-                    Link 2
-                  </a>
-                </li>
-                <li>
-                  <a className="grey-text text-lighten-3" href="#!">
-                    Link 3
-                  </a>
-                </li>
-                <li>
-                  <a className="grey-text text-lighten-3" href="#!">
-                    Link 4
-                  </a>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <div className="footer-copyright">
-          <div className="container">
-            © 2014 Copyright Text
-            <a className="grey-text text-lighten-4 right" href="#!">
-              More Links
-            </a>
-          </div>
-        </div>
-      </footer>
+      <br />
     </div>
   );
 };
