@@ -17,4 +17,4 @@ deploy:
     branch: mittrainingplanner-mbednar22
     calendar-2-general: mittrainingplanner-mkomorek
     logout-view: mittrainingplanner-jaolejnik
-    okta-auth-v3: mittrainingplanner-cvaniak
+    user-types: mittrainingplanner-cvaniak
