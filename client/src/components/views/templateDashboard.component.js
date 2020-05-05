@@ -70,7 +70,7 @@ const TemplateDashboard = () => {
             setTemplateList(res.data);
           });
     } else {
-      console.log("all")
+      console.log('all')
       axios
           .get(`/inviteTemplate/all`, {
             headers: {
