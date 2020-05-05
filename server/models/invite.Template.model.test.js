@@ -36,7 +36,7 @@ const validTemplateMock = {
   date: 'Thu Apr 30 2020',
   title: 'Jak rozmawiać z ludźmi z grypy, by się nie pozabijać',
   agenda: 'sss',
-  description: 'Spotkanie dla ludzi mających trudności z komunikacją w grupie',
+  description: 'Spotkanie dla ludzi mających trudności z komunikacją w zupie',
   willLearn: 'Jak pracować dobrze w grupie.',
   mustKnow: 'blank :)',
   materials: 'blank',

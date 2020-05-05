@@ -70,8 +70,9 @@ const TemplateDashboard = () => {
             setTemplateList(res.data);
           });
     } else {
+      console.log("all")
       axios
-          .get(`/inviteTemplate/${activeTab}`, {
+          .get(`/inviteTemplate/all`, {
             headers: {
               Authorization: `Bearer ${accessToken}`,
               username,
