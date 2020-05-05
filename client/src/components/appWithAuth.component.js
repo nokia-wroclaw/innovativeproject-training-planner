@@ -3,6 +3,7 @@ import {Route} from 'react-router-dom';
 import {LoginCallback, useOktaAuth} from '@okta/okta-react';
 
 import Home from './views/home.component';
+import LoginPage from './views/login.component';
 import Navbar from './layout/navbar.component';
 import SendInvite from './invitation/sendInvite.component';
 import UserProfile from './user/userProfile.component';
@@ -20,7 +21,11 @@ const AppWithAuth = () => {
       <Route
         path="/"
         render={(props) => (
-          <Home {...props} authState={authState} authService={authService} />
+          <LoginPage
+            {...props}
+            authState={authState}
+            authService={authService}
+          />
         )}
       />
       <Route path="/implicit/callback" component={LoginCallback} />
@@ -30,7 +35,7 @@ const AppWithAuth = () => {
   const loggedInView = () => (
     <div>
       <Navbar />
-      <Route exact path="/" />
+      <Route exact path="/" component={Home} />
       <Route path="/sendInvite" component={SendInvite} />
       <Route path="/inviteTemplate" component={CreateInviteTemplate} />
       <Route path="/templateDashboard" component={TemplateDashboard} />
