@@ -4,7 +4,7 @@ const Users = require('../models/users.model');
 const okta = require('../toolset/okta');
 
 router
-  .route('/get/:searchQuery')
+    .route('/get/:searchQuery')
   .get(okta.authenticationRequired, (req, res) => {
     let regexBase = req.params.searchQuery.replace(/\s/g, '|');
     regexBase = new RegExp(regexBase, 'gi');

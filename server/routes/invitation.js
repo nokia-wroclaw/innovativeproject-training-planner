@@ -2,7 +2,6 @@ const router = require('express').Router();
 const nodemailer = require('nodemailer');
 const ical = require('ical-generator');
 const InviteTemplate = require('../models/inviteTemplate.model');
-const Users = require('../models/users.model');
 const baseTools = require('../toolset/base');
 const okta = require('../toolset/okta');
 
