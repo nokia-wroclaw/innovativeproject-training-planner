@@ -27,6 +27,7 @@ const ReactEmailHTML = (template) => {
           <Span {...defaultText}>DATE: </Span>
           <br />
           <Span {...templateText}>{template.date}</Span>
+          <br />
           <Span {...templateText}>
             {template.startTime + ' - ' + template.endTime}
           </Span>
