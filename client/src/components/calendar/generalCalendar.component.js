@@ -6,16 +6,28 @@ import axios from 'axios';
 import M from 'materialize-css';
 import {transformDate} from '../../toolset/baseFunctions';
 import ReactEmailHTML from '../invitation/reactEmailHtml.component';
+import LoadingCircular from '../addons/loadingCircular.component';
+import FadeIn from 'react-fade-in';
 
 // Set Monday as a first day of the week in calendar
 // without this line first day is Sunday
 moment.locale('en', {week: {dow: 1}});
 
 const GeneralCalendar = () => {
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const localizer = momentLocalizer(moment);
   const [templateList, setTemplateList] = useState([]);
   const [eventList, setEventList] = useState([]);
   const [currentEvent, setCurrentEvent] = useState();
+
+  useEffect(() => {
+    if (eventList !== []) {
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 1200);
+    }
+  }, [isLoaded, eventList]);
 
   useEffect(() => {
     const elems = document.querySelectorAll('.modal');
@@ -38,30 +50,40 @@ const GeneralCalendar = () => {
 
   const renderEventDetails = () => {
     if (currentEvent !== undefined) {
-      return (ReactEmailHTML(currentEvent));
+      return ReactEmailHTML(currentEvent);
     }
   };
 
   return (
-    <div style={{height: '550pt'}}>
-      <Calendar
-        events={eventList}
-        startAccessor="start"
-        endAccessor="end"
-        defaultDate={moment().toDate()}
-        localizer={localizer}
-        timeslots={6}
-        onSelectEvent={(event) => {
-          setCurrentEvent(event);
-          document.getElementById('eventDetails').click();
-        }}
-      />
+    <div>
+      {!isLoaded ? (
+        <LoadingCircular style={{width: 200, height: 200}} />
+      ) : (
+        <FadeIn>
+          <div style={{height: '550pt'}}>
+            <Calendar
+              events={eventList}
+              startAccessor="start"
+              endAccessor="end"
+              defaultDate={moment().toDate()}
+              localizer={localizer}
+              timeslots={6}
+              onSelectEvent={(event) => {
+                setCurrentEvent(event);
+                document.getElementById('eventDetails').click();
+              }}
+            />
 
-      <a className="modal-trigger" href="#modal" id="eventDetails"> </a>
+            <a className="modal-trigger" href="#modal" id="eventDetails">
+              {' '}
+            </a>
 
-      <div id="modal" className="modal">
-        {renderEventDetails()}
-      </div>
+            <div id="modal" className="modal">
+              {renderEventDetails()}
+            </div>
+          </div>
+        </FadeIn>
+      )}
     </div>
   );
 };

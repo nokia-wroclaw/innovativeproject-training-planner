@@ -3,8 +3,8 @@ import UserCalendar from '../calendar/userCalendar.component';
 
 const UserCalendarDashboard = () => {
   return (
-    <div className="container">
-      <h5 className="center">
+    <div className="container center" style={{height: 850}}>
+      <h5>
         Here you can see all the trainings you have been invited to and those
         you organize
       </h5>

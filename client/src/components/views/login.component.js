@@ -36,7 +36,7 @@ const LoginPage = ({authState, authService}) => {
     return () => clearInterval(interval);
   }, [refLoginCarousel, loginCarousel]);
 
-  const login = async () => {
+  const login = () => {
     // Redirects to    ---------v--------- after login
     authService.login('/');
   };
@@ -145,7 +145,6 @@ const LoginPage = ({authState, authService}) => {
 
         <div>
           <h4 style={{fontWeight: 'bold', marginBottom: 50}}>
-            {' '}
             MORE ABOUT MITRAINING PLANNER
           </h4>
           <ul className="collapsible white">

@@ -13,8 +13,7 @@ import CreateInviteTemplate from './template/createInviteTemplate.component';
 import UserCalendarDashboard from './views/userCalendarDashboard.component';
 import StatsDashboard from './views/statsDashboard.component';
 import Feedback from './stats/feedback.component';
-
-// TODO find and remove unnecessary checks for user auth
+import LoginLoading from './views/loginLoading.component';
 
 const AppWithAuth = () => {
   const {authState, authService} = useOktaAuth();
@@ -22,6 +21,7 @@ const AppWithAuth = () => {
   const loggedOutView = () => (
     <div>
       <Route
+        exact
         path="/"
         render={(props) => (
           <LoginPage
@@ -32,6 +32,7 @@ const AppWithAuth = () => {
         )}
       />
       <Route path="/implicit/callback" component={LoginCallback} />
+      <Route path="/implicit/callback" component={LoginLoading} />
       <Footer />
     </div>
   );
@@ -43,7 +44,6 @@ const AppWithAuth = () => {
       <Route path="/sendInvite" component={SendInvite} />
       <Route path="/inviteTemplate" component={CreateInviteTemplate} />
       <Route path="/templateDashboard" component={TemplateDashboard} />
-      <Route path="/implicit/callback" component={LoginCallback} />
       <Route path="/profile" component={UserProfile} />
       <Route path="/userCalendar" component={UserCalendarDashboard} />
       <Route path="/statistics" component={StatsDashboard} />
