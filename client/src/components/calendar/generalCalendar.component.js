@@ -30,19 +30,17 @@ const GeneralCalendar = () => {
 
   useEffect(() => {
     for (const template of templateList) {
-      template["start"] =  transformDate(template.date, template.startTime);
-      template["end"] = transformDate(template.date, template.endTime);
+      template['start'] = transformDate(template.date, template.startTime);
+      template['end'] = transformDate(template.date, template.endTime);
     }
     setEventList(templateList);
-  }, [templateList, currentEvent])
+  }, [templateList, currentEvent]);
 
-  const renderEventDetails = () =>
-  {
-    if(currentEvent !== undefined)
-    {
-      return(ReactEmailHTML(currentEvent))
+  const renderEventDetails = () => {
+    if (currentEvent !== undefined) {
+      return (ReactEmailHTML(currentEvent));
     }
-  }
+  };
 
   return (
     <div style={{height: '550pt'}}>
@@ -53,15 +51,15 @@ const GeneralCalendar = () => {
         defaultDate={moment().toDate()}
         localizer={localizer}
         timeslots={6}
-        onSelectEvent={event => {
-          setCurrentEvent(event)
-          document.getElementById("eventDetails").click()
-        }} 
+        onSelectEvent={(event) => {
+          setCurrentEvent(event);
+          document.getElementById('eventDetails').click();
+        }}
       />
 
-      <a class="modal-trigger" href="#modal" id="eventDetails"> </a>
+      <a className="modal-trigger" href="#modal" id="eventDetails"> </a>
 
-      <div id="modal" class="modal">
+      <div id="modal" className="modal">
         {renderEventDetails()}
       </div>
     </div>
