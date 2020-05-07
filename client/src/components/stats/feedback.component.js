@@ -49,13 +49,13 @@ const Feedback = () => {
                       <div className="col s6">
                         <h6 style={{color: '#ffff00'}}>
                           Clarity and precision of expression:
-                          {item.clarityOfExpression}
+                          {' ' + item.clarityOfExpression}
                         </h6>
                       </div>
                       <div className="col s6">
                         <h6 style={{color: '#ffff00'}}>
                           Content quality:
-                          {item.contentQuality}
+                          {' ' + item.contentQuality}
                         </h6>
                       </div>
                     </div>
@@ -63,13 +63,13 @@ const Feedback = () => {
                       <div className="col s6">
                         <h6 style={{color: '#ffff00'}}>
                           Teaching materials:
-                          {item.teachingMaterials}
+                          {' ' + item.teachingMaterials}
                         </h6>
                       </div>
                       <div className="col s6">
                         <h6 style={{color: '#ffff00'}}>
                           Contact with the group:
-                          {item.contactWithGroup}
+                          {' ' + item.contactWithGroup}
                         </h6>
                       </div>
                     </div>
