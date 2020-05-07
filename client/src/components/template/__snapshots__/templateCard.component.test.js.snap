@@ -293,6 +293,7 @@ exports[`Match TemplateCard to snapshot 1`] = `
                                   >
                                     Thu Apr 30 2020
                                   </span>
+                                  <br />
                                   <span
                                     style={
                                       Object {
