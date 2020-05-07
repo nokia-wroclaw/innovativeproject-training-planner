@@ -2,6 +2,8 @@ import React, {useEffect, useState} from 'react';
 import {Link} from 'react-router-dom';
 import {useOktaAuth} from '@okta/okta-react';
 import TemplateCard from '../template/templateCard.component';
+import LoadingCircular from '../addons/loadingCircular.component';
+import FadeIn from 'react-fade-in';
 import M from 'materialize-css';
 import axios from 'axios';
 
@@ -19,8 +21,10 @@ const TemplateDashboard = () => {
   const {authState, authService} = useOktaAuth();
   const {accessToken} = authState;
 
+  const [isLoaded, setIsLoaded] = useState(false);
+
   const [username, setUsername] = useState('');
-  const [templatelist, setTemplateList] = useState([]);
+  const [templateList, setTemplateList] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [tooltip, setTooltip] = useState('');
   const [activeTab, setActiveTab] = useState('pending');
@@ -35,6 +39,14 @@ const TemplateDashboard = () => {
       setUsername(info.preferred_username);
     });
   }, [authService]);
+
+  useEffect(() => {
+    if (templateList !== [] && searchQuery === '') {
+      setTimeout(() => {
+        setIsLoaded(true);
+      }, 1000);
+    }
+  }, [isLoaded, templateList, searchQuery]);
 
   useEffect(() => {
     let elems = document.querySelectorAll('.fixed-action-btn');
@@ -163,14 +175,21 @@ const TemplateDashboard = () => {
       </nav>
 
       {/* main content */}
-      <div className="container center">
-        <div className="row">
-          {templatelist.map((item) => (
-            <div className="col s12 m6" key={item._id}>
-              <TemplateCard item={item} />
-            </div>
-          ))}
-        </div>
+      <div className="container center" style={{height: 1050}}>
+        {!isLoaded ? (
+          <LoadingCircular style={{width: 200, height: 200, margin: 50}} />
+        ) : (
+          <div className="row">
+            {templateList.map((item) => (
+              <div className="col s12 m6" key={item._id}>
+                <FadeIn>
+                  <TemplateCard item={item} />
+                </FadeIn>
+              </div>
+            ))}
+          </div>
+        )}
+
         <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
           <Link
             to="/inviteTemplate"
