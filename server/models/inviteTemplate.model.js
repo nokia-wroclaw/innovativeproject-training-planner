@@ -55,6 +55,9 @@ const inviteTemplateSchema = new Schema(
       openTrainging: {
         type: Boolean,
       },
+      feedback: {
+        type: Array,
+      },
     },
     {
       timestamps: true,

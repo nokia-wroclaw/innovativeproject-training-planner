@@ -11,6 +11,8 @@ import UserProfile from './user/userProfile.component';
 import TemplateDashboard from './views/templateDashboard.component';
 import CreateInviteTemplate from './template/createInviteTemplate.component';
 import UserCalendarDashboard from './views/userCalendarDashboard.component';
+import StatsDashboard from './views/statsDashboard.component';
+import Feedback from './stats/feedback.component';
 
 // TODO find and remove unnecessary checks for user auth
 
@@ -44,6 +46,8 @@ const AppWithAuth = () => {
       <Route path="/implicit/callback" component={LoginCallback} />
       <Route path="/profile" component={UserProfile} />
       <Route path="/userCalendar" component={UserCalendarDashboard} />
+      <Route path="/statistics" component={StatsDashboard} />
+      <Route path="/feedback" component={Feedback} />
       <Footer />
     </div>
   );

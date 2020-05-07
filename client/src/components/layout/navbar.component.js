@@ -25,6 +25,9 @@ const Navbar = (props) => {
             <Link to="/templateDashboard">Templates</Link>
           </li>
           <li>
+            <Link to="/statistics">Statistics</Link>
+          </li>
+          <li>
             <Link to="/userCalendar">User Calendar</Link>
           </li>
         </ul>
