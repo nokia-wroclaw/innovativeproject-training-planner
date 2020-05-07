@@ -1,20 +1,12 @@
 import React from 'react';
+import GeneralCalendar from '../calendar/generalCalendar.component';
 
-const Home = ({authState, authService}) => {
-  const login = async () => {
-    // Redirects to    ---------v--------- after login
-    authService.login('/templateDashboard');
-  };
-
+const Home = () => {
   return (
-    <div className="center-align">
-      <h1>MiTraining Planner</h1>
-      <button
-        onClick={login}
-        className="btn-large pulse waves-effect waves-light pink lighten-1"
-      >
-        Login
-      </button>
+    <div className="container center-align">
+      <h1>Home Page</h1>
+      <GeneralCalendar height="550pt" />
+      <br />
     </div>
   );
 };

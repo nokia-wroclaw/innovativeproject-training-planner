@@ -16,5 +16,5 @@ deploy:
     unit-tests: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
     calendar-2-general: mittrainingplanner-mkomorek
-    logout-view: mittrainingplanner-jaolejnik
+    login-page: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak

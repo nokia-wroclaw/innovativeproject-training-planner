@@ -44,7 +44,7 @@ router.route('/sent').get(okta.authenticationRequired, (req, res) => {
       .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-router.route('/openTraining').get(okta.authenticationRequired, (req, res) => {
+router.route('/openTraining').get((req, res) => {
   InviteTemplate.find({
     $and: [{openTrainging: true}],
   })

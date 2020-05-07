@@ -6,8 +6,19 @@ const Navbar = (props) => {
   return (
     <div className="navbar-fixed">
       <nav className="nav-wrapper blue darken-3">
-        <Link to="/" className="brand-logo center">
-          Training Planner<i className="material-icons right">watch</i>
+        <Link
+          to="/"
+          className="brand-logo center"
+          style={{fontFamily: 'Denk one'}}
+        >
+          MiTraining Planner
+          <i className="material-icons right">
+            <img
+              src={process.env.PUBLIC_URL + '/logo-white.png'}
+              alt="LOGO"
+              width="60"
+            />
+          </i>
         </Link>
         <ul className="left">
           <li>

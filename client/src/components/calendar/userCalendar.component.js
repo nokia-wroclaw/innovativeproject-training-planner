@@ -10,7 +10,7 @@ import {generateTemplates} from './calendarModelFunctions';
 // without this line first day is Sunday
 moment.locale('en', {week: {dow: 1}});
 
-const UserCalendar = () => {
+const UserCalendar = (props) => {
   const {authState, authService} = useOktaAuth();
   const {accessToken} = authState;
   const [username, setUsername] = useState('');
@@ -43,16 +43,15 @@ const UserCalendar = () => {
   }, [templateList]);
 
   return (
-    <div style={{height: '550pt'}}>
-      <Calendar
-        events={eventList}
-        startAccessor="start"
-        endAccessor="end"
-        defaultDate={moment().toDate()}
-        localizer={localizer}
-        timeslots={6}
-      />
-    </div>
+    <Calendar
+      style={{height: props.height}}
+      events={eventList}
+      startAccessor="start"
+      endAccessor="end"
+      defaultDate={moment().toDate()}
+      localizer={localizer}
+      timeslots={6}
+    />
   );
 };
 
