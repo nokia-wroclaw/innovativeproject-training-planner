@@ -46,7 +46,7 @@ const SendFeedback = (template) => {
     <div>
       <div className="row">
         <h4>Leave us some feedback!</h4>
-        <br></br>
+        <br/>
         <form className="white col s12" onSubmit={onSubmit}>
 
           <div className="input-field col s6">
