@@ -52,6 +52,14 @@ router.route('/openTraining').get((req, res) => {
       .catch((err) => res.status(400).json('Error: ' + err));
 });
 
+router.route('/pastTraining').get(okta.authenticationRequired, (req, res) => {
+  InviteTemplate.find({
+    $and: [{userName: req.headers.username}, {date: {$lt: new Date()}}],
+  })
+      .then((inviteTemplate) => res.json(inviteTemplate))
+      .catch((err) => res.status(400).json('Error: ' + err));
+});
+
 router.route('/save').post(okta.authenticationRequired, (req, res) => {
   // req.body is a template as JSON
   const template = req.body;
