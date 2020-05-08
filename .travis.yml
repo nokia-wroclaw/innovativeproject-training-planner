@@ -16,5 +16,5 @@ deploy:
     unit-tests: mittrainingplanner-starmarek
     branch: mittrainingplanner-mbednar22
     userfeedback: mittrainingplanner-mkomorek
-    login-page: mittrainingplanner-jaolejnik
+    slick-loading: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak

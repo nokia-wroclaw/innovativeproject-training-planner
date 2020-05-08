@@ -92,11 +92,11 @@ const Feedback = () => {
       >
         LEAVE US SOME FEEDBACK
       </button>
-      <br></br>
+      <br/>
       <div id="modal" className="modal">
         {SendFeedback(template)}
       </div>
-      <br></br>
+      <br/>
       <div className="row">
         {renderFeedbacks()}
       </div>
