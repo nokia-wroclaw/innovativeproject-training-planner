@@ -85,7 +85,7 @@ const Feedback = () => {
 
   return (
     <div className="container center">
-      <br></br>
+      <br/>
       <button
         className="modal-trigger pulse btn-large pink lighten-1"
         href="#modal"

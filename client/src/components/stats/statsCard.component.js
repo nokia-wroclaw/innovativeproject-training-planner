@@ -43,7 +43,7 @@ const StatsCard = (props) => {
 
   const getAverage = () => {
     if (isNaN(average)) {
-      return ( <h5>No one has rated treinig yet.</h5>);
+      return ( <h5>No one has rated training yet</h5>);
     } else {
       return (<h5>{parseFloat(average).toFixed(2)}</h5>);
     }
