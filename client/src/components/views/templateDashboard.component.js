@@ -3,7 +3,7 @@ import {Link} from 'react-router-dom';
 import {useOktaAuth} from '@okta/okta-react';
 import TemplateCard from '../template/templateCard.component';
 import LoadingCircular from '../addons/loadingCircular.component';
-import FadeIn from 'react-fade-in';
+import Pagination from '../layout/pagination.component';
 import M from 'materialize-css';
 import axios from 'axios';
 
@@ -33,6 +33,8 @@ const TemplateDashboard = () => {
     sent: '',
     all: '',
   });
+  const [activePaginationTab, setActivePaginationTab] = useState(1);
+  const elemsPerPage = 8;
 
   useEffect(() => {
     authService.getUser().then((info) => {
@@ -123,7 +125,11 @@ const TemplateDashboard = () => {
 
   const tabClickHandler = (event) => {
     event.preventDefault();
-    setActiveTab(event.target.id);
+    const id = event.target.id;
+    setTimeout(() => {
+      setActivePaginationTab(1);
+    }, 1000);
+    setActiveTab(id);
   };
 
   return (
@@ -175,20 +181,41 @@ const TemplateDashboard = () => {
       </nav>
 
       {/* main content */}
-      <div className="container center" style={{height: 1050}}>
+      <div className="container center" style={{height: 1250}}>
+        <div className="row" style={{marginTop: 50}}>
+          <Pagination
+            elemsAmount={templateList.length}
+            elemsPerPage={elemsPerPage}
+            activeTab={activePaginationTab}
+            changeTab={setActivePaginationTab}
+          />
+        </div>
+
         {!isLoaded ? (
           <LoadingCircular style={{width: 200, height: 200, margin: 50}} />
         ) : (
           <div className="row">
-            {templateList.map((item) => (
-              <div className="col s12 m6" key={item._id}>
-                <FadeIn>
-                  <TemplateCard item={item} />
-                </FadeIn>
-              </div>
-            ))}
+            {templateList
+                .slice(
+                    (activePaginationTab - 1) * elemsPerPage,
+                    activePaginationTab * elemsPerPage,
+                )
+                .map((item) => (
+                  <div className="col s12 m6" key={item._id}>
+                    <TemplateCard item={item} />
+                  </div>
+                ))}
           </div>
         )}
+
+        <div className="row" style={{marginTop: 50}}>
+          <Pagination
+            elemsAmount={templateList.length}
+            elemsPerPage={elemsPerPage}
+            activeTab={activePaginationTab}
+            changeTab={setActivePaginationTab}
+          />
+        </div>
 
         <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
           <Link

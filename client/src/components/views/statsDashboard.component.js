@@ -3,7 +3,7 @@ import {useOktaAuth} from '@okta/okta-react';
 import StatsCard from '../stats/statsCard.component';
 import axios from 'axios';
 import LoadingCircular from '../addons/loadingCircular.component';
-import FadeIn from 'react-fade-in';
+import Pagination from '../layout/pagination.component';
 
 const StatsDashboard = () => {
   const {authState, authService} = useOktaAuth();
@@ -13,6 +13,8 @@ const StatsDashboard = () => {
 
   const [username, setUsername] = useState('');
   const [templateList, setTemplateList] = useState([]);
+  const [activePaginationTab, setActivePaginationTab] = useState(1);
+  const elemsPerPage = 8;
 
   useEffect(() => {
     authService.getUser().then((info) => {
@@ -41,19 +43,33 @@ const StatsDashboard = () => {
 
   return (
     <div className="container center" style={{height: 1050, marginTop: 50}}>
+      <div className="row" style={{marginTop: 50}}>
+        <Pagination
+          elemsAmount={templateList.length}
+          elemsPerPage={elemsPerPage}
+          activeTab={activePaginationTab}
+          changeTab={setActivePaginationTab}
+        />
+      </div>
       {!isLoaded ? (
         <LoadingCircular style={{width: 200, height: 200, margin: 50}} />
       ) : (
         <div className="row">
           {templateList.map((item) => (
             <div className="col s12 m6" key={item._id}>
-              <FadeIn>
-                <StatsCard item={item} />
-              </FadeIn>
+              <StatsCard item={item} />
             </div>
           ))}
         </div>
       )}
+      <div className="row" style={{marginTop: 50}}>
+        <Pagination
+          elemsAmount={templateList.length}
+          elemsPerPage={elemsPerPage}
+          activeTab={activePaginationTab}
+          changeTab={setActivePaginationTab}
+        />
+      </div>
     </div>
   );
 };
