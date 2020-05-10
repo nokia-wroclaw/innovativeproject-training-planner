@@ -7,7 +7,6 @@ import M from 'materialize-css';
 import {transformDate} from '../../toolset/baseFunctions';
 import ReactEmailHTML from '../invitation/reactEmailHtml.component';
 import LoadingCircular from '../addons/loadingCircular.component';
-import FadeIn from 'react-fade-in';
 
 // Set Monday as a first day of the week in calendar
 // without this line first day is Sunday
@@ -59,31 +58,28 @@ const GeneralCalendar = () => {
       {!isLoaded ? (
         <LoadingCircular style={{width: 200, height: 200}} />
       ) : (
-        <FadeIn>
-          <div style={{height: '550pt'}}>
-            <Calendar
-              events={eventList}
-              startAccessor="start"
-              endAccessor="end"
-              defaultDate={moment().toDate()}
-              localizer={localizer}
-              timeslots={6}
-              onSelectEvent={(event) => {
-                setCurrentEvent(event);
-                document.getElementById('eventDetails').click();
-              }}
-            />
+        <div style={{height: '550pt'}}>
+          <Calendar
+            events={eventList}
+            startAccessor="start"
+            endAccessor="end"
+            defaultDate={moment().toDate()}
+            localizer={localizer}
+            timeslots={6}
+            onSelectEvent={(event) => {
+              setCurrentEvent(event);
+              document.getElementById('eventDetails').click();
+            }}
+          />
 
-            <a className="modal-trigger" href="#modal" id="eventDetails">
-              {' '}
-            </a>
-
-            <div id="modal" className="modal">
-              {renderEventDetails()}
-            </div>
-          </div>
-        </FadeIn>
+          <a className="modal-trigger" href="#modal" id="eventDetails">
+            {' '}
+          </a>
+        </div>
       )}
+      <div id="modal" className="modal">
+        {renderEventDetails()}
+      </div>
     </div>
   );
 };
