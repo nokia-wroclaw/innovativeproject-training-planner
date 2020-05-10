@@ -24,7 +24,7 @@ const CheckUser = () => {
           .error((err) => console.log('error'));
     });
     history.push('/');
-  }, []);
+  }, [authState, history]);
 
   return (
     <div className="center-align">
