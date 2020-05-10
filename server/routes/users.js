@@ -1,7 +1,5 @@
 const router = require('express').Router();
-const ical = require('ical-generator');
 const Users = require('../models/users.model');
-const baseTools = require('../toolset/base');
 const okta = require('../toolset/okta');
 
 router.route('/is_user/').get(okta.checkIfUser, (req, res) => {
@@ -16,7 +14,7 @@ router.route('/is_user/').get(okta.checkIfUser, (req, res) => {
             name: req.headers.username,
             type: 'user',
           };
-          const newUser= new Users(userT);
+          const newUser = new Users(userT);
 
           newUser
               .save()
