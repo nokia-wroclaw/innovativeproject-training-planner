@@ -112,7 +112,7 @@ const TemplateCard = (props) => {
 
   return (
     <div
-      className="card hoverable"
+      className="card hoverable template"
       style={{
         backgroundColor: cardColorDictionary.get(props.item.trainingType),
       }}

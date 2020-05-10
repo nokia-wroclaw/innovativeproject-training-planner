@@ -3,10 +3,12 @@ import GeneralCalendar from '../calendar/generalCalendar.component';
 
 const Home = () => {
   return (
-    <div className="container center" style={{height: 850}}>
-      <h4>Home Page</h4>
-      <GeneralCalendar height="550pt" />
-      <br />
+    <div className="background">
+      <div className="container center cal-board">
+        <div className="row">
+          <GeneralCalendar height="550pt" />
+        </div>
+      </div>
     </div>
   );
 };

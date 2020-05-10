@@ -138,9 +138,7 @@ const LoginPage = ({authState, authService}) => {
           <h4 style={{fontWeight: 'bold', marginBottom: 50}}>
             OPEN FOR PUBLIC TRAININGS CREATED WITH MITRAINING PLANNER
           </h4>
-          <div className="z-depth-3 white">
-            <GeneralCalendar height="550pt" />
-          </div>
+          <GeneralCalendar height="550pt" />
         </div>
 
         <div>

@@ -42,33 +42,39 @@ const StatsDashboard = () => {
   }, [accessToken, username]);
 
   return (
-    <div className="container center" style={{height: 1050, marginTop: 50}}>
-      <div className="row" style={{marginTop: 50}}>
-        <Pagination
-          elemsAmount={templateList.length}
-          elemsPerPage={elemsPerPage}
-          activeTab={activePaginationTab}
-          changeTab={setActivePaginationTab}
-        />
-      </div>
-      {!isLoaded ? (
-        <LoadingCircular style={{width: 200, height: 200, margin: 50}} />
-      ) : (
+    <div className="background">
+      <div className="container center">
         <div className="row">
-          {templateList.map((item) => (
-            <div className="col s12 m6" key={item._id}>
-              <StatsCard item={item} />
-            </div>
-          ))}
+          <Pagination
+            elemsAmount={templateList.length}
+            elemsPerPage={elemsPerPage}
+            activeTab={activePaginationTab}
+            changeTab={setActivePaginationTab}
+          />
         </div>
-      )}
-      <div className="row" style={{marginTop: 50}}>
-        <Pagination
-          elemsAmount={templateList.length}
-          elemsPerPage={elemsPerPage}
-          activeTab={activePaginationTab}
-          changeTab={setActivePaginationTab}
-        />
+
+        <div className="template-board">
+          {!isLoaded ? (
+            <LoadingCircular />
+          ) : (
+            <div className="row">
+              {templateList.map((item) => (
+                <div className="col s12 m6" key={item._id}>
+                  <StatsCard item={item} />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="row" style={{marginTop: 50}}>
+          <Pagination
+            elemsAmount={templateList.length}
+            elemsPerPage={elemsPerPage}
+            activeTab={activePaginationTab}
+            changeTab={setActivePaginationTab}
+          />
+        </div>
       </div>
     </div>
   );

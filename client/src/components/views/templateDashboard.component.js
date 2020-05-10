@@ -34,7 +34,7 @@ const TemplateDashboard = () => {
     all: '',
   });
   const [activePaginationTab, setActivePaginationTab] = useState(1);
-  const elemsPerPage = 8;
+  const elemsPerPage = 12;
 
   useEffect(() => {
     authService.getUser().then((info) => {
@@ -135,7 +135,7 @@ const TemplateDashboard = () => {
   return (
     <div>
       {/* dashboard navbar  */}
-      <nav className="nav-wrapper blue darken-3" style={{marginBottom: 50}}>
+      <nav className="nav-wrapper blue darken-3">
         <ul className="left" style={{marginLeft: '1%'}}>
           <li>
             <i className="material-icons white-text right">
@@ -180,53 +180,57 @@ const TemplateDashboard = () => {
         </ul>
       </nav>
 
-      {/* main content */}
-      <div className="container center" style={{height: 1250}}>
-        <div className="row" style={{marginTop: 50}}>
-          <Pagination
-            elemsAmount={templateList.length}
-            elemsPerPage={elemsPerPage}
-            activeTab={activePaginationTab}
-            changeTab={setActivePaginationTab}
-          />
-        </div>
-
-        {!isLoaded ? (
-          <LoadingCircular style={{width: 200, height: 200, margin: 50}} />
-        ) : (
+      <div className="background">
+        {/* main content */}
+        <div className="container center">
           <div className="row">
-            {templateList
-                .slice(
-                    (activePaginationTab - 1) * elemsPerPage,
-                    activePaginationTab * elemsPerPage,
-                )
-                .map((item) => (
-                  <div className="col s12 m6" key={item._id}>
-                    <TemplateCard item={item} />
-                  </div>
-                ))}
+            <Pagination
+              elemsAmount={templateList.length}
+              elemsPerPage={elemsPerPage}
+              activeTab={activePaginationTab}
+              changeTab={setActivePaginationTab}
+            />
           </div>
-        )}
 
-        <div className="row" style={{marginTop: 50}}>
-          <Pagination
-            elemsAmount={templateList.length}
-            elemsPerPage={elemsPerPage}
-            activeTab={activePaginationTab}
-            changeTab={setActivePaginationTab}
-          />
-        </div>
+          <div className="template-board">
+            {!isLoaded ? (
+              <LoadingCircular />
+            ) : (
+              <div className="row">
+                {templateList
+                    .slice(
+                        (activePaginationTab - 1) * elemsPerPage,
+                        activePaginationTab * elemsPerPage,
+                    )
+                    .map((item) => (
+                      <div className="col s12 m6" key={item._id}>
+                        <TemplateCard item={item} />
+                      </div>
+                    ))}
+              </div>
+            )}
+          </div>
 
-        <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
-          <Link
-            to="/inviteTemplate"
-            className={
-              'btn-floating pulse btn-large waves-effect' +
-              'waves-light pink lighten-1'
-            }
-          >
-            <i className="material-icons">add</i>
-          </Link>
+          <div className="row">
+            <Pagination
+              elemsAmount={templateList.length}
+              elemsPerPage={elemsPerPage}
+              activeTab={activePaginationTab}
+              changeTab={setActivePaginationTab}
+            />
+          </div>
+
+          <div className="fixed-action-btn left tooltipped" onClick={onAddNew}>
+            <Link
+              to="/inviteTemplate"
+              className={
+                'btn-floating pulse btn-large waves-effect' +
+                'waves-light pink lighten-1'
+              }
+            >
+              <i className="material-icons">add</i>
+            </Link>
+          </div>
         </div>
       </div>
     </div>
