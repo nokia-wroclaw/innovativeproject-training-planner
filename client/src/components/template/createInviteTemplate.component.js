@@ -111,6 +111,7 @@ const CreateInviteTemplate = (props) => {
     };
 
     if (mode === 'create') {
+      console.log("tutaj")
       axios
           .post(`/inviteTemplate/save`, template, {
             headers: {

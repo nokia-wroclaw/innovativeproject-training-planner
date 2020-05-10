@@ -3,7 +3,7 @@ import React from 'react';
 const Home = ({authState, authService}) => {
   const login = async () => {
     // Redirects to    ---------v--------- after login
-    authService.login('/templateDashboard');
+    authService.login('/checkuser');
   };
 
   return (

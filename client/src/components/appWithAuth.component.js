@@ -4,6 +4,7 @@ import {LoginCallback, useOktaAuth} from '@okta/okta-react';
 
 import Home from './views/home.component';
 import Navbar from './layout/navbar.component';
+import CheckUser from './addons/checkUser.component';
 import SendInvite from './invitation/sendInvite.component';
 import UserProfile from './user/userProfile.component';
 import TemplateDashboard from './views/templateDashboard.component';
@@ -31,6 +32,7 @@ const AppWithAuth = () => {
     <div>
       <Navbar />
       <Route exact path="/" />
+      <Route path="/checkUser" component={CheckUser} />
       <Route path="/sendInvite" component={SendInvite} />
       <Route path="/inviteTemplate" component={CreateInviteTemplate} />
       <Route path="/templateDashboard" component={TemplateDashboard} />
