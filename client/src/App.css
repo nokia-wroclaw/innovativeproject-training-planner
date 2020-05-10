@@ -1,0 +1,22 @@
+.background {
+  padding: 20px;
+  background-color: #e6f7ff;
+}
+
+.loading {
+  width: 200px;
+  height: 200px;
+  margin: 50px;
+}
+
+.template {
+  opacity: 1;
+}
+
+.template-board {
+  height: 1250px;
+}
+
+.cal-board {
+  height: 850px;
+}

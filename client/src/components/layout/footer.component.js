@@ -11,55 +11,108 @@ const Footer = (props) => {
               You can use rows and columns here to organize your footer content.
             </p>
           </div>
-          <div className="col l4 offset-l2 s12">
-            <h5 className="white-text">
-              Our team <i className="material-icons">group</i>
+
+          <div className="col l2 offset-l4 s12">
+            <h5 className="white-text center" style={{fontWeight: 'bold'}}>
+              <i className="fas fa-user-friends"></i> Our team
             </h5>
+            <div className="divider" />
+
             <ul>
               <li>
                 <a
+                  style={{marginRight: 10}}
                   className="grey-text text-lighten-3"
                   href="https://github.com/Bednar22"
                 >
-                  Maciek Bednarski
+                  <i className="fab fa-github" />
                 </a>
+                <a
+                  style={{marginRight: 10}}
+                  className="grey-text text-lighten-3"
+                  href="https://pl.linkedin.com/"
+                >
+                  <i className="fab fa-linkedin" />
+                </a>
+                Maciek Bednarski
               </li>
+
               <li>
                 <a
+                  style={{marginRight: 10}}
                   className="grey-text text-lighten-3"
                   href="https://github.com/Cvaniak"
                 >
-                  Ignacy Iwaniak
+                  <i className="fab fa-github" />
                 </a>
+                <a
+                  style={{marginRight: 10}}
+                  className="grey-text text-lighten-3"
+                  href="https://pl.linkedin.com/"
+                >
+                  <i className="fab fa-linkedin" />
+                </a>
+                Ignacy Iwaniak
               </li>
+
               <li>
                 <a
+                  style={{marginRight: 10}}
                   className="grey-text text-lighten-3"
                   href="https://github.com/mKomorek"
                 >
-                  Marcin Komorek
+                  <i className="fab fa-github" />
                 </a>
+                <a
+                  style={{marginRight: 10}}
+                  className="grey-text text-lighten-3"
+                  href="https://pl.linkedin.com/"
+                >
+                  <i className="fab fa-linkedin" />
+                </a>
+                Marcin Komorek
               </li>
+
               <li>
                 <a
+                  style={{marginRight: 10}}
                   className="grey-text text-lighten-3"
                   href="https://github.com/jaolejnik"
                 >
-                  Jakub Olejnik
+                  <i className="fab fa-github" />
                 </a>
+                <a
+                  style={{marginRight: 10}}
+                  className="grey-text text-lighten-3"
+                  href="https://pl.linkedin.com/"
+                >
+                  <i className="fab fa-linkedin" />
+                </a>
+                Jakub Olejnik
               </li>
+
               <li>
                 <a
+                  style={{marginRight: 10}}
                   className="grey-text text-lighten-3"
                   href="https://github.com/starmarek"
                 >
-                  Aleksander Pucher
+                  <i className="fab fa-github" />
                 </a>
+                <a
+                  style={{marginRight: 10}}
+                  className="grey-text text-lighten-3"
+                  href="https://pl.linkedin.com/"
+                >
+                  <i className="fab fa-linkedin" />
+                </a>
+                Aleksander Pucher
               </li>
             </ul>
           </div>
         </div>
       </div>
+
       <div className="footer-copyright">
         <div className="container">
           © 2020 MiTraining Planner
@@ -67,7 +120,8 @@ const Footer = (props) => {
             className="grey-text text-lighten-4 right"
             href="https://github.com/nokia-wroclaw/innovativeproject-training-planner"
           >
-            Source code
+            <i className="fab fa-github" style={{marginRight: 10}} />
+            View source code
           </a>
         </div>
       </div>

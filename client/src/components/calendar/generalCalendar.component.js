@@ -58,7 +58,15 @@ const GeneralCalendar = () => {
       {!isLoaded ? (
         <LoadingCircular style={{width: 200, height: 200}} />
       ) : (
-        <div style={{height: '550pt'}}>
+        <div
+          className="z-depth-3"
+          style={{
+            height: '550pt',
+            background: 'white',
+            padding: 20,
+            borderRadius: 25,
+          }}
+        >
           <Calendar
             events={eventList}
             startAccessor="start"
