@@ -14,7 +14,7 @@ deploy:
   app:
     master: mittrainingplanner-master
     unit-tests: mittrainingplanner-starmarek
-    branch: mittrainingplanner-mbednar22
+    tinymce-editor: mittrainingplanner-mbednar22
     userfeedback: mittrainingplanner-mkomorek
     slick-loading: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak

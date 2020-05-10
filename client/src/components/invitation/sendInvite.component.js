@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import {renderEmail} from 'react-html-email';
-import ReactEmailHTML from './reactEmailHtml.component';
 import BetterChips from '../addons/betterChips.componenet';
 import {getLastUrlParam} from '../../toolset/baseFunctions';
 import {useOktaAuth} from '@okta/okta-react';
+import {Editor} from '@tinymce/tinymce-react';
+import EmailTemplate from './cleanHTMLemail.component';
 import M from 'materialize-css';
 import axios from 'axios';
 
@@ -30,7 +30,7 @@ const SendInvite = (props) => {
   }, [accessToken]);
 
   useEffect(() => {
-    setMessage(renderEmail(ReactEmailHTML(template)));
+    setMessage(EmailTemplate(template));
   }, [template]);
 
   const markAsSent = () => {
@@ -100,8 +100,34 @@ const SendInvite = (props) => {
               onChange={(e) => setSubject(e.target.value)}
             />
           </div>
-          <div className="card-panel col s6 m8 offset-m2">
-            {ReactEmailHTML(template)}
+
+          <div className="input-field col s6 m8 offset-m2">
+            <Editor
+              // TODO ENV VAR INSTEAD OF KEY HERE
+              apiKey="tg532ukh2wgn19u9hivt7lnpwf3b8eiberjzp7vgimuw2gtb"
+              value={message}
+              outputFormat="html"
+              id="TinyEditor"
+              init={{
+                selector: 'textarea',
+                max_height: 800,
+                menubar: false,
+                plugins: [
+                  'advlist autolink lists link image' +
+                  'charmap print preview anchor',
+                  'searchreplace visualblocks code fullscreen',
+                  'insertdatetime media table paste code help wordcount',
+                  'legacyoutput',
+                  'autoresize',
+                  'link',
+                ],
+                toolbar:
+                  'undo redo | formatselect | bold italic backcolor | ' +
+                  'alignleft aligncenter alignright alignjustify | ' +
+                  'bullist numlist outdent indent | removeformat | link | help',
+              }}
+              onEditorChange={setMessage}
+            />
           </div>
         </div>
         <div className="input-field col s6 offset-s3">
