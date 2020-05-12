@@ -17,6 +17,11 @@
   margin: 50px;
 }
 
+.form {
+  background-color: white;
+  padding: 50px;
+}
+
 .template-board {
   height: 1550px;
 }

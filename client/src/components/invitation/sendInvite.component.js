@@ -78,10 +78,10 @@ const SendInvite = (props) => {
   };
 
   return (
-    <div className="container">
-      <form className="white col s12" onSubmit={onSend}>
-        <div className="row center">
-          <div className="col s6 offset-s3">
+    <div className="background">
+      <div className="container z-depth-3 form center">
+        <form onSubmit={onSend}>
+          <div className="input-field">
             <BetterChips
               required
               label="Recipients"
@@ -90,7 +90,7 @@ const SendInvite = (props) => {
               onEnter={setRecipients}
             />
           </div>
-          <div className="input-field col s6 offset-s3">
+          <div className="input-field">
             <label htmlFor="subject">Subject</label>
             <input
               type="text"
@@ -99,53 +99,54 @@ const SendInvite = (props) => {
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
             />
-          </div>
 
-          <div className="input-field col s6 m8 offset-m2">
-            <Editor
-              // TODO ENV VAR INSTEAD OF KEY HERE
-              apiKey="tg532ukh2wgn19u9hivt7lnpwf3b8eiberjzp7vgimuw2gtb"
-              value={message}
-              outputFormat="html"
-              id="TinyEditor"
-              init={{
-                selector: 'textarea',
-                max_height: 800,
-                menubar: false,
-                plugins: [
-                  'advlist autolink lists link image' +
-                    'charmap print preview anchor',
-                  'searchreplace visualblocks code fullscreen',
-                  'insertdatetime media table paste code help wordcount',
-                  'legacyoutput',
-                  'autoresize',
-                  'link',
-                ],
-                toolbar:
-                  'undo redo | formatselect | bold italic backcolor | ' +
-                  'alignleft aligncenter alignright alignjustify | ' +
-                  'bullist numlist outdent indent | removeformat | link | help',
-              }}
-              onEditorChange={setMessage}
-            />
-          </div>
-        </div>
-
-        <div className="input-field col s6 offset-s3">
-          <div className="row center">
-            <div className="col s2 offset-s4">
-              <a className="btn secondary-color" href="/templateDashboard">
-                <i className="material-icons left">cancel</i>CANCEL
-              </a>
-            </div>
-            <div className="col s2">
-              <button className="btn secondary-color">
-                <i className="material-icons left">mail</i>SEND
-              </button>
+            <div className="input-field">
+              <Editor
+                // TODO ENV VAR INSTEAD OF KEY HERE
+                apiKey="tg532ukh2wgn19u9hivt7lnpwf3b8eiberjzp7vgimuw2gtb"
+                value={message}
+                outputFormat="html"
+                id="TinyEditor"
+                init={{
+                  selector: 'textarea',
+                  max_height: 800,
+                  menubar: false,
+                  plugins: [
+                    'advlist autolink lists link image' +
+                      'charmap print preview anchor',
+                    'searchreplace visualblocks code fullscreen',
+                    'insertdatetime media table paste code help wordcount',
+                    'legacyoutput',
+                    'autoresize',
+                    'link',
+                  ],
+                  toolbar:
+                    'undo redo | formatselect | bold italic backcolor | ' +
+                    'alignleft aligncenter alignright alignjustify | ' +
+                    'bullist numlist outdent indent |' +
+                    ' removeformat | link | help',
+                }}
+                onEditorChange={setMessage}
+              />
             </div>
           </div>
-        </div>
-      </form>
+
+          <div className="input-field col s6 offset-s3">
+            <div className="row center">
+              <div className="col s2 offset-s4">
+                <a className="btn secondary-color" href="/templateDashboard">
+                  <i className="material-icons left">cancel</i>CANCEL
+                </a>
+              </div>
+              <div className="col s2">
+                <button className="btn secondary-color">
+                  <i className="material-icons left">mail</i>SEND
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
     </div>
   );
 };
