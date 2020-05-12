@@ -50,7 +50,6 @@
 
 .marker-sent {
   width: 0px;
-  height: 100px;
   background-color: transparent;
   position: absolute;
   left: 25px;
@@ -60,7 +59,6 @@
 
 .marker-sent {
   width: 0px;
-  height: 100px;
   background-color: transparent;
   position: absolute;
   left: 25px;
@@ -70,7 +68,6 @@
 
 .marker-stats {
   width: 0px;
-  height: 115px;
   background-color: transparent;
   position: absolute;
   left: 25px;
@@ -79,6 +76,7 @@
 }
 
 .marker-text {
+  margin-bottom: 10px;
   font-weight: bold;
   position: relative;
   writing-mode: vertical-rl;
@@ -106,4 +104,16 @@
   color: orange;
   font-weight: bold;
   margin-right: 7px;
+}
+
+.carousel-container {
+  height: 75%;
+}
+
+.carousel-description {
+  height: 70%;
+}
+
+.carousel-addon {
+  height: 30%;
 }

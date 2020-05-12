@@ -22,11 +22,12 @@ const templatelistItemMock = {
 };
 
 test('Match TemplateCard to snapshot', () => {
-  const outcome = renderer.create(
-      <MemoryRouter>
-        <TemplateCard item={templatelistItemMock} />
-      </MemoryRouter>,
-  ).toJSON();
+  const outcome = renderer
+      .create(
+          <MemoryRouter>
+            <TemplateCard item={templatelistItemMock} />
+          </MemoryRouter>,
+      )
+      .toJSON();
   expect(outcome).toMatchSnapshot();
 });
-

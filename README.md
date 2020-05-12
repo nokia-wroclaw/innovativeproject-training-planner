@@ -10,7 +10,7 @@ App is being developed in collaboration with **Nokia Wroclaw**
 ### TL;DR
 
 Just run
-```bash 
+```bash
 npm run dev
 ```
 And your app will:
@@ -28,14 +28,14 @@ There are several scripts in the root folder that you can take advantage of:
 - `npm run init` - install all dependencies of project. I strongly advice to use it **IF** you are creating app from scratch. If you have already your *node_modules* and you would like to reinstall them - use `npm run reinstall` command.
 - `npm run dev` - run application's development environment. It starts both webpack-dev-frontend server and API backend server.
 - `npm run reinstall` - delete **all** *node_modules* directories and install dependencies from scratch.
-- `npm run rm` - delete all *node_modules* from project
+- `npm run rm` - delete all *node_modules* from project 
 ## Production
-Both deployments are dockerized, thats why you need to make sure you have docker on your machine. You can find install instructions [here](https://docs.docker.com/install/). Just choose your platform in *Supported platforms* paragraph and follow instructions. 
+Both deployments are dockerized, thats why you need to make sure you have docker on your machine. You can find install instructions [here](https://docs.docker.com/install/). Just choose your platform in *Supported platforms* paragraph and follow instructions.
 
 Local deployment is also dependent on docker-compose package. We are using Compose file version 3:
 ```Dockerfile
 version: '3'
-services: 
+services:
 (...)
 ```
 Thats why you must be sure that you are using at least Docker version `1.13.0`.
