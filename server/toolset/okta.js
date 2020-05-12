@@ -2,7 +2,7 @@ const OktaJwtVerifier = require('@okta/jwt-verifier');
 
 module.exports = {
   checkIfUser: function(req, res, next) {
-    console.log('here2');
+    console.log('checkIfUser authenticatation');
     next();
   },
   // Function from example of Okta, used to authenticate
