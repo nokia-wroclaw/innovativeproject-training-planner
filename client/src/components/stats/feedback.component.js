@@ -40,7 +40,7 @@ const Feedback = () => {
                   <div className="card-content white-text">
                     <span className="card-title"></span>
                     <h5 style={{color: '#ffccbc'}}>
-                        General rating: {item.generalRating}
+                      General rating: {item.generalRating}
                     </h5>
                     <h5>{item.text}</h5>
                   </div>
@@ -80,25 +80,26 @@ const Feedback = () => {
           ))}
         </div>
       );
-    };
+    }
   };
 
   return (
-    <div className="container center">
-      <br/>
-      <button
-        className="modal-trigger pulse btn-large pink lighten-1"
-        href="#modal"
-      >
-        LEAVE US SOME FEEDBACK
-      </button>
-      <br/>
+    <div className="background">
+      <div className="container center">
+        <div className="row">
+          <button
+            className="modal-trigger pulse btn-large secondary-color"
+            href="#modal"
+          >
+            LEAVE US SOME FEEDBACK
+          </button>
+        </div>
+
+        <div className="row template-board">{renderFeedbacks()}</div>
+      </div>
+
       <div id="modal" className="modal">
         {SendFeedback(template)}
-      </div>
-      <br/>
-      <div className="row">
-        {renderFeedbacks()}
       </div>
     </div>
   );

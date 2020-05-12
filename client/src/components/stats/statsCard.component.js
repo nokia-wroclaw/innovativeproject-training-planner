@@ -3,13 +3,12 @@ import {Link} from 'react-router-dom';
 import M from 'materialize-css';
 import Dictionary from '../../toolset/dictionary';
 import ReactEmailHTML from '../invitation/reactEmailHtml.component';
-import {pastTemplateMarker} from './pastTemplateMarker';
 
 const cardColorDictionary = new Dictionary();
-cardColorDictionary.add('Software Training', '#1e88e5');
-cardColorDictionary.add('Hardware Training', '#7c4dff');
-cardColorDictionary.add('Soft Skills Training', '#26a69a');
-cardColorDictionary.add('General Training', '#9e9e9e');
+cardColorDictionary.add('Software Training', 'software-training');
+cardColorDictionary.add('Hardware Training', 'hardware-training');
+cardColorDictionary.add('Soft Skills Training', 'soft-training');
+cardColorDictionary.add('General Training', 'general-training');
 
 const cardIconDictionary = new Dictionary();
 cardIconDictionary.add('Software Training', 'computer');
@@ -34,37 +33,42 @@ const StatsCard = (props) => {
   const [average, setAverage] = useState('');
 
   useEffect(() => {
-    let sum=0;
+    let sum = 0;
     for (const feedback of props.item.feedback) {
       sum += parseFloat(feedback.generalRating);
     }
-    setAverage(sum/props.item.feedback.length);
+    setAverage(sum / props.item.feedback.length);
   }, [props.item.feedback]);
+
+  const showStatsMark = () => {
+    return (
+      <div className="marker-stats">
+        <div className="marker-text">STATS</div>
+      </div>
+    );
+  };
 
   const getAverage = () => {
     if (isNaN(average)) {
-      return ( <h5>No one has rated training yet</h5>);
+      return <h5>No one has rated training yet</h5>;
     } else {
-      return (<h5>{parseFloat(average).toFixed(2)}</h5>);
+      return <h5>{parseFloat(average).toFixed(2)}</h5>;
     }
   };
 
   return (
     <div
-      className="card hoverable"
-      style={{
-        backgroundColor: cardColorDictionary.get(props.item.trainingType),
-      }}
+      className={`card hoverable ${cardColorDictionary.get(
+          props.item.trainingType,
+      )}`}
     >
       <div className="card-reveal">
         <span className="card-title grey-text text-darken-4">
-            Average meeting rating:
+          Average meeting rating:
         </span>
         {getAverage()}
       </div>
-      <div style={{position: 'absolute'}}>
-        {pastTemplateMarker()}
-      </div>
+      {showStatsMark(true)}
       <div className="card-content white-text">
         <div className="row">
           <div className="col s10 offset-s1">

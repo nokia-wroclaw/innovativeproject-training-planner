@@ -5,7 +5,7 @@ import LoginLogout from '../user/loginLogout.component.';
 const Navbar = (props) => {
   return (
     <div className="navbar-fixed">
-      <nav className="nav-wrapper blue darken-3">
+      <nav className="nav-wrapper primary-color">
         <Link
           to="/"
           className="brand-logo center"

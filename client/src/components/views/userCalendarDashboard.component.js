@@ -4,7 +4,7 @@ import UserCalendar from '../calendar/userCalendar.component';
 const UserCalendarDashboard = () => {
   return (
     <div className="background">
-      <div className="container center cal-board">
+      <div className="container center calendar-board">
         <h5>
           Here you can see all the trainings you have been invited to and those
           you organize

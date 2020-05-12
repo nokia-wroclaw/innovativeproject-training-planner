@@ -135,7 +135,7 @@ const TemplateDashboard = () => {
   return (
     <div>
       {/* dashboard navbar  */}
-      <nav className="nav-wrapper blue darken-3">
+      <nav className="nav-wrapper primary-color">
         <ul className="left" style={{marginLeft: '1%'}}>
           <li>
             <i className="material-icons white-text right">
@@ -203,7 +203,7 @@ const TemplateDashboard = () => {
                         activePaginationTab * elemsPerPage,
                     )
                     .map((item) => (
-                      <div className="col s12 m6" key={item._id}>
+                      <div className="col s12 l6" key={item._id}>
                         <TemplateCard item={item} />
                       </div>
                     ))}
@@ -225,7 +225,7 @@ const TemplateDashboard = () => {
               to="/inviteTemplate"
               className={
                 'btn-floating pulse btn-large waves-effect' +
-                'waves-light pink lighten-1'
+                'waves-light secondary-color'
               }
             >
               <i className="material-icons">add</i>
