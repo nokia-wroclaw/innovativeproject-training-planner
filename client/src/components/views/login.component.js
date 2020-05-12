@@ -98,8 +98,11 @@ const LoginPage = ({authState, authService}) => {
               >
                 <div className="container carousel-container">
                   <div className="carousel-description">
-                    <h2>QUICK AND SIMPLE</h2>
-                    <p>Short description</p>
+                    <h2 style={{textWeight: 'bold'}}>QUICK AND SIMPLE</h2>
+                    <h2>
+                      MiTraining Planner makes scheduling your tranings
+                      inredible easy!
+                    </h2>
                   </div>
                   <div className="carousel-addon">
                     <i className="large material-icons">account_circle</i>
@@ -112,8 +115,8 @@ const LoginPage = ({authState, authService}) => {
               >
                 <div className="container carousel-container">
                   <div className="carousel-description">
-                    <h2>PERSONAL CALENDAR</h2>
-                    <p>Short description</p>
+                    <h2 style={{textWeight: 'bold'}}>PERSONAL CALENDAR</h2>
+                    <h2>Always be on schedule with your own calendar!</h2>
                   </div>
                   <div className="carousel-addon">
                     <i className="large material-icons">date_range</i>
@@ -126,8 +129,11 @@ const LoginPage = ({authState, authService}) => {
               >
                 <div className="container carousel-container">
                   <div className="carousel-description">
-                    <h2>EVENT INVITATIONS</h2>
-                    <p>Short description</p>
+                    <h2 style={{textWeight: 'bold'}}>EVENT INVITATIONS</h2>
+                    <h2>
+                      Send invitation to your trainngs via email with a
+                      customized ICS file.
+                    </h2>
                   </div>
                   <div className="carousel-addon">
                     <i className="large material-icons">contact_mail</i>
@@ -140,8 +146,12 @@ const LoginPage = ({authState, authService}) => {
               >
                 <div className="container carousel-container">
                   <div className="carousel-description">
-                    <h2>EDITABLE AND REUSABLE TEMPLATES</h2>
-                    <p>Short description</p>
+                    <h2 style={{textWeight: 'bold'}}>
+                      STATISTICS AND FEEDBACK
+                    </h2>
+                    <h2>
+                      Collect feedback and statistics after every training.
+                    </h2>
                   </div>
                   <div className="carousel-addon">
                     <i className="large material-icons">edit</i>

@@ -262,7 +262,7 @@ const CreateInviteTemplate = (props) => {
                   onChange={(event) => setOpenTrainging(event.target.checked)}
                 />
                 <span>
-                  Public training - all interested persons can come to the
+                  Public training - all interested people can come to the
                   meeting
                 </span>
               </label>
