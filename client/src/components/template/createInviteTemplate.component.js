@@ -136,7 +136,7 @@ const CreateInviteTemplate = (props) => {
 
   return (
     <div className="background">
-      <div className="container white z-depth-3" style={{padding: 20}}>
+      <div className="container z-depth-3 form">
         <form className="col s12" onSubmit={onSubmit}>
           <h5 className="grey-text text-darken-3"> {header()} </h5>
           <div className="input-field">
@@ -268,7 +268,7 @@ const CreateInviteTemplate = (props) => {
               </label>
             </p>
           </form>
-          <div className="row">
+          <div className="row" style={{marginTop: 50}}>
             <div className="col s2 offset-s4">
               <a className="btn secondary-color" href="/templateDashboard">
                 <i className="material-icons left">cancel</i>CANCEL
@@ -280,7 +280,6 @@ const CreateInviteTemplate = (props) => {
               </button>
             </div>
           </div>
-          <div className="input-field"></div>
         </form>
       </div>
     </div>
