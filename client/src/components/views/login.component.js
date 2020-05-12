@@ -38,7 +38,7 @@ const LoginPage = ({authState, authService}) => {
 
   const login = () => {
     // Redirects to    ---------v--------- after login
-    authService.login('/');
+    authService.login('/checkuser');
   };
 
   return (

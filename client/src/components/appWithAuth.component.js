@@ -6,6 +6,7 @@ import Home from './views/home.component';
 import LoginPage from './views/login.component';
 import Navbar from './layout/navbar.component';
 import Footer from './layout/footer.component';
+import CheckUser from './addons/checkUser.component';
 import SendInvite from './invitation/sendInvite.component';
 import UserProfile from './user/userProfile.component';
 import TemplateDashboard from './views/templateDashboard.component';
@@ -41,6 +42,7 @@ const AppWithAuth = () => {
     <div>
       <Navbar />
       <Route exact path="/" component={Home} />
+      <Route path="/checkUser" component={CheckUser} />
       <Route path="/sendInvite" component={SendInvite} />
       <Route path="/inviteTemplate" component={CreateInviteTemplate} />
       <Route path="/templateDashboard" component={TemplateDashboard} />
