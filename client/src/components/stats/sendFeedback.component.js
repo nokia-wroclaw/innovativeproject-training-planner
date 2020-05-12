@@ -129,7 +129,7 @@ const SendFeedback = (template) => {
             </textarea>
             <label htmlFor="Feedback">Feedback</label>
           </div>
-          <button className="btn pink lighten-1 z-depth-0">
+          <button className="btn secondary-color z-depth-0">
             <i className="material-icons left">save</i>LEAVE FEEDBACK!
           </button>
         </form>

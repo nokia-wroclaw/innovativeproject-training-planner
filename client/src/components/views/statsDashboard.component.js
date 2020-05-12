@@ -14,7 +14,7 @@ const StatsDashboard = () => {
   const [username, setUsername] = useState('');
   const [templateList, setTemplateList] = useState([]);
   const [activePaginationTab, setActivePaginationTab] = useState(1);
-  const elemsPerPage = 8;
+  const elemsPerPage = 12;
 
   useEffect(() => {
     authService.getUser().then((info) => {

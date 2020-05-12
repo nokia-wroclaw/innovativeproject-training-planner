@@ -2,14 +2,26 @@ import React from 'react';
 
 const Footer = (props) => {
   return (
-    <footer className="page-footer blue darken-1">
+    <footer className="page-footer primary-color">
       <div className="container">
         <div className="row">
-          <div className="col l6 s12">
-            <h5 className="white-text">Footer Content</h5>
-            <p className="grey-text text-lighten-4">
-              You can use rows and columns here to organize your footer content.
+          <div className="col l5 s6 center">
+            <h5 className="white-text" style={{fontWeight: 'bold'}}>
+              MiTraining Planner
+            </h5>
+            <div className="divider" />
+            <p>
+              This project is being developed in collaboration with
+              Nokia-Wrocław as part of Innovative Project initative.
             </p>
+            <h6>
+              <a
+                className="grey-text text-lighten-3"
+                href="https://nokiawroclaw.pl/kim-jestesmy/wspolpraca-z-uczelniami/"
+              >
+                Read more about it here <i className="fas fa-link" />
+              </a>
+            </h6>
           </div>
 
           <div className="col l2 offset-l4 s12">

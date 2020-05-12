@@ -74,15 +74,7 @@ const UserCalendar = () => {
       {!isLoaded ? (
         <LoadingCircular style={{width: 200, height: 200}} />
       ) : (
-        <div
-          className="z-depth-3"
-          style={{
-            height: '550pt',
-            background: 'white',
-            padding: 20,
-            borderRadius: 10,
-          }}
-        >
+        <div className="z-depth-3 calendar">
           <Calendar
             events={eventList}
             startAccessor="start"
@@ -102,7 +94,9 @@ const UserCalendar = () => {
         </div>
       )}
       <div id="modal" className="modal">
-        {renderEventDetails()}
+        <div className="modal-content details">
+          <div className="center">{renderEventDetails()}</div>
+        </div>
       </div>
     </div>
   );

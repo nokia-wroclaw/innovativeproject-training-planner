@@ -135,151 +135,154 @@ const CreateInviteTemplate = (props) => {
   };
 
   return (
-    <div className="container">
-      <form className="white col s12" onSubmit={onSubmit}>
-        <h5 className="grey-text text-darken-3"> {header()} </h5>
-        <div className="input-field">
-          <label htmlFor="date">Date</label>
-          <input
-            type="text"
-            id="date"
-            className="datepicker"
-            required
-            value={date}
-          />
-        </div>
-        <div className="row">
-          <div className="input-field col s6">
-            <label htmlFor="startTime">Start time</label>
+    <div className="background">
+      <div className="container white z-depth-3" style={{padding: 20}}>
+        <form className="col s12" onSubmit={onSubmit}>
+          <h5 className="grey-text text-darken-3"> {header()} </h5>
+          <div className="input-field">
+            <label htmlFor="date">Date</label>
             <input
               type="text"
-              id="startTime"
-              className="timepicker"
+              id="date"
+              className="datepicker"
               required
-              value={startTime}
-              onSelect={(event) => setStartTime(event.target.value)}
+              value={date}
             />
           </div>
-          <div className="input-field col s6">
-            <label htmlFor="endTime">End time</label>
-            <input
-              type="text"
-              id="endTime"
-              className="timepicker"
-              required
-              value={endTime}
-              onSelect={(event) => setEndTime(event.target.value)}
-            />
-          </div>
-        </div>
-        <div className="input-field">
-          <select
-            value={trainingType}
-            onChange={(event) => setTrainingType(event.target.value)}
-            required
-          >
-            <option value="General Training">General Training</option>
-            <option value="Software Training">Software Training</option>
-            <option value="Hardware Training">Hardware Training</option>
-            <option value="Soft Skills Training">Soft Skills Training</option>
-          </select>
-          <label>Training type </label>
-        </div>
-        <div className="input-field">
-          <label htmlFor="instructor">Instructor</label>
-          <input
-            type="text"
-            id="instructor"
-            required
-            value={instructor}
-            onChange={(event) => setInstructor(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="title">Title</label>
-          <input
-            type="text"
-            id="title"
-            required
-            value={title}
-            onChange={(event) => setTitle(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="description">Description</label>
-          <textarea
-            id="description"
-            className="materialize-textarea"
-            value={description}
-            onChange={(event) => setDescription(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="agenda">Agenda</label>
-          <textarea
-            id="agenda"
-            className="materialize-textarea"
-            value={agenda}
-            onChange={(event) => setAgenda(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="willLearn">What you will learn</label>
-          <textarea
-            id="willLearn"
-            className="materialize-textarea"
-            required
-            value={willLearn}
-            onChange={(event) => setWillLearn(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="mustKnow">What you must already know</label>
-          <textarea
-            id="mustKnow"
-            className="materialize-textarea"
-            value={mustKnow}
-            onChange={(event) => setMustKnow(event.target.value)}
-          />
-        </div>
-        <div className="input-field">
-          <label htmlFor="materials">Additional materials</label>
-          <textarea
-            id="materials"
-            className="materialize-textarea"
-            value={materials}
-            onChange={(event) => setMaterials(event.target.value)}
-          />
-        </div>
-        <form action="#">
-          <p>
-            <label>
+          <div className="row">
+            <div className="input-field col s6">
+              <label htmlFor="startTime">Start time</label>
               <input
-                id="openTrainging"
-                type="checkbox"
-                value={openTrainging}
-                onChange={(event) => setOpenTrainging(event.target.checked)}
+                type="text"
+                id="startTime"
+                className="timepicker"
+                required
+                value={startTime}
+                onSelect={(event) => setStartTime(event.target.value)}
               />
-              <span>
-                Public training - all interested persons can come to the meeting
-              </span>
-            </label>
-          </p>
+            </div>
+            <div className="input-field col s6">
+              <label htmlFor="endTime">End time</label>
+              <input
+                type="text"
+                id="endTime"
+                className="timepicker"
+                required
+                value={endTime}
+                onSelect={(event) => setEndTime(event.target.value)}
+              />
+            </div>
+          </div>
+          <div className="input-field">
+            <select
+              value={trainingType}
+              onChange={(event) => setTrainingType(event.target.value)}
+              required
+            >
+              <option value="General Training">General Training</option>
+              <option value="Software Training">Software Training</option>
+              <option value="Hardware Training">Hardware Training</option>
+              <option value="Soft Skills Training">Soft Skills Training</option>
+            </select>
+            <label>Training type </label>
+          </div>
+          <div className="input-field">
+            <label htmlFor="instructor">Instructor</label>
+            <input
+              type="text"
+              id="instructor"
+              required
+              value={instructor}
+              onChange={(event) => setInstructor(event.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="title">Title</label>
+            <input
+              type="text"
+              id="title"
+              required
+              value={title}
+              onChange={(event) => setTitle(event.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="description">Description</label>
+            <textarea
+              id="description"
+              className="materialize-textarea"
+              value={description}
+              onChange={(event) => setDescription(event.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="agenda">Agenda</label>
+            <textarea
+              id="agenda"
+              className="materialize-textarea"
+              value={agenda}
+              onChange={(event) => setAgenda(event.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="willLearn">What you will learn</label>
+            <textarea
+              id="willLearn"
+              className="materialize-textarea"
+              required
+              value={willLearn}
+              onChange={(event) => setWillLearn(event.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="mustKnow">What you must already know</label>
+            <textarea
+              id="mustKnow"
+              className="materialize-textarea"
+              value={mustKnow}
+              onChange={(event) => setMustKnow(event.target.value)}
+            />
+          </div>
+          <div className="input-field">
+            <label htmlFor="materials">Additional materials</label>
+            <textarea
+              id="materials"
+              className="materialize-textarea"
+              value={materials}
+              onChange={(event) => setMaterials(event.target.value)}
+            />
+          </div>
+          <form action="#">
+            <p>
+              <label>
+                <input
+                  id="openTrainging"
+                  type="checkbox"
+                  value={openTrainging}
+                  onChange={(event) => setOpenTrainging(event.target.checked)}
+                />
+                <span>
+                  Public training - all interested persons can come to the
+                  meeting
+                </span>
+              </label>
+            </p>
+          </form>
+          <div className="row">
+            <div className="col s2 offset-s4">
+              <a className="btn secondary-color" href="/templateDashboard">
+                <i className="material-icons left">cancel</i>CANCEL
+              </a>
+            </div>
+            <div className="col s2">
+              <button className="btn secondary-color z-depth-0">
+                <i className="material-icons left">save</i>SAVE
+              </button>
+            </div>
+          </div>
+          <div className="input-field"></div>
         </form>
-        <div className="row">
-          <div className="col s2 offset-s4">
-            <a className="btn pink lighten-1" href="/templateDashboard">
-              <i className="material-icons left">cancel</i>CANCEL
-            </a>
-          </div>
-          <div className="col s2">
-            <button className="btn pink lighten-1 z-depth-0">
-              <i className="material-icons left">save</i>SAVE
-            </button>
-          </div>
-        </div>
-        <div className="input-field"></div>
-      </form>
+      </div>
     </div>
   );
 };

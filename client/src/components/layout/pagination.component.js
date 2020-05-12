@@ -11,7 +11,7 @@ const Pagination = (props) => {
   }, [props.elemsAmount, props.elemsPerPage, amount]);
 
   const tabClass = (tabNo) => {
-    if (tabNo === props.activeTab) return 'active blue darken-3';
+    if (tabNo === props.activeTab) return 'active primary-color';
     else return '';
   };
 

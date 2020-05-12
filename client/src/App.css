@@ -1,6 +1,14 @@
+.primary-color {
+  background-color: #356fb7 !important;
+}
+
+.secondary-color {
+  background-color: #da4167 !important;
+}
+
 .background {
-  padding: 20px;
-  background-color: #e6f7ff;
+  padding: 50px 0px 50px 0px;
+  background-color: #edf2f8;
 }
 
 .loading {
@@ -9,14 +17,93 @@
   margin: 50px;
 }
 
-.template {
-  opacity: 1;
-}
-
 .template-board {
-  height: 1250px;
+  height: 1550px;
 }
 
-.cal-board {
+.software-training {
+  background-color: #72a1e5 !important;
+}
+
+.hardware-training {
+  background-color: #a8769e !important;
+}
+
+.soft-training {
+  background-color: #48a9a6 !important;
+}
+
+.general-training {
+  background-color: #7d869c !important;
+}
+
+.calendar {
+  height: 550pt;
+  background: white;
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.calendar-board {
   height: 850px;
+}
+
+.marker-sent {
+  width: 0px;
+  height: 100px;
+  background-color: transparent;
+  position: absolute;
+  left: 25px;
+  border: solid 15px #f9dc5c;
+  border-bottom: solid 15px transparent;
+}
+
+.marker-sent {
+  width: 0px;
+  height: 100px;
+  background-color: transparent;
+  position: absolute;
+  left: 25px;
+  border: solid 15px #f9dc5c;
+  border-bottom: solid 15px transparent;
+}
+
+.marker-stats {
+  width: 0px;
+  height: 115px;
+  background-color: transparent;
+  position: absolute;
+  left: 25px;
+  border: solid 15px #faad61;
+  border-bottom: solid 15px transparent;
+}
+
+.marker-text {
+  font-weight: bold;
+  position: relative;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  text-align: left;
+  right: 12px;
+}
+
+.details {
+  margin-left: 100px;
+  margin-right: 100px;
+}
+
+.details-bar {
+  margin-top: -50px;
+}
+
+.done {
+  color: green;
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+.todo {
+  color: orange;
+  font-weight: bold;
+  margin-right: 7px;
 }

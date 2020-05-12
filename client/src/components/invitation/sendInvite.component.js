@@ -65,13 +65,13 @@ const SendInvite = (props) => {
         })
         .then((res) => {
           if (res.data.sent) {
-            M.toast({html: 'E-MAIL SENT!', classes: 'rounded pink lighten-1'});
+            M.toast({html: 'E-MAIL SENT!', classes: 'rounded secondary-color'});
             markAsSent();
             props.history.push('/templateDashboard');
           } else {
             M.toast({
               html: 'SOMETHING WENT WRONG :(',
-              classes: 'rounded pink lighten-1',
+              classes: 'rounded secondary-color',
             });
           }
         });
@@ -114,7 +114,7 @@ const SendInvite = (props) => {
                 menubar: false,
                 plugins: [
                   'advlist autolink lists link image' +
-                  'charmap print preview anchor',
+                    'charmap print preview anchor',
                   'searchreplace visualblocks code fullscreen',
                   'insertdatetime media table paste code help wordcount',
                   'legacyoutput',
@@ -130,15 +130,16 @@ const SendInvite = (props) => {
             />
           </div>
         </div>
+
         <div className="input-field col s6 offset-s3">
           <div className="row center">
             <div className="col s2 offset-s4">
-              <a className="btn pink lighten-1" href="/templateDashboard">
+              <a className="btn secondary-color" href="/templateDashboard">
                 <i className="material-icons left">cancel</i>CANCEL
               </a>
             </div>
             <div className="col s2">
-              <button className="btn pink lighten-1">
+              <button className="btn secondary-color">
                 <i className="material-icons left">mail</i>SEND
               </button>
             </div>
