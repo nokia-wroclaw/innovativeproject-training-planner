@@ -75,6 +75,9 @@ const LoginPage = ({authState, authService}) => {
 
       <div className="background">
         <div className="container center-align">
+          <h3 style={{fontWeight: 'bold', marginBottom: 50}}>
+            Your training is just a click away!
+          </h3>
           <div
             className="z-depth-3"
             style={{marginBottom: 100, borderRadius: 3}}
@@ -86,45 +89,63 @@ const LoginPage = ({authState, authService}) => {
             >
               <div className="carousel-fixed-item">
                 <div className="container">
-                  <h3 className="white-text">
-                    Your training is just a click away!
-                  </h3>
+                  {/* you can put static text here*/}
                 </div>
               </div>
               <div
                 className="carousel-item blue lighten-1 white-text"
                 href="#one!"
               >
-                <div className="container">
-                  <h2>QUICK AND SIMPLE</h2>
-                  <p className="white-text"></p>
+                <div className="container carousel-container">
+                  <div className="carousel-description">
+                    <h2>QUICK AND SIMPLE</h2>
+                    <p>Short description</p>
+                  </div>
+                  <div className="carousel-addon">
+                    <i className="large material-icons">account_circle</i>
+                  </div>
                 </div>
               </div>
               <div
                 className="carousel-item blue darken-1 white-text"
                 href="#two!"
               >
-                <div className="container">
-                  <h2>PERSONAL CALENDAR</h2>
-                  <p className="white-text"></p>
+                <div className="container carousel-container">
+                  <div className="carousel-description">
+                    <h2>PERSONAL CALENDAR</h2>
+                    <p>Short description</p>
+                  </div>
+                  <div className="carousel-addon">
+                    <i className="large material-icons">date_range</i>
+                  </div>
                 </div>
               </div>
               <div
                 className="carousel-item blue lighten-1 white-text"
                 href="#three!"
               >
-                <div className="container">
-                  <h2>EVENT INVITATIONS</h2>
-                  <p className="white-text"></p>
+                <div className="container carousel-container">
+                  <div className="carousel-description">
+                    <h2>EVENT INVITATIONS</h2>
+                    <p>Short description</p>
+                  </div>
+                  <div className="carousel-addon">
+                    <i className="large material-icons">contact_mail</i>
+                  </div>
                 </div>
               </div>
               <div
                 className="carousel-item blue darken-1 white-text"
                 href="#four!"
               >
-                <div className="container">
-                  <h2>EDITABLE AND REUSABLE TEMPLATES</h2>
-                  <p className="white-text"></p>
+                <div className="container carousel-container">
+                  <div className="carousel-description">
+                    <h2>EDITABLE AND REUSABLE TEMPLATES</h2>
+                    <p>Short description</p>
+                  </div>
+                  <div className="carousel-addon">
+                    <i className="large material-icons">edit</i>
+                  </div>
                 </div>
               </div>
             </div>
@@ -170,7 +191,7 @@ const LoginPage = ({authState, authService}) => {
                       </li>
                       <li>
                         <i className="tiny material-icons done">brightness_1</i>
-                        Public and presonal calendars.
+                        Public and personal calendars.
                       </li>
                     </ul>
                   </div>
@@ -227,14 +248,6 @@ const LoginPage = ({authState, authService}) => {
                       Okta <i className="fas fa-clipboard-check" />
                     </a>
                   </h5>
-                </div>
-              </li>
-              <li>
-                <div className="collapsible-header">
-                  <i className="material-icons">whatshot</i>Third
-                </div>
-                <div className="collapsible-body">
-                  <span>Lorem ipsum dolor sit amet.</span>
                 </div>
               </li>
             </ul>
