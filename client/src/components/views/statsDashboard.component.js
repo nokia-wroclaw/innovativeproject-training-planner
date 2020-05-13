@@ -58,11 +58,16 @@ const StatsDashboard = () => {
             <LoadingCircular />
           ) : (
             <div className="row">
-              {templateList.map((item) => (
-                <div className="col s12 m6" key={item._id}>
-                  <StatsCard item={item} />
-                </div>
-              ))}
+              {templateList
+                  .slice(
+                      (activePaginationTab - 1) * elemsPerPage,
+                      activePaginationTab * elemsPerPage,
+                  )
+                  .map((item) => (
+                    <div className="col s12 m6" key={item._id}>
+                      <StatsCard item={item} />
+                    </div>
+                  ))}
             </div>
           )}
         </div>
