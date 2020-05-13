@@ -31,14 +31,17 @@ const StatsDashboard = () => {
   }, [isLoaded, templateList]);
 
   useEffect(() => {
-    axios
-        .get(`/inviteTemplate/pastTraining`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-            username,
-          },
-        })
-        .then((res) => setTemplateList(res.data));
+    console.log("here", typeof(username))
+    if (username != '') {
+      axios
+          .get(`/inviteTemplate/pastTraining`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+              username,
+            },
+          })
+          .then((res) => setTemplateList(res.data));
+    }
   }, [accessToken, username]);
 
   return (

@@ -7,6 +7,7 @@ const okta = require('../toolset/okta');
 
 router.route('/get/:_id').get(okta.authenticationRequired, (req, res) => {
   // req.params is template's ID
+  console.log("rek")
   InviteTemplate.find(req.params)
       .then((templates) => res.json(templates))
       .catch((err) => res.status(400).json('Error: ' + err));
