@@ -32,7 +32,7 @@ const StatsDashboard = () => {
 
   useEffect(() => {
     console.log("here", typeof(username))
-    if (username != '') {
+    if (username !== '') {
       axios
           .get(`/inviteTemplate/pastTraining`, {
             headers: {
