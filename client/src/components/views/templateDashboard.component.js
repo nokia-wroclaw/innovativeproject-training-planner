@@ -73,7 +73,7 @@ const TemplateDashboard = () => {
 
   useEffect(() => {
     if (searchQuery !== '') {
-      console.log("2")
+      console.log('2');
       axios
           .get(`/inviteTemplate/get/${searchQuery}`, {
             headers: {
@@ -85,11 +85,12 @@ const TemplateDashboard = () => {
             setTemplateList(res.data);
           });
     } else {
-      console.log("1")
+      console.log('1');
       axios
-      .get(`/inviteTemplate/${activeTab}`, { //<-- couldnt find this
-        // .get(`/inviteTemplate/all`, {
-          headers: {
+          .get(`/inviteTemplate/${activeTab}`, {
+          // <-- couldnt find this
+          // .get(`/inviteTemplate/all`, {
+            headers: {
               Authorization: `Bearer ${accessToken}`,
               username,
             },

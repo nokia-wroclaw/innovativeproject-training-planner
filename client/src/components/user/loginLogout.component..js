@@ -7,7 +7,7 @@ const LoginLogout = () => {
 
   const login = async () => {
     // Redirect to '/' after login
-    console.log("tutaj")
+    console.log('tutaj');
     // authService.login('/CheckUser');
   };
 
