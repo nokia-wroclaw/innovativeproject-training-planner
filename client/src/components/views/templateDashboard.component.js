@@ -92,7 +92,7 @@ const TemplateDashboard = () => {
             },
           })
           .then((res) => {
-            setTemplateList(res.data);
+            setTemplateList(res.data.reverse());
           });
     }
   }, [searchQuery, accessToken, username, activeTab]);
