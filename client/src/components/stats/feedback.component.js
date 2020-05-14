@@ -4,6 +4,7 @@ import axios from 'axios';
 import {getLastUrlParam} from '../../toolset/baseFunctions';
 import SendFeedback from './sendFeedback.component';
 import M from 'materialize-css';
+import StatsCharts from './statsCharts.component';
 
 const Feedback = () => {
   const {authState} = useOktaAuth();
@@ -86,6 +87,9 @@ const Feedback = () => {
   return (
     <div className="background">
       <div className="container center">
+        {/* charts  */}
+        {StatsCharts(template.feedback)}
+        {/* charts  */}
         <div className="row">
           <button
             className="modal-trigger pulse btn-large secondary-color"
