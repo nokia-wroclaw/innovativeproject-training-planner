@@ -28,7 +28,11 @@ There are several scripts in the root folder that you can take advantage of:
 - `npm run init` - install all dependencies of project. I strongly advice to use it **IF** you are creating app from scratch. If you have already your *node_modules* and you would like to reinstall them - use `npm run reinstall` command.
 - `npm run dev` - run application's development environment. It starts both webpack-dev-frontend server and API backend server.
 - `npm run reinstall` - delete **all** *node_modules* directories and install dependencies from scratch.
-- `npm run rm` - delete all *node_modules* from project 
+- `npm run rm` - delete all *node_modules* from project.
+- `npm run lint` - runs ESlint over all code in the project.
+- `npm run lint:fix` - runs ESlint over all code and additionally fix all mistakes which can be fixed without user interaction.
+- `npm test` - runs all unit tests across the project using *jest* framework. Some unit tests perform snapshot testing so sometimes you might need to update snapshot via adding `-u` flag.
+- `npm run build` - build production version of client. Creates *client/build* directory.
 ## Production
 Both deployments are dockerized, thats why you need to make sure you have docker on your machine. You can find install instructions [here](https://docs.docker.com/install/). Just choose your platform in *Supported platforms* paragraph and follow instructions.
 
