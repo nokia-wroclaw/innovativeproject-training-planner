@@ -61,7 +61,7 @@ const StatsCharts = (props) => {
           setDataSetsForCharts(
               feedback,
               'contentQuality',
-              ontentQuality);
+              contentQuality);
           setDataSetsForCharts(
               feedback,
               'contactWithGroup',
