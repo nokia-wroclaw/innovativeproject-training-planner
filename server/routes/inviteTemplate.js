@@ -64,7 +64,6 @@ router.route('/all').get(okta.authenticationRequired, (req, res) => {
       .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-// Is it used anywhere?
 router.route('/pending').get(okta.authenticationRequired, (req, res) => {
   console.log('pending');
   Users.find({name: req.headers.username})
