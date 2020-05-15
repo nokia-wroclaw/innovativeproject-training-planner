@@ -13,7 +13,7 @@ router.route('/isUser').get(okta.authenticationRequired, (req, res) => {
             name: req.headers.username,
             type: 'user',
           };
-          const newUser = new Users(userT);
+          const newUser = new Users(userTemp);
 
           newUser
               .save()
