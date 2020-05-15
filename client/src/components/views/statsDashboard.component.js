@@ -31,7 +31,6 @@ const StatsDashboard = () => {
   }, [isLoaded, templateList]);
 
   useEffect(() => {
-    console.log('here', typeof username);
     if (username !== '') {
       axios
           .get(`/inviteTemplate/pastTraining`, {

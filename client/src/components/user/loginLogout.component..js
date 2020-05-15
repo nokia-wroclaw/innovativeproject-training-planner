@@ -6,9 +6,8 @@ const LoginLogout = () => {
   const {authState, authService} = useOktaAuth();
 
   const login = async () => {
-    // Redirect to '/' after login
-    console.log('tutaj');
-    // authService.login('/CheckUser');
+    // This file is not used anymore
+    authService.login('/CheckUser');
   };
 
   const logout = async () => {

@@ -2,14 +2,14 @@ const router = require('express').Router();
 const Users = require('../models/users.model');
 const okta = require('../toolset/okta');
 
-router.route('/isuser').get(okta.checkIfUser, (req, res) => {
+router.route('/isUser').get(okta.authenticationRequired, (req, res) => {
   // req.params is template's ID
   Users.find({name: req.headers.username})
       .then((users) => {
         console.log(users.length);
         if (!users.length) {
-          console.log('This user have not existed');
-          const userT = {
+          console.log('This user does not exist');
+          const userTemp = {
             name: req.headers.username,
             type: 'user',
           };

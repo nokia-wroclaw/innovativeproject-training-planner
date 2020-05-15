@@ -149,7 +149,6 @@ router.route('/pastTraining').get(okta.authenticationRequired, (req, res) => {
 });
 
 router.route('/save').post(okta.authenticationRequired, (req, res) => {
-  // console.log('pastTraining');
   // req.body is a template as JSON
   const template = req.body;
   const newTemplate = new InviteTemplate(template);
@@ -161,7 +160,6 @@ router.route('/save').post(okta.authenticationRequired, (req, res) => {
 });
 
 router.route('/update/:id').post(okta.authenticationRequired, (req, res) => {
-  // console.log('pastTraining');
   const template = req.body;
   InviteTemplate.updateOne({_id: req.params.id}, template).then(() =>
     res.json('Template updated.'),

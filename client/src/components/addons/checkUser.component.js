@@ -13,7 +13,7 @@ const CheckUser = () => {
     authService.getUser().then((info) => {
       const username = info.preferred_username;
       axios
-          .get(`/users/isuser`, {
+          .get(`/users/isUser`, {
             headers: {
               username,
             },
