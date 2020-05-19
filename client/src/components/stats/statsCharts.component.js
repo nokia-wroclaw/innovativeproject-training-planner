@@ -10,10 +10,12 @@ const StatsCharts = (props) => {
 
   const statsLabel = ['2.0', '3.0', '4.0', '5.0'];
   const statsBackgroundColor = ['#746c72', '#FFCE56', '#36A2EB', '#FF6384'];
-  const statsHoverBackgroundColor = ['#746c72',
+  const statsHoverBackgroundColor = [
+    '#746c72',
     '#FFCE56',
     '#36A2EB',
-    '#FF6384'];
+    '#FF6384',
+  ];
 
   const setDataSetsForCharts = (feedback, typeOfRate, updatedValue) => {
     if (feedback[typeOfRate] === '2') {
@@ -33,84 +35,80 @@ const StatsCharts = (props) => {
   const genereteDataToChart = (statsData) => {
     const data = {
       labels: statsLabel,
-      datasets: [{
-        data: statsData,
-        backgroundColor: statsBackgroundColor,
-        hoverBackgroundColor: statsHoverBackgroundColor,
-      }],
+      datasets: [
+        {
+          data: statsData,
+          backgroundColor: statsBackgroundColor,
+          hoverBackgroundColor: statsHoverBackgroundColor,
+        },
+      ],
     };
-    return (data);
+    return data;
   };
 
   const renderCharts = () => {
     if (props) {
       if (props.length !== 0) {
         for (const feedback of props) {
-          setDataSetsForCharts(
-              feedback,
-              'generalRating',
-              generalRating);
+          setDataSetsForCharts(feedback, 'generalRating', generalRating);
           setDataSetsForCharts(
               feedback,
               'clarityOfExpression',
-              clarityOfExpression);
+              clarityOfExpression,
+          );
           setDataSetsForCharts(
               feedback,
               'teachingMaterials',
-              teachingMaterials);
-          setDataSetsForCharts(
-              feedback,
-              'contentQuality',
-              contentQuality);
-          setDataSetsForCharts(
-              feedback,
-              'contactWithGroup',
-              contactWithGroup);
+              teachingMaterials,
+          );
+          setDataSetsForCharts(feedback, 'contentQuality', contentQuality);
+          setDataSetsForCharts(feedback, 'contactWithGroup', contactWithGroup);
         }
 
         return (
-          <div>
-            <h5>This is how other users general rated this training.</h5>
-            <Doughnut data={genereteDataToChart(generalRating)} />
+          <div style={{marginTop: 50}}>
+            <h3>This is how other users rated this training.</h3>
             <br></br>
             <br></br>
-            <div className="row">
-              <div className="col s12 l6">
-                <h6>Clarity and precision of expression rating chart</h6>
-                <Doughnut data={genereteDataToChart(clarityOfExpression)} />
+            <div className="z-depth-3 form">
+              <h4>General rating</h4>
+              <Doughnut data={genereteDataToChart(generalRating)} />
+              <br></br>
+              <br></br>
+              <div className="row">
+                <div className="col s12 l6">
+                  <h6>Clarity and precision of expression</h6>
+                  <Doughnut data={genereteDataToChart(clarityOfExpression)} />
+                </div>
+                <div className="col s12 l6">
+                  <h6>Teaching materials</h6>
+                  <Doughnut data={genereteDataToChart(teachingMaterials)} />
+                </div>
               </div>
-              <div className="col s12 l6">
-                <h6>Teaching materials rating chart</h6>
-                <Doughnut data={genereteDataToChart(teachingMaterials)} />
-              </div>
-            </div>
-            <br></br>
-            <br></br>
-            <div className="row">
-              <div className="col s12 l6">
-                <h6>Content quality chart rating chart</h6>
-                <Doughnut data={genereteDataToChart(contentQuality)} />
-              </div>
-              <div className="col s12 l6">
-                <h6>Contact with the group rating chart</h6>
-                <Doughnut data={genereteDataToChart(contactWithGroup)} />
+              <br></br>
+              <br></br>
+              <div className="row">
+                <div className="col s12 l6">
+                  <h6>Content quality chart</h6>
+                  <Doughnut data={genereteDataToChart(contentQuality)} />
+                </div>
+                <div className="col s12 l6">
+                  <h6>Contact with the group</h6>
+                  <Doughnut data={genereteDataToChart(contactWithGroup)} />
+                </div>
               </div>
             </div>
           </div>
         );
       } else {
-        return (
-          <h4>No one has rated training yet.</h4>
-        );
+        return <h4>No one has rated this training yet.</h4>;
       }
     }
   };
 
   return (
-    <div className="background">
-      <div className="container center">
-        {renderCharts()}
-      </div>
+    <div>
+      <div className="container center">{renderCharts()}</div>
     </div>
   );
 };

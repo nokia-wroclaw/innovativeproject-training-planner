@@ -122,3 +122,12 @@
 .carousel-addon {
   height: 30%;
 }
+
+.tab-link {
+  width: 5%;
+  min-width: 100px;
+}
+
+.searchbar {
+  min-width: 250;
+}

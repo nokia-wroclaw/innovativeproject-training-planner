@@ -7,16 +7,6 @@ import Pagination from '../layout/pagination.component';
 import M from 'materialize-css';
 import axios from 'axios';
 
-const linkStyle = {
-  width: '5%',
-  minWidth: 100,
-};
-
-const searchbarStyle = {
-  width: '15%',
-  minWidth: 250,
-};
-
 const TemplateDashboard = () => {
   const {authState, authService} = useOktaAuth();
   const {accessToken} = authState;
@@ -142,7 +132,7 @@ const TemplateDashboard = () => {
               subdirectory_arrow_right
             </i>
           </li>
-          <li className={navbarView.pending} style={linkStyle}>
+          <li className={`${navbarView.pending} tab-link`}>
             <Link
               className="center-align"
               id="pending"
@@ -151,12 +141,12 @@ const TemplateDashboard = () => {
               Pending
             </Link>
           </li>
-          <li className={navbarView.sent} style={linkStyle}>
+          <li className={`${navbarView.sent} tab-link`}>
             <Link className="center-align" id="sent" onClick={tabClickHandler}>
               Sent
             </Link>
           </li>
-          <li className={navbarView.all} style={linkStyle}>
+          <li className={`${navbarView.all} tab-link`}>
             <Link className="center-align" id="all" onClick={tabClickHandler}>
               All
             </Link>
@@ -164,7 +154,7 @@ const TemplateDashboard = () => {
         </ul>
         <ul className="right" style={{marginRight: '3%'}}>
           <i className="material-icons left">search</i>
-          <li style={searchbarStyle}>
+          <li className="searchbar">
             <form onSubmit={onSubmit}>
               <input
                 style={{paddingLeft: 10, paddingRight: 10}}
