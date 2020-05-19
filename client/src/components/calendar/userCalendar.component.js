@@ -46,7 +46,7 @@ const UserCalendar = () => {
 
   useEffect(() => {
     axios
-        .get(`/inviteTemplate/all`, {
+        .get(`/inviteTemplate/sent`, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             username,
