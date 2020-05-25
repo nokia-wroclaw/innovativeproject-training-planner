@@ -17,6 +17,10 @@ const Home = () => {
       <div className="container center calendar-board">
         <div className="row">
           <h4>Hello {username}!</h4>
+          <h5>
+            Here you can see all the trainings you have been
+            invited to and those you organize.
+          </h5>
         </div>
         <div className="row">
           <GeneralCalendar height="550pt" />

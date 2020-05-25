@@ -28,7 +28,7 @@ const Navbar = (props) => {
             <Link to="/statistics">Statistics</Link>
           </li>
           <li>
-            <Link to="/userCalendar">User Calendar</Link>
+            <Link to="/bookingCalendar">Booking Calendar</Link>
           </li>
         </ul>
         <ul className="right">

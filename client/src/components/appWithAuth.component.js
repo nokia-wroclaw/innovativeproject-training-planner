@@ -9,8 +9,8 @@ import Footer from './layout/footer.component';
 import SendInvite from './invitation/sendInvite.component';
 import UserProfile from './user/userProfile.component';
 import TemplateDashboard from './views/templateDashboard.component';
+import BookingDashboard from './views/bookingDashboard.component';
 import CreateInviteTemplate from './template/createInviteTemplate.component';
-import UserCalendarDashboard from './views/userCalendarDashboard.component';
 import StatsDashboard from './views/statsDashboard.component';
 import Feedback from './stats/feedback.component';
 import LoginLoading from './views/loginLoading.component';
@@ -45,7 +45,7 @@ const AppWithAuth = () => {
       <Route path="/inviteTemplate" component={CreateInviteTemplate} />
       <Route path="/templateDashboard" component={TemplateDashboard} />
       <Route path="/profile" component={UserProfile} />
-      <Route path="/userCalendar" component={UserCalendarDashboard} />
+      <Route path="/bookingCalendar" component={BookingDashboard} />
       <Route path="/statistics" component={StatsDashboard} />
       <Route path="/feedback" component={Feedback} />
       <Footer />
