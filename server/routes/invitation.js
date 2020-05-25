@@ -12,28 +12,36 @@ router.route('/get/:_id').get(okta.authenticationRequired, (req, res) => {
       .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-const generateIcs = (template) => {
+const generateIcs = (template, emails) => {
   const startDate = baseTools.transformDate(template.date, template.startTime);
   const endDate = baseTools.transformDate(template.date, template.endTime);
+  const attendees = emails.split(',');
 
-  return ical({
+  const cal = ical({
     prodId: {
       company: 'mittrainingplanner-master.herokuapp.com',
       product: 'mi-training-planner',
     },
     name: 'Testfeed',
     timezone: 'Europe/Warsaw',
-    events: [
-      {
-        start: startDate,
-        end: endDate,
-        timestamp: startDate,
-        summary: template.title,
-        organizer: `${template.instructor} <mail@example.com>`,
-      },
-    ],
-    method: 'request',
-  }).toString();
+    method: 'publish',
+  });
+
+  const newEvent = cal.createEvent({
+    start: startDate,
+    end: endDate,
+    timestamp: startDate,
+    summary: template.title,
+    organizer: `${template.instructor} <mitrainingplaner@gmail.com>`,
+  });
+
+  for (attendee_email of attendees) {
+    newEvent.createAttendee({
+      email: attendee_email,
+    });
+  }
+
+  return cal.toString();
 };
 
 const transport = {
@@ -61,7 +69,7 @@ router.route('/send').post(okta.authenticationRequired, (req, res) => {
   const subject = req.body.subject;
   const message = req.body.message;
   const template = req.body.template;
-  const eventContent = generateIcs(template);
+  const eventContent = generateIcs(template, emails);
 
   const mail = {
     from: 'testing',
