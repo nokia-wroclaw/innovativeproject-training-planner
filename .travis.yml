@@ -15,6 +15,6 @@ deploy:
     master: mittrainingplanner-master
     unit-tests: mittrainingplanner-starmarek
     tinymce-editor: mittrainingplanner-mbednar22
-    user-feedback-graphs: mittrainingplanner-mkomorek
+    booking-calendar: mittrainingplanner-mkomorek
     front-overhaul: mittrainingplanner-jaolejnik
     okta-auth-v3: mittrainingplanner-cvaniak
