@@ -12,11 +12,13 @@ app.listen(port, () => {
 
 const invTemplRouter = require('./routes/inviteTemplate');
 const invRouter = require('./routes/invitation');
+const bookingDateRouter = require('./routes/bookingDate');
 
 app.use(cors());
 app.use(express.json());
 app.use('/inviteTemplate', invTemplRouter);
 app.use('/sendInvite', invRouter);
+app.use('/bookingDate', bookingDateRouter);
 
 // Serve static files from the React frontend app
 app.use(express.static(path.join(__dirname, '/../client')));

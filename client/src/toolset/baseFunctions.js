@@ -14,6 +14,12 @@ export function transformDate(dateStr, timeStr) {
   return datetime;
 }
 
+export function getDayMonthYear(date) {
+  const dateArray = date.toString().split(' ');
+  return dateArray[0] + ' ' + dateArray[1] + ' ' +
+         dateArray[2] + ' ' + dateArray[3];
+}
+
 export function getLastUrlParam(url) {
   const i = url.lastIndexOf('/');
   return url.slice(i + 1);

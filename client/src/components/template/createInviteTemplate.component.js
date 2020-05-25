@@ -64,25 +64,44 @@ const CreateInviteTemplate = (props) => {
             },
           })
           .then((res) => {
-            setDate(res.data[0].date);
-            setStartTime(res.data[0].startTime);
-            setEndTime(res.data[0].endTime);
-            setTrainingType(res.data[0].trainingType);
-            setInstructor(res.data[0].instructor);
-            setTitle(res.data[0].title);
-            setAgenda(res.data[0].agenda);
-            setDescription(res.data[0].description);
-            setWillLearn(res.data[0].willLearn);
-            setMustKnow(res.data[0].mustKnow);
-            setMaterials(res.data[0].materials);
-            setOpenTrainging(res.data[0].openTrainging);
-            M.updateTextFields();
+            if (res.data[0] !== undefined) {
+              setDate(res.data[0].date);
+              setStartTime(res.data[0].startTime);
+              setEndTime(res.data[0].endTime);
+              setTrainingType(res.data[0].trainingType);
+              setInstructor(res.data[0].instructor);
+              setTitle(res.data[0].title);
+              setAgenda(res.data[0].agenda);
+              setDescription(res.data[0].description);
+              setWillLearn(res.data[0].willLearn);
+              setMustKnow(res.data[0].mustKnow);
+              setMaterials(res.data[0].materials);
+              setOpenTrainging(res.data[0].openTrainging);
+              M.updateTextFields();
+            }
+          });
+    }
+    if (mode === 'edit') {
+      axios
+          .get(`/bookingDate/get/${id}`, {
+            headers: {
+              Authorization: `Bearer ${accessToken}`,
+            },
+          })
+          .then((res) => {
+            if (res.data[0] !== undefined) {
+              setMode('bookingDate');
+              setDate(res.data[0].date);
+              setStartTime(res.data[0].startTime);
+              setEndTime(res.data[0].endTime);
+              M.updateTextFields();
+            }
           });
     }
   }, [mode, id, accessToken]);
 
   const header = () => {
-    if (mode === 'create') {
+    if (mode === 'create' || mode === 'bookingDate') {
       return 'Create Template';
     }
     if (mode === 'edit') {
@@ -110,7 +129,7 @@ const CreateInviteTemplate = (props) => {
       openTrainging, // TODO fix this misspelling in the whole project
     };
 
-    if (mode === 'create') {
+    if (mode === 'create' || mode === 'bookingDate') {
       axios
           .post(`/inviteTemplate/save`, template, {
             headers: {
