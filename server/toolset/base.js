@@ -8,7 +8,7 @@ module.exports = {
   getNameFromEmail: function(email) {
     const nameJoined = email.replace(/\d*@.*$/, '');
     const nameArray = nameJoined.split('.');
-    for (const i in nameArray) {
+    for (let i = 0; i < nameArray.length; i++) {
       nameArray[i] =
         nameArray[i].charAt(0).toUpperCase() + nameArray[i].slice(1);
     }

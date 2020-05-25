@@ -35,9 +35,9 @@ const generateIcs = (template, emails) => {
     organizer: `${template.instructor} <mitrainingplaner@gmail.com>`,
   });
 
-  for (attendee_email of attendees) {
+  for (attendeeEmail of attendees) {
     newEvent.createAttendee({
-      email: attendee_email,
+      email: attendeeEmail,
     });
   }
 
