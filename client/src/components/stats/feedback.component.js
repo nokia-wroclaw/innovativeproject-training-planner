@@ -13,7 +13,6 @@ const Feedback = () => {
   const {accessToken} = authState;
 
   const [template, setTemplate] = useState('');
-  const [searchQuery, setSearchQuery] = useState('');
   const [activeTab, setActiveTab] = useState('comments');
   const [navbarView, setNavbarView] = useState({
     comments: 'active',
@@ -59,11 +58,6 @@ const Feedback = () => {
         break;
     }
   }, [activeTab]);
-
-  const onSubmit = (event) => {
-    event.preventDefault();
-    setSearchQuery('');
-  };
 
   const renderFeedbacks = () => {
     if (template.feedback !== undefined) {
@@ -145,6 +139,7 @@ const Feedback = () => {
   };
 
   const renderTabConent = () => {
+    // TODO prevent doubling the value
     const charts = StatsCharts(template.feedback);
     const comments = renderFeedbacks();
 
@@ -184,23 +179,6 @@ const Feedback = () => {
             >
               Charts
             </Link>
-          </li>
-        </ul>
-        <ul className="right" style={{marginRight: '3%'}}>
-          <i className="material-icons left">search</i>
-          {/* TODO make searchbar functional*/}
-          <li className="searchbar">
-            <form onSubmit={onSubmit}>
-              <input
-                style={{paddingLeft: 10, paddingRight: 10}}
-                className="white"
-                id="search"
-                placeholder="Search..."
-                required
-                value={searchQuery}
-                onChange={(event) => setSearchQuery(event.target.value)}
-              />
-            </form>
           </li>
         </ul>
       </nav>

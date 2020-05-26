@@ -52,17 +52,40 @@ router.route('/openTraining').get((req, res) => {
       .catch((err) => res.status(400).json('Error: ' + err));
 });
 
-router.route('/pastTraining').get(okta.authenticationRequired, (req, res) => {
-  InviteTemplate.find({
-    $and: [
-      {userName: req.headers.username},
-      {date: {$lt: new Date()}},
-      {sent: true},
-    ],
-  })
-      .then((inviteTemplate) => res.json(inviteTemplate))
-      .catch((err) => res.status(400).json('Error: ' + err));
-});
+router
+    .route('/pastTraining/find/:searchQuery')
+    .get(okta.authenticationRequired, (req, res) => {
+      let regexBase = req.params.searchQuery.replace(/\s/g, '|');
+      regexBase = new RegExp(regexBase, 'gi');
+      InviteTemplate.find({
+        $or: [
+          {title: {$regex: regexBase}},
+          {instructor: {$regex: regexBase}},
+          {description: {$regex: regexBase}},
+        ],
+        $and: [
+          {userName: req.headers.username},
+          {date: {$lt: new Date()}},
+          {sent: true},
+        ],
+      })
+          .then((inviteTemplate) => res.json(inviteTemplate))
+          .catch((err) => res.status(400).json('Error: ' + err));
+    });
+
+router
+    .route('/pastTraining/all')
+    .get(okta.authenticationRequired, (req, res) => {
+      InviteTemplate.find({
+        $and: [
+          {userName: req.headers.username},
+          {date: {$lt: new Date()}},
+          {sent: true},
+        ],
+      })
+          .then((inviteTemplate) => res.json(inviteTemplate))
+          .catch((err) => res.status(400).json('Error: ' + err));
+    });
 
 router.route('/save').post(okta.authenticationRequired, (req, res) => {
   // req.body is a template as JSON

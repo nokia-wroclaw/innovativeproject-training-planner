@@ -32,15 +32,19 @@ const StatsDashboard = () => {
   }, [isLoaded, templateList]);
 
   useEffect(() => {
+    let getUrl = `/inviteTemplate/pastTraining/all`;
+    if (searchQuery !== '') {
+      getUrl = `/inviteTemplate/pastTraining/find/${searchQuery}`;
+    }
     axios
-        .get(`/inviteTemplate/pastTraining`, {
+        .get(getUrl, {
           headers: {
             Authorization: `Bearer ${accessToken}`,
             username,
           },
         })
         .then((res) => setTemplateList(res.data));
-  }, [accessToken, username]);
+  }, [accessToken, username, searchQuery]);
 
   const onSubmit = (event) => {
     event.preventDefault();
@@ -59,7 +63,6 @@ const StatsDashboard = () => {
         </ul>
         <ul className="right" style={{marginRight: '3%'}}>
           <i className="material-icons left">search</i>
-          {/* TODO make this searchbar functional too*/}
           <li className="searchbar">
             <form onSubmit={onSubmit}>
               <input
