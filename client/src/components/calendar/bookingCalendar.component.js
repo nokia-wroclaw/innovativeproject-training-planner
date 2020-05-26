@@ -81,7 +81,7 @@ const BookingCalendar = () => {
   }, [templateList, bookingList]);
 
   const handleSelect = ({start, end}) => {
-    if (window.confirm('Are you sure you wish to delete this item?')) {
+    if (window.confirm('Are you sure you wish to book this date?')) {
       let startTime = new Date(start);
       let endTime = new Date(end);
       const title = 'Reserved date';
