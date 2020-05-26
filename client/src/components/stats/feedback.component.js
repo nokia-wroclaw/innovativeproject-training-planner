@@ -139,7 +139,6 @@ const Feedback = () => {
   };
 
   const renderTabConent = () => {
-    // TODO prevent doubling the value
     const charts = StatsCharts(template.feedback);
     const comments = renderFeedbacks();
 
