@@ -1,21 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import {Doughnut} from 'react-chartjs-2';
 
-const StatsCharts = (props) => {
-  const [feedback, setFeedback] = useState([]);
-  const [generalRating, setGeneralRating] = useState([0, 0, 0, 0]);
-  const [clarityOfExpression, setClarityOfExpression] = useState([0, 0, 0, 0]);
-  const [teachingMaterials, setTeachingMaterials] = useState([0, 0, 0, 0]);
-  const [contentQuality, setContentQuality] = useState([0, 0, 0, 0]);
-  const [contactWithGroup, setContactWithGroup] = useState([0, 0, 0, 0]);
-
-  const ratingTypes = [
-    'generalRating',
-    'clarityOfExpression',
-    'teachingMaterials',
-    'contentQuality',
-    'contactWithGroup',
-  ];
+const StatsCharts = ({feedback}) => {
+  const [generalRating] = useState([0, 0, 0, 0]);
+  const [clarityOfExpression] = useState([0, 0, 0, 0]);
+  const [teachingMaterials] = useState([0, 0, 0, 0]);
+  const [contentQuality] = useState([0, 0, 0, 0]);
+  const [contactWithGroup] = useState([0, 0, 0, 0]);
   const statsLabel = ['2.0', '3.0', '4.0', '5.0'];
   const statsBackgroundColor = ['#746c72', '#FFCE56', '#36A2EB', '#FF6384'];
   const statsHoverBackgroundColor = [
@@ -24,84 +15,21 @@ const StatsCharts = (props) => {
     '#36A2EB',
     '#FF6384',
   ];
-  useEffect(() => {
-    if (props) {
-      setFeedback(props);
+
+  const setDataSetsForCharts = (feedback, typeOfRate, updatedValue) => {
+    if (feedback[typeOfRate] === '2') {
+      updatedValue[0]++;
     }
-  }, [props]);
-
-  useEffect(() => {
-    const setDataSetsForCharts = (feedback, ratingType) => {
-      let valueToUpdate;
-
-      switch (ratingType) {
-        case 'generalRating':
-          valueToUpdate = generalRating;
-          break;
-        case 'clarityOfExpression':
-          valueToUpdate = clarityOfExpression;
-          break;
-        case 'teachingMaterials':
-          valueToUpdate = teachingMaterials;
-          break;
-        case 'contentQuality':
-          valueToUpdate = contentQuality;
-          break;
-        case 'contactWithGroup':
-          valueToUpdate = contactWithGroup;
-          break;
-        default:
-          break;
-      }
-
-      if (feedback[ratingType] === '2') {
-        valueToUpdate[0]++;
-      }
-      if (feedback[ratingType] === '3') {
-        valueToUpdate[1]++;
-      }
-      if (feedback[ratingType] === '4') {
-        valueToUpdate[2]++;
-      }
-      if (feedback[ratingType] === '5') {
-        valueToUpdate[3]++;
-      }
-
-      switch (ratingType) {
-        case 'generalRating':
-          setGeneralRating(valueToUpdate);
-          break;
-        case 'clarityOfExpression':
-          setClarityOfExpression(valueToUpdate);
-          break;
-        case 'teachingMaterials':
-          setTeachingMaterials(valueToUpdate);
-          break;
-        case 'contentQuality':
-          setContentQuality(valueToUpdate);
-          break;
-        case 'contactWithGroup':
-          setContactWithGroup(valueToUpdate);
-          break;
-        default:
-          break;
-      }
-    };
-
-    for (const opinion of feedback) {
-      for (const type of ratingTypes) {
-        setDataSetsForCharts(opinion, type);
-      }
+    if (feedback[typeOfRate] === '3') {
+      updatedValue[1]++;
     }
-  }, [
-    feedback,
-    ratingTypes,
-    generalRating,
-    clarityOfExpression,
-    contactWithGroup,
-    contentQuality,
-    teachingMaterials,
-  ]);
+    if (feedback[typeOfRate] === '4') {
+      updatedValue[2]++;
+    }
+    if (feedback[typeOfRate] === '5') {
+      updatedValue[3]++;
+    }
+  };
 
   const genereteDataToChart = (statsData) => {
     const data = {
@@ -117,7 +45,32 @@ const StatsCharts = (props) => {
     return data;
   };
 
-  const renderCharts = () => {
+  useEffect(() => {
+    if (feedback) {
+      if (feedback.length !== 0) {
+        for (const opinion of feedback) {
+          setDataSetsForCharts(opinion, 'generalRating', generalRating);
+          setDataSetsForCharts(
+              opinion,
+              'clarityOfExpression',
+              clarityOfExpression,
+          );
+          setDataSetsForCharts(opinion, 'teachingMaterials', teachingMaterials);
+          setDataSetsForCharts(opinion, 'contentQuality', contentQuality);
+          setDataSetsForCharts(opinion, 'contactWithGroup', contactWithGroup);
+        }
+      }
+    }
+  }, [
+    feedback,
+    generalRating,
+    clarityOfExpression,
+    teachingMaterials,
+    contentQuality,
+    contactWithGroup,
+  ]);
+
+  const RenderCharts = () => {
     if (feedback.length !== 0) {
       return (
         <div style={{marginTop: 50}}>
@@ -161,7 +114,9 @@ const StatsCharts = (props) => {
 
   return (
     <div>
-      <div className="container center">{renderCharts()}</div>
+      <div className="container center">
+        <RenderCharts />
+      </div>
     </div>
   );
 };

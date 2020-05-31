@@ -139,16 +139,17 @@ const Feedback = () => {
   };
 
   const renderTabConent = () => {
-    const charts = StatsCharts(template.feedback);
-    const comments = renderFeedbacks();
-
     switch (activeTab) {
       case 'comments':
-        return comments;
+        return renderFeedbacks();
       case 'charts':
-        return charts;
+        return (
+          <div>
+            <StatsCharts feedback={template.feedback} />
+          </div>
+        );
       default:
-        return comments;
+        return renderFeedbacks();
     }
   };
 
@@ -192,7 +193,7 @@ const Feedback = () => {
 
           {renderTabConent()}
         </div>
-
+        {window.dispatchEvent(new Event('resize'))}
         <div id="modal" className="modal">
           {SendFeedback(template)}
         </div>
