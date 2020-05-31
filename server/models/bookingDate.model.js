@@ -20,6 +20,10 @@ const bookingDateSchema = new Schema(
         type: String,
         required: true,
       },
+      userName: {
+        type: Array,
+        required: true,
+      },
     },
     {
       timestamps: true,

@@ -6,7 +6,11 @@ import {useOktaAuth} from '@okta/okta-react';
 import moment from 'moment';
 import axios from 'axios';
 import M from 'materialize-css';
-import {transformDate, getDayMonthYear} from '../../toolset/baseFunctions';
+import {
+  transformDate,
+  getDayMonthYear,
+  containsObject,
+} from '../../toolset/baseFunctions';
 import ReactEmailHTML from '../invitation/reactEmailHtml.component';
 import LoadingCircular from '../addons/loadingCircular.component';
 
@@ -88,17 +92,19 @@ const BookingCalendar = () => {
       const date = getDayMonthYear(startTime);
       startTime = startTime.toLocaleTimeString('en-US');
       endTime = endTime.toLocaleTimeString('en-US');
+      const userName = [username];
 
       const bookingDate = {
         startTime,
         endTime,
         date,
         title,
+        userName,
       };
 
       setEventList([
         ...eventList,
-        {start, end, title, date, startTime, endTime},
+        {start, end, title, date, startTime, endTime, userName},
       ]);
 
       axios.post('/bookingDate/save', bookingDate, {
@@ -111,14 +117,16 @@ const BookingCalendar = () => {
 
   const deleteBookedTermin = (event) => {
     event.preventDefault();
-    axios.post(`/bookingDate/delete/${currentEvent._id}`).then(() => {
-      window.location.reload();
-    });
+    if (window.confirm('Are you sure you want to cancel the reservation?')) {
+      axios.post(`/bookingDate/delete/${currentEvent._id}`).then(() => {
+        window.location.reload();
+      });
+    }
   };
 
   const renderEventDetails = () => {
     if (currentEvent !== undefined) {
-      if ( currentEvent.instructor === undefined) {
+      if (currentEvent.instructor === undefined) {
         return (
           <div>
             <a
@@ -127,9 +135,9 @@ const BookingCalendar = () => {
               onClick={deleteBookedTermin}
             >
               <i className="material-icons red-text text-lighten-1 left">
-                  delete
+                delete
               </i>
-                DELETE
+              DELETE
             </a>
             <Link
               to={`/inviteTemplate/${currentEvent._id}`}
@@ -144,6 +152,22 @@ const BookingCalendar = () => {
         return ReactEmailHTML(currentEvent);
       }
     }
+  };
+
+  const eventStyleGetter = (event, start, end, isSelected) => {
+    console.log(event.userName, username);
+    let backgroundColor = '#' + event.hexColor;
+    if (event.userName !== undefined) {
+      if (!containsObject(username, event.userName)) {
+        backgroundColor = '#d12e2e';
+      }
+    }
+    const style = {
+      backgroundColor: backgroundColor,
+    };
+    return {
+      style: style,
+    };
   };
 
   return (
@@ -167,6 +191,7 @@ const BookingCalendar = () => {
               setCurrentEvent(event);
               document.getElementById('eventDetails').click();
             }}
+            eventPropGetter={eventStyleGetter}
           />
 
           <a className="modal-trigger" href="#modal" id="eventDetails">
