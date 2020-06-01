@@ -10,10 +10,10 @@ const StatsCharts = ({feedback}) => {
   const statsLabel = ['2.0', '3.0', '4.0', '5.0'];
   const statsBackgroundColor = ['#746c72', '#FFCE56', '#36A2EB', '#FF6384'];
   const statsHoverBackgroundColor = [
-    '#746c72',
-    '#FFCE56',
-    '#36A2EB',
-    '#FF6384',
+    '#50494e',
+    '#f2b10d',
+    '#1277ba',
+    '#e64c6e',
   ];
 
   const setDataSetsForCharts = (feedback, typeOfRate, updatedValue) => {

@@ -203,6 +203,10 @@ const LoginPage = ({authState, authService}) => {
                         <i className="tiny material-icons done">brightness_1</i>
                         Public and personal calendars.
                       </li>
+                      <li>
+                        <i className="tiny material-icons done">brightness_1</i>
+                        Date booking and better training scheduling.
+                      </li>
                     </ul>
                   </div>
                   <div className="col s12 l4 offset-l1">
@@ -210,10 +214,6 @@ const LoginPage = ({authState, authService}) => {
                       TO DO <i className="material-icons">build</i>
                     </h5>
                     <ul className="left-align">
-                      <li>
-                        <i className="tiny material-icons todo">brightness_1</i>
-                        Date booking and better training scheduling.
-                      </li>
                       <li>
                         <i className="tiny material-icons todo">brightness_1</i>
                         Notifications of upcoming training.

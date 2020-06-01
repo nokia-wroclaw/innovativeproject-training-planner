@@ -59,22 +59,24 @@ const GeneralCalendar = () => {
         <LoadingCircular />
       ) : (
         <div className="z-depth-3 calendar">
-          <Calendar
-            events={eventList}
-            startAccessor="start"
-            endAccessor="end"
-            defaultDate={moment().toDate()}
-            localizer={localizer}
-            timeslots={6}
-            onSelectEvent={(event) => {
-              setCurrentEvent(event);
-              document.getElementById('eventDetails').click();
-            }}
-          />
+          <div className="row" style={{height: '500pt'}}>
+            <Calendar
+              events={eventList}
+              startAccessor="start"
+              endAccessor="end"
+              defaultDate={moment().toDate()}
+              localizer={localizer}
+              timeslots={6}
+              onSelectEvent={(event) => {
+                setCurrentEvent(event);
+                document.getElementById('eventDetails').click();
+              }}
+            />
 
-          <a className="modal-trigger" href="#modal" id="eventDetails">
-            {''}
-          </a>
+            <a className="modal-trigger" href="#modal" id="eventDetails">
+              {''}
+            </a>
+          </div>
         </div>
       )}
 

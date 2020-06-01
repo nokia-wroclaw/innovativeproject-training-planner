@@ -155,7 +155,6 @@ const BookingCalendar = () => {
   };
 
   const eventStyleGetter = (event, start, end, isSelected) => {
-    console.log(event.userName, username);
     let backgroundColor = '#' + event.hexColor;
     if (event.userName !== undefined) {
       if (!containsObject(username, event.userName)) {
@@ -176,27 +175,45 @@ const BookingCalendar = () => {
         <LoadingCircular style={{width: 200, height: 200}} />
       ) : (
         <div className="z-depth-3 calendar">
-          <Calendar
-            selectable
-            events={eventList}
-            startAccessor="start"
-            endAccessor="end"
-            defaultDate={moment().toDate()}
-            localizer={localizer}
-            timeslots={6}
-            onSelectSlot={(event) => {
-              handleSelect(event);
-            }}
-            onSelectEvent={(event) => {
-              setCurrentEvent(event);
-              document.getElementById('eventDetails').click();
-            }}
-            eventPropGetter={eventStyleGetter}
-          />
+          <div className="row">
+            <div className="col s3 offset-s3">
+              <span
+                className="badge left"
+                style={{backgroundColor: '#d12e2e'}}
+              />
+              - Date reserved by someone else.
+            </div>
+            <div className="col s3">
+              - Date reserved by you.
+              <span
+                className="badge left"
+                style={{backgroundColor: '#3174ad', marginLeft: 80}}
+              />
+            </div>
+          </div>
+          <div className="row" style={{height: '500pt'}}>
+            <Calendar
+              selectable
+              events={eventList}
+              startAccessor="start"
+              endAccessor="end"
+              defaultDate={moment().toDate()}
+              localizer={localizer}
+              timeslots={6}
+              onSelectSlot={(event) => {
+                handleSelect(event);
+              }}
+              onSelectEvent={(event) => {
+                setCurrentEvent(event);
+                document.getElementById('eventDetails').click();
+              }}
+              eventPropGetter={eventStyleGetter}
+            />
 
-          <a className="modal-trigger" href="#modal" id="eventDetails">
-            {' '}
-          </a>
+            <a className="modal-trigger" href="#modal" id="eventDetails">
+              {' '}
+            </a>
+          </div>
         </div>
       )}
       <div id="modal" className="modal">

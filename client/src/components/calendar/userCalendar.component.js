@@ -70,15 +70,14 @@ const UserCalendar = () => {
   };
 
   const eventStyleGetter = (event, start, end, isSelected) => {
-    console.log(event);
-    const backgroundColor = '#' + event.hexColor;
+    let backgroundColor = '#' + event.hexColor;
+    if (event.userName !== undefined) {
+      if (!containsObject(username, event.userName)) {
+        backgroundColor = '#35677d';
+      }
+    }
     const style = {
       backgroundColor: backgroundColor,
-      borderRadius: '0px',
-      opacity: 0.8,
-      color: 'black',
-      border: '0px',
-      display: 'block',
     };
     return {
       style: style,
@@ -91,23 +90,25 @@ const UserCalendar = () => {
         <LoadingCircular style={{width: 200, height: 200}} />
       ) : (
         <div className="z-depth-3 calendar">
-          <Calendar
-            events={eventList}
-            startAccessor="start"
-            endAccessor="end"
-            defaultDate={moment().toDate()}
-            localizer={localizer}
-            timeslots={6}
-            onSelectEvent={(event) => {
-              setCurrentEvent(event);
-              document.getElementById('eventDetails').click();
-            }}
-            eventPropGetter={eventStyleGetter}
-          />
+          <div className="row" style={{height: '500pt'}}>
+            <Calendar
+              events={eventList}
+              startAccessor="start"
+              endAccessor="end"
+              defaultDate={moment().toDate()}
+              localizer={localizer}
+              timeslots={6}
+              onSelectEvent={(event) => {
+                setCurrentEvent(event);
+                document.getElementById('eventDetails').click();
+              }}
+              eventPropGetter={eventStyleGetter}
+            />
 
-          <a className="modal-trigger" href="#modal" id="eventDetails">
-            {' '}
-          </a>
+            <a className="modal-trigger" href="#modal" id="eventDetails">
+              {' '}
+            </a>
+          </div>
         </div>
       )}
       <div id="modal" className="modal">

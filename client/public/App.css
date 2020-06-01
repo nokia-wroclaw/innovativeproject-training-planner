@@ -43,14 +43,13 @@
 }
 
 .calendar {
-  height: 550pt;
   background: white;
   padding: 20px;
   border-radius: 3px;
 }
 
 .calendar-board {
-  height: 850px;
+  height: 950px;
 }
 
 .marker-sent {
