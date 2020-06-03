@@ -1,85 +1,86 @@
 .primary-color {
   background-color: #356fb7 !important;
-}
-
-.secondary-color {
+  }
+  
+  .secondary-color {
   background-color: #da4167 !important;
-}
-
-.background {
+  }
+  
+  .background {
   padding: 50px 0px 50px 0px;
   background-color: #edf2f8;
-}
-
-.loading {
+  }
+  
+  .loading {
   width: 200px;
   height: 200px;
   margin: 50px;
-}
-
-.form {
+  }
+  
+  .form {
   background-color: white;
   padding: 50px;
-}
-
-.template-board {
+  }
+  
+  .template-board {
   height: 1550px;
-}
-
-.software-training {
+  }
+  
+  .software-training {
   background-color: #72a1e5 !important;
-}
-
-.hardware-training {
+  }
+  
+  .hardware-training {
   background-color: #a8769e !important;
-}
-
-.soft-training {
+  }
+  
+  .soft-training {
   background-color: #48a9a6 !important;
-}
-
-.general-training {
+  }
+  
+  .general-training {
   background-color: #7d869c !important;
-}
-
-.calendar {
+  }
+  
+  .calendar {
+  height: 550pt;
   background: white;
   padding: 20px;
   border-radius: 3px;
-}
-
-.calendar-board {
-  height: 950px;
-}
-
-.marker-sent {
+  }
+  
+  .calendar-board {
+  height: 850px;
+  }
+  
+  .marker-sent {
   width: 0px;
   background-color: transparent;
   position: absolute;
   left: 25px;
   border: solid 15px #f9dc5c;
   border-bottom: solid 15px transparent;
-}
-
-.marker-sent {
+  }
+  
+  .marker-sent {
   width: 0px;
   background-color: transparent;
   position: absolute;
   left: 25px;
   border: solid 15px #f9dc5c;
   border-bottom: solid 15px transparent;
-}
-
-.marker-stats {
+  }
+  
+  .marker-stats {
   width: 0px;
   background-color: transparent;
   position: absolute;
   left: 25px;
   border: solid 15px #faad61;
   border-bottom: solid 15px transparent;
-}
-
-.marker-text {
+  }
+  
+  .marker-text {
   margin-bottom: 10px;
   font-weight: bold;
   position: relative;
@@ -87,46 +88,55 @@
   text-orientation: upright;
   text-align: left;
   right: 12px;
-}
-
-.details {
+  }
+  
+  .details {
   margin-left: 100px;
   margin-right: 100px;
-}
-
-.details-bar {
+  }
+  
+  .details-bar {
   margin-top: -50px;
-}
-
-.done {
+  }
+  
+  .done {
   color: green;
   font-weight: bold;
   margin-right: 7px;
-}
-
-.todo {
+  }
+  
+  .todo {
   color: orange;
   font-weight: bold;
   margin-right: 7px;
-}
-
-.carousel-container {
+  }
+  
+  .carousel-container {
   height: 75%;
-}
-
-.carousel-description {
+  }
+  
+  .carousel-description {
   height: 70%;
-}
-
-.carousel-addon {
+  }
+  
+  .carousel-addon {
   height: 30%;
-}
-
-.tab-link {
+  }
+  
+  .tab-link {
   width: 5%;
   min-width: 100px;
-}
-
-.searchbar {
+  }
+  
+  .searchbar {
   min-width: 250;
-}
+  }
+  
+  .reminders{
+  margin-bottom: 50px;
+  }
+  
+  .reminder-card{
+  width:100%;
+  ;}
+  

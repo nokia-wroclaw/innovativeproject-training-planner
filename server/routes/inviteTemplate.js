@@ -113,4 +113,20 @@ router.route('/delete/:_id').post((req, res) => {
       .catch((err) => res.status(400).json('Error: ' + err));
 });
 
+// getting invitations from next 5 days
+router
+    .route('/upcoming/all')
+    .get(okta.authenticationRequired, (req, res) => {
+      InviteTemplate.find({
+        $and: [
+          {userName: req.headers.username},
+          {date: {$lt: new Date()}},
+          {sent: false},
+        ],
+      })
+          .then((inviteTemplate) => res.json(inviteTemplate))
+          .catch((err) => res.status(400).json('Error: ' + err));
+    });
+
+
 module.exports = router;
