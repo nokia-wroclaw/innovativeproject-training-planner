@@ -126,7 +126,11 @@ const BookingCalendar = () => {
 
   const renderEventDetails = () => {
     if (currentEvent !== undefined) {
-      if (currentEvent.instructor === undefined) {
+      console.log(currentEvent.userName, username);
+      if (
+        currentEvent.instructor === undefined &&
+        containsObject(username, currentEvent.userName)
+      ) {
         return (
           <div>
             <a
@@ -156,6 +160,7 @@ const BookingCalendar = () => {
 
   const eventStyleGetter = (event, start, end, isSelected) => {
     let backgroundColor = '#' + event.hexColor;
+    console.log(event.hexColor);
     if (event.userName !== undefined) {
       if (!containsObject(username, event.userName)) {
         backgroundColor = '#d12e2e';
