@@ -1,4 +1,3 @@
-
 import React, {useEffect} from 'react';
 import M from 'materialize-css';
 import Dictionary from '../../toolset/dictionary';
@@ -32,7 +31,7 @@ const StatsDetails = (props) => {
 const ReminderCard = (props) => {
   return (
     <div
-      className={`reminder-card card hoverable ${cardColorDictionary.get(
+      className={`center reminder-card card hoverable ${cardColorDictionary.get(
           props.item.trainingType,
       )}`}
     >
@@ -55,8 +54,9 @@ const ReminderCard = (props) => {
 {props.item.title}
 </span> */}
             <p className="truncate">{props.item.date}</p>
-            <p className="truncate">{props.item.startTime +
-' - ' + props.item.endTime}</p>
+            <p className="truncate">
+              {props.item.startTime + ' - ' + props.item.endTime}
+            </p>
           </div>
           <div className="col s1">
             <i className="material-icons right">

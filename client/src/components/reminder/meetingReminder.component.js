@@ -37,27 +37,23 @@ const MeetingReminder = () => {
             username,
           },
         })
-        .then((res) => (
-          setTemplateList(res.data)));
+        .then((res) => setTemplateList(res.data));
   }, [accessToken, username]);
 
   return (
-    <div className="container center">
-      <div >
-        {!isLoaded ? (
-<LoadingCircular />
-) : (
-<div className="row">
-  {templateList.reverse()
-      .slice(0, 3)
-      .map((item) => (
-        <div className="col s12" key={item._ixd}>
-          <ReminderCard item={item} />
+    <div className="center">
+      {!isLoaded ? (
+        <LoadingCircular />
+      ) : (
+        <div className="row reminders z-depth-3">
+          {templateList
+              .reverse()
+              .slice(0, 3)
+              .map((item) => (
+                <ReminderCard item={item} key={item._ixd} />
+              ))}
         </div>
-      ))}
-</div>
-)}
-      </div>
+      )}
     </div>
   );
 };
