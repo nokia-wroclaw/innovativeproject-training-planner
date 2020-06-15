@@ -51,6 +51,7 @@ const GeneralCalendar = () => {
         })
         .catch(() => {
           console.log('no user logged in');
+          setUsername(undefined);
         });
   }, [authService]);
 
@@ -84,7 +85,7 @@ const GeneralCalendar = () => {
   };
 
   const showLegend = () => {
-    if (username !== '') {
+    if (username !== undefined) {
       return (
         <div className="row">
           <div className="col s3 offset-s3">
@@ -92,10 +93,10 @@ const GeneralCalendar = () => {
               className="badge left"
               style={{backgroundColor: '#da4167', marginLeft: 60}}
             />
-            - Events you're invited for.
+            {'- Events you\'re invited for.'}
           </div>
           <div className="col s3">
-            - Events organized by you.
+            {'- Events organized by you.'}
             <span
               className="badge left"
               style={{backgroundColor: '#3174ad', marginLeft: 60}}
