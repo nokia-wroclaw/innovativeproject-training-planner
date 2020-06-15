@@ -5,7 +5,7 @@ import {useOktaAuth} from '@okta/okta-react';
 import moment from 'moment';
 import axios from 'axios';
 import M from 'materialize-css';
-import {transformDate} from '../../toolset/baseFunctions';
+import {transformDate, containsObject} from '../../toolset/baseFunctions';
 import ReactEmailHTML from '../invitation/reactEmailHtml.component';
 import LoadingCircular from '../addons/loadingCircular.component';
 
